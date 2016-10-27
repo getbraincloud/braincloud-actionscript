@@ -28,7 +28,8 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
 		 */
-        public function attach(externalId:String, authenticationToken:String, authenticationType:AuthenticationType, externalAuthName:String = "", successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function attach(externalId:String, authenticationToken:String, authenticationType:AuthenticationType, externalAuthName:String = "", 
+            successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
                 "externalId": externalId,     
@@ -136,7 +137,8 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
 		 */
-        public function merge(externalId:String, authenticationToken:String, authenticationType:AuthenticationType, externalAuthName:String = "", successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function merge(externalId:String, authenticationToken:String, authenticationType:AuthenticationType, externalAuthName:String = "", 
+            successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
                 "externalId": externalId,     
@@ -165,7 +167,8 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function refreshIdentity(externalId:String, authenticationToken:String, authenticationType:AuthenticationType, externalAuthName:String = "", successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function refreshIdentity(externalId:String, authenticationToken:String, authenticationType:AuthenticationType,
+            externalAuthName:String = "", successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
                 "externalId": externalId,     
@@ -238,6 +241,39 @@ package com.bitheads.braincloud.services
             
 			var serverCall:ServerCall = new ServerCall(ServiceName.Identity, ServiceOperation.SwitchToParentProfile, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
+        }
+        
+        /**
+         * Attach a new identity to a parent app
+         *
+         * Service Name - identity
+         * Service Operation - ATTACH_PARENT_WITH_IDENTITY
+         *
+         * @param externalId The users id for the new credentials
+         * @param authenticationToken The password/token
+         * @param authenticationType Type of identity
+         * @param forceCreate Should a new profile be created if it does not exist?
+         * @param externalAuthName Optional - if attaching an external identity
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function attachParentWithIdentity(externalId:String, authenticationToken:String, authenticationType:AuthenticationType, forceCreate:Boolean, 
+            externalAuthName:String = "", successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "authenticationToken": authenticationToken,   
+                "authenticationType": authenticationType.name,
+                "externalId": externalId,     
+                "forceCreate": forceCreate
+            };
+                
+            if (isOptionalParamValid(externalAuthName)) {
+                data.externalAuthName = externalAuthName;
+            }
+                
+            var serverCall:ServerCall = new ServerCall(ServiceName.Identity, ServiceOperation.AttachParentWithIdentity, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
         }
         
         

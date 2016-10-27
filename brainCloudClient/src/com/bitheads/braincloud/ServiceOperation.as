@@ -15,6 +15,7 @@ package com.bitheads.braincloud
         public static const GetIdentities:String = "GET_IDENTITIES";
         public static const GetExpiredIdentities:String = "GET_EXPIRED_IDENTITIES";
         public static const RefreshIdentity:String = "REFRESH_IDENTITY";
+        public static const AttachParentWithIdentity:String = "ATTACH_PARENT_WITH_IDENTITY";
         
         public static const Create:String = "CREATE";
         public static const CreateWithIndexedId:String = "CREATE_WITH_INDEXED_ID";
