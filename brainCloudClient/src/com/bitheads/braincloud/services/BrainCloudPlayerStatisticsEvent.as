@@ -13,6 +13,25 @@ package com.bitheads.braincloud.services
             super(client);
         }
         
+        /**
+         * Trigger an event server side that will increase the players statistics.
+         * This may cause one or more awards to be sent back to the player - 
+         * could be achievements, experience, etc. Achievements will be sent by this
+         * client library to the appropriate awards service (Apple Game Center, etc).
+         *
+         * This mechanism supercedes the PlayerStatisticsService API methods, since
+         * PlayerStatisticsService API method only update the raw statistics without
+         * triggering the rewards.
+         *
+         * Service Name - PlayerStatisticsEvent
+         * Service Operation - Trigger
+         *
+         * @see PlayerStatisticsService
+         * 
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
         public function triggerPlayerStatisticsEvent(eventName:String, multiplier:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
@@ -26,6 +45,9 @@ package com.bitheads.braincloud.services
         
         /**
          * See documentation for TriggerPlayerStatisticsEvent for more documentation.
+         *
+         * Service Name - PlayerStatisticsEvent
+         * Service Operation - TriggerMultiple
          * 
          * @param events Object array:
          * [
@@ -38,9 +60,9 @@ package com.bitheads.braincloud.services
          *     "eventMultiplier": 1
          *   }
          * ]
-         * @param successCallback
-         * @param errorCallback
-         * @param cbObject
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
          */
         public function triggerPlayerStatisticsEvents(events:Array, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{

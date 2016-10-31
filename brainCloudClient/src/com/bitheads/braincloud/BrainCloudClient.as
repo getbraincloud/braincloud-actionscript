@@ -32,10 +32,14 @@ package com.bitheads.braincloud
         private var _identityService:BrainCloudIdentity;
 		private var _leaderboardService:BrainCloudLeaderboard;
 		private var _mailService:BrainCloudMail;
+		private var _matchMakingService:BrainCloudMatchMaking;
+        private var _oneWayMatchService:BrainCloudOneWayMatch;
+        private var _playbackStreamService:BrainCloudPlaybackStream;
 		private var _playerStateService:BrainCloudPlayerState;
 		private var _playerStatisticsService:BrainCloudPlayerStatistics;
 		private var _playerStatisticsEventService:BrainCloudPlayerStatisticsEvent;
 		private var _productService:BrainCloudProduct;
+		private var _profanityService:BrainCloudProfanity;
 		private var _scriptService:BrainCloudScript;
 		private var _s3HandlingService:BrainCloudS3Handling;
 		private var _timeService:BrainCloudTime;
@@ -60,10 +64,14 @@ package com.bitheads.braincloud
                 _identityService = new BrainCloudIdentity(this);
 				_leaderboardService = new BrainCloudLeaderboard(this);
                 _mailService = new BrainCloudMail(this);
+                _matchMakingService = new BrainCloudMatchMaking(this);
+                _oneWayMatchService = new BrainCloudOneWayMatch(this);
+                _playbackStreamService = new BrainCloudPlaybackStream(this);
 				_playerStateService = new BrainCloudPlayerState(this);
 				_playerStatisticsService = new BrainCloudPlayerStatistics(this);
                 _playerStatisticsEventService = new BrainCloudPlayerStatisticsEvent(this);
 				_productService = new BrainCloudProduct(this);
+				_profanityService = new BrainCloudProfanity(this);
 				_scriptService = new BrainCloudScript(this);
                 _s3HandlingService = new BrainCloudS3Handling(this);
 				_timeService = new BrainCloudTime(this);
@@ -249,6 +257,21 @@ package com.bitheads.braincloud
 			return _mailService;
 		}
 		
+		public function get matchMakingService():BrainCloudMatchMaking
+		{
+			return _matchMakingService;
+		}
+        
+		public function get oneWayMatchService():BrainCloudOneWayMatch
+		{
+			return _oneWayMatchService;
+		}
+        
+		public function get playbackStreamService():BrainCloudPlaybackStream
+		{
+			return _playbackStreamService;
+		}
+		
 		public function get playerStateService():BrainCloudPlayerState
 		{
 			return _playerStateService;
@@ -267,6 +290,11 @@ package com.bitheads.braincloud
 		public function get productService():BrainCloudProduct
 		{
 			return _productService;
+		}
+		
+		public function get profanityService():BrainCloudProfanity
+		{
+			return _profanityService;
 		}
 		
 		public function get scriptService():BrainCloudScript
