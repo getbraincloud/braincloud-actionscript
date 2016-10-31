@@ -26,9 +26,12 @@ package com.bitheads.braincloud
 		private var _entityService:BrainCloudEntity;
 		private var _eventService:BrainCloudEvent;
 		private var _gamificationService:BrainCloudGamification;
-		private var _globalApp:BrainCloudGlobalApp;        
+		private var _globalApp:BrainCloudGlobalApp;     
+		private var _globalStats:BrainCloudGlobalStatistics;      
+		private var _groupService:BrainCloudGroup;    
         private var _identityService:BrainCloudIdentity;
 		private var _leaderboardService:BrainCloudLeaderboard;
+		private var _mailService:BrainCloudMail;
 		private var _playerStateService:BrainCloudPlayerState;
 		private var _playerStatisticsService:BrainCloudPlayerStatistics;
 		private var _playerStatisticsEventService:BrainCloudPlayerStatisticsEvent;
@@ -52,8 +55,11 @@ package com.bitheads.braincloud
 				_eventService = new BrainCloudEvent(this);
 				_gamificationService = new BrainCloudGamification(this);
                 _globalApp = new BrainCloudGlobalApp(this);
+                _globalStats = new BrainCloudGlobalStatistics(this);
+                _groupService = new BrainCloudGroup(this);
                 _identityService = new BrainCloudIdentity(this);
 				_leaderboardService = new BrainCloudLeaderboard(this);
+                _mailService = new BrainCloudMail(this);
 				_playerStateService = new BrainCloudPlayerState(this);
 				_playerStatisticsService = new BrainCloudPlayerStatistics(this);
                 _playerStatisticsEventService = new BrainCloudPlayerStatisticsEvent(this);
@@ -218,6 +224,16 @@ package com.bitheads.braincloud
 			return _globalApp;
 		}
         
+        public function get globalStatisticsService():BrainCloudGlobalStatistics
+		{
+			return _globalStats;
+		}
+        
+        public function get groupService():BrainCloudGroup
+		{
+			return _groupService;
+		}
+        
         public function get identityService():BrainCloudIdentity
 		{
 			return _identityService;
@@ -226,6 +242,11 @@ package com.bitheads.braincloud
 		public function get leaderboardService():BrainCloudLeaderboard
 		{
 			return _leaderboardService;
+		}
+		
+		public function get mailService():BrainCloudMail
+		{
+			return _mailService;
 		}
 		
 		public function get playerStateService():BrainCloudPlayerState

@@ -16,6 +16,8 @@ package com.bitheads.braincloud
         public static const Group:String = "group";
         public static const HeartBeat:String = "heartbeat";
         public static const Identity:String = "identity";
+        public static const Leaderboard:String = "leaderboard";
+        public static const Mail:String = "mail";
         public static const MatchMaking:String = "matchMaking";
         public static const OneWayMatch:String = "onewayMatch";
         public static const PlaybackStream:String = "playbackStream";
@@ -30,7 +32,6 @@ package com.bitheads.braincloud
         public static const Script:String = "script";
         public static const ServerTime:String = "time";
         public static const SocialLeaderboard:String = "socialLeaderboard";
-        public static const Leaderboard:String = "leaderboard";
         public static const Twitter:String = "twitter";
         public static const Time:String = "time";
     }
