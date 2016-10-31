@@ -28,7 +28,7 @@ package com.bitheads.braincloud
 		private var _gamificationService:BrainCloudGamification;
 		private var _globalApp:BrainCloudGlobalApp;     
 		private var _globalStats:BrainCloudGlobalStatistics;      
-		private var _groupService:BrainCloudGroup;    
+		private var _groupService:BrainCloudGroup;
         private var _identityService:BrainCloudIdentity;
 		private var _leaderboardService:BrainCloudLeaderboard;
 		private var _mailService:BrainCloudMail;
@@ -40,6 +40,8 @@ package com.bitheads.braincloud
 		private var _playerStatisticsEventService:BrainCloudPlayerStatisticsEvent;
 		private var _productService:BrainCloudProduct;
 		private var _profanityService:BrainCloudProfanity;
+		private var _pushNotificationService:BrainCloudPushNotification;
+		private var _redemptionCodeService:BrainCloudRedemptionCode;
 		private var _scriptService:BrainCloudScript;
 		private var _s3HandlingService:BrainCloudS3Handling;
 		private var _timeService:BrainCloudTime;
@@ -72,6 +74,8 @@ package com.bitheads.braincloud
                 _playerStatisticsEventService = new BrainCloudPlayerStatisticsEvent(this);
 				_productService = new BrainCloudProduct(this);
 				_profanityService = new BrainCloudProfanity(this);
+                _pushNotificationService = new BrainCloudPushNotification(this);
+                _redemptionCodeService = new BrainCloudRedemptionCode(this);
 				_scriptService = new BrainCloudScript(this);
                 _s3HandlingService = new BrainCloudS3Handling(this);
 				_timeService = new BrainCloudTime(this);
@@ -295,6 +299,16 @@ package com.bitheads.braincloud
 		public function get profanityService():BrainCloudProfanity
 		{
 			return _profanityService;
+		}
+		
+		public function get pushNotificationService():BrainCloudPushNotification
+		{
+			return _pushNotificationService;
+		}
+		
+		public function get redemptionCodeService():BrainCloudRedemptionCode
+		{
+			return _redemptionCodeService;
 		}
 		
 		public function get scriptService():BrainCloudScript
