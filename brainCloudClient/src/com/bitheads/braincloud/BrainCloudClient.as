@@ -22,11 +22,14 @@ package com.bitheads.braincloud
 		private var _timeZoneOffset:Number;
 		
 		private var _comms:BrainCloudComms;
+		private var _asyncMatchService:BrainCloudAsyncMatch;
 		private var _authenticationService:BrainCloudAuthentication;
+        private var _dataStreamService:BrainCloudDataStream;
 		private var _entityService:BrainCloudEntity;
 		private var _eventService:BrainCloudEvent;
 		private var _gamificationService:BrainCloudGamification;
 		private var _globalApp:BrainCloudGlobalApp;     
+		private var _globalEntity:BrainCloudGlobalEntity;    
 		private var _globalStats:BrainCloudGlobalStatistics;      
 		private var _groupService:BrainCloudGroup;
         private var _identityService:BrainCloudIdentity;
@@ -56,11 +59,14 @@ package com.bitheads.braincloud
 			{
 				_comms = new BrainCloudComms(this);
 				
+                _asyncMatchService = new BrainCloudAsyncMatch(this);
 				_authenticationService = new BrainCloudAuthentication(this);
+				_dataStreamService = new BrainCloudDataStream(this);
 				_entityService = new BrainCloudEntity(this);
 				_eventService = new BrainCloudEvent(this);
 				_gamificationService = new BrainCloudGamification(this);
                 _globalApp = new BrainCloudGlobalApp(this);
+                _globalEntity = new BrainCloudGlobalEntity(this);
                 _globalStats = new BrainCloudGlobalStatistics(this);
                 _groupService = new BrainCloudGroup(this);
                 _identityService = new BrainCloudIdentity(this);
@@ -211,9 +217,19 @@ package com.bitheads.braincloud
 		
 		//{ region  Services
 		
+		public function get asyncMatchService():BrainCloudAsyncMatch
+		{
+			return _asyncMatchService;
+		}
+        
 		public function get authenticationService():BrainCloudAuthentication
 		{
 			return _authenticationService;
+		}
+        
+		public function get dataStreamService():BrainCloudDataStream
+		{
+			return _dataStreamService;
 		}
 		
 		public function get entityService():BrainCloudEntity
@@ -234,6 +250,11 @@ package com.bitheads.braincloud
 		public function get globalAppService():BrainCloudGlobalApp
 		{
 			return _globalApp;
+		}
+		
+		public function get globalEntityService():BrainCloudGlobalEntity
+		{
+			return _globalEntity;
 		}
         
         public function get globalStatisticsService():BrainCloudGlobalStatistics
