@@ -19,9 +19,9 @@ package com.bitheads.braincloud
 		private var _gameId:String;
 		private var _countryCode:String;
 		private var _languageCode:String;
-		private var _timeZoneOffset:Number;
-		
+		private var _timeZoneOffset:Number;		
 		private var _comms:BrainCloudComms;
+        
 		private var _asyncMatchService:BrainCloudAsyncMatch;
 		private var _authenticationService:BrainCloudAuthentication;
         private var _dataStreamService:BrainCloudDataStream;
@@ -134,13 +134,20 @@ package com.bitheads.braincloud
 			_comms.setDebugOutputFunctions(trace, trace, true);
 		}
 		
-		private function initLocale():void
+        /**
+		 * Run callbacks, to be called once per frame from your main thread
+		 */
+		public function runCallbacks():void
 		{
-			_languageCode = Capabilities.language;
-			
-			var date:Date = new Date();
-			var offset:Number = date.getTimezoneOffset();
-			_timeZoneOffset = offset / 60;
+			_comms.runCallbacks();
+		}
+		
+        /**
+		 * Clears any pending messages from communication library.
+		 */
+		public function resetCommunications():void
+		{
+			_comms.resetCommunication();
 		}
         
         /**
@@ -507,20 +514,13 @@ package com.bitheads.braincloud
 			_comms.sendRequest(serviceMessage);
 		}
 		
-        /**
-		 * Run callbacks, to be called once per frame from your main thread
-		 */
-		public function runCallbacks():void
+		private function initLocale():void
 		{
-			_comms.runCallbacks();
-		}
-		
-        /**
-		 * Clears any pending messages from communication library.
-		 */
-		public function resetCommunications():void
-		{
-			_comms.resetCommunication();
+			_languageCode = Capabilities.language;
+			
+			var date:Date = new Date();
+			var offset:Number = date.getTimezoneOffset();
+			_timeZoneOffset = offset / 60;
 		}
 	}
 }
