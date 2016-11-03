@@ -196,6 +196,25 @@ package com.bitheads.braincloud
         {
             _comms.flushCachedMessages(sendApiErrorCallbacks);
         }
+        
+        /**
+		 * Inserts a marker which will tell the brainCloud comms layer
+		 * to close the message bundle off at this point. Any messages queued
+		 * before this method was called will likely be bundled together in
+		 * the next send to the server.
+		 *
+		 * To ensure that only a single message is sent to the server you would
+		 * do something like this:
+		 *
+		 * InsertEndOfMessageBundleMarker()
+		 * SomeApiCall()
+		 * InsertEndOfMessageBundleMarker()
+		 *
+		 */
+        public function insertEndOfMessageBundleMarker():void 
+        {
+            _comms.insertEndOfMessageBundleMarker();
+        }
 		
 		//{ region  Getters
 		

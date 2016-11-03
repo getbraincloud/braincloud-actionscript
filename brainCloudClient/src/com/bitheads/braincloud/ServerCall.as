@@ -8,6 +8,8 @@ package com.bitheads.braincloud
 		private var _successCallback:Function;
 		private var _errorCallback:Function;
 		private var _cbObject:Object;
+        
+        private var _endOfBundleMarker:Boolean;
 		
 		public function ServerCall(service:String, operation:String, data:Object, successCallback:Function, errorCallback:Function, cbObject:Object)
 		{
@@ -78,5 +80,13 @@ package com.bitheads.braincloud
 		{
 			return _cbObject;
 		}
+        
+        public function get endOfBundleMarker():Boolean {
+            return _endOfBundleMarker;
+        }
+        
+        public function set endOfBundleMarker(isEndOfBunde:Boolean):void {
+            _endOfBundleMarker = isEndOfBunde;
+        }
 	}
 }

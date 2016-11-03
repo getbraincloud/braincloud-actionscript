@@ -124,6 +124,14 @@ package com.bitheads.braincloud.comms
 		{
 			return _url;
 		}
+        
+        public function insertEndOfMessageBundleMarker():void 
+        {
+            if (_serviceCallsWaiting.length > 0) {
+                var call:ServerCall = _serviceCallsWaiting[0] as ServerCall;
+                call.endOfBundleMarker = true;
+            }
+        }
 		
 		public function runCallbacks():void
 		{
@@ -179,7 +187,7 @@ package com.bitheads.braincloud.comms
 		
 		public function sendRequest(serverCall:ServerCall):void
 		{
-			_serviceCallsWaiting.push(serverCall);
+			_serviceCallsWaiting.unshift(serverCall);
 		}
         
         public function enableNetworkErrorMessageCaching(enabled:Boolean):void 
@@ -228,18 +236,24 @@ package com.bitheads.braincloud.comms
 				
 				// set up request object		
                 _urlRequest.url = _url;
-				
-				var numMessagesWaiting:int = _serviceCallsWaiting.length;
-				_serviceCallsInProgress = _serviceCallsWaiting.splice(0, REQUEST_MESSAGE_LIMIT);
-				
+                
 				// prepare json data for server
 				var jsonMessageList:Array = [];
-				for (var i:int = 0; i < _serviceCallsInProgress.length; ++i)
-				{
-					var call:ServerCall = _serviceCallsInProgress[i] as ServerCall;
-					if (call.getOperation() == ServiceOperation.Authenticate) _isAuthenticating = true;
+                
+                for (var i:int = _serviceCallsWaiting.length - 1; i >= 0; --i) {
+                    var call:ServerCall = _serviceCallsWaiting[i] as ServerCall;
+                    
+                    _serviceCallsInProgress.push(call);
+                    _serviceCallsWaiting.splice(i, 1);
+                    
+                    if (call.getOperation() == ServiceOperation.Authenticate) _isAuthenticating = true;
 					jsonMessageList.push(call.getJsonData());
-				}
+                    
+                    if (call.getOperation() === ServiceOperation.Authenticate ||
+                        call.endOfBundleMarker === true) {
+                        break;
+                    }                        
+                }
 				
 				// bundle all messages
 				_expectedIncomingPacketId = _packetId++;
@@ -301,6 +315,7 @@ package com.bitheads.braincloud.comms
 			}
 			
 			_expectedIncomingPacketId = NO_PACKET_EXPECTED;
+            _serviceCallsInProgress.length = 0;
 			
 			//event
 			if (_eventCallback != null && jsonData.hasOwnProperty("events"))
@@ -475,7 +490,7 @@ package com.bitheads.braincloud.comms
 			try { 
                 _loader.close();
             }
-            catch(error:Error){
+            catch(error:Error) {
                 //not a problem
             }
             
