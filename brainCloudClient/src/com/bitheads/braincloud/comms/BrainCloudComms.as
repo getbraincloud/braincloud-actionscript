@@ -50,6 +50,12 @@ package com.bitheads.braincloud.comms
 		//callbacks
 		private var _eventCallback:Function;
 		private var _globalErrorCallback:Function;
+		private var _networkErrorCallback:Function;
+        
+        //retry
+        private var _cacheMessagesOnNetworkError:Boolean = false;
+        private var _blockingQueue:Boolean = false;
+        
 		
 		public function get isAuthenticated():Boolean
 		{
@@ -75,6 +81,11 @@ package com.bitheads.braincloud.comms
 		{
 			_eventCallback = callback;
 		}
+        
+        public function setNetworkErrorCallback(callback:Function):void
+		{
+			_networkErrorCallback = callback;
+		}
 		
 		public function BrainCloudComms(client:BrainCloudClient)
 		{
@@ -91,6 +102,10 @@ package com.bitheads.braincloud.comms
 			
 			_fnDebugOutput = trace;
 			_fnErrorOutput = trace;
+            
+            _urlRequest = new URLRequest();
+			_urlRequest.method = URLRequestMethod.POST;
+			_urlRequest.contentType = "application/json";	
 		}
 		
 		public function initialize(gameId:String, secret:String, serverUrl:String):void
@@ -112,6 +127,8 @@ package com.bitheads.braincloud.comms
 		
 		public function runCallbacks():void
 		{
+            if (_blockingQueue) return;
+            
 			//send 
 			if (_loader === null)
 			{
@@ -149,11 +166,13 @@ package com.bitheads.braincloud.comms
 			_responses.length = 0;
 			_eventResponses.length = 0;
 			_expectedIncomingPacketId = NO_PACKET_EXPECTED;
+            
+            _blockingQueue = false;
 		}
 		
 		public function onHeartbeat(in_event:TimerEvent):void
 		{
-			if (!_isAuthenticated) return;
+			if (!_isAuthenticated || _blockingQueue) return;
 			var serv:ServerCall = new ServerCall(ServiceName.HeartBeat, ServiceOperation.Read, null, null, null, null);
 			sendRequest(serv);
 		}
@@ -162,6 +181,40 @@ package com.bitheads.braincloud.comms
 		{
 			_serviceCallsWaiting.push(serverCall);
 		}
+        
+        public function enableNetworkErrorMessageCaching(enabled:Boolean):void 
+        {
+            _cacheMessagesOnNetworkError = enabled;
+        }
+        
+        public function retryCachedMessages():void 
+        {
+            if (!_blockingQueue) return;            
+            
+            _fnDebugOutput("Retrying cached messages");
+            
+            _blockingQueue = false;
+            _retryCount = 0;
+            resendActivePacket();     
+        }
+        
+        public function flushCachedMessages(sendApiErrorCallbacks:Boolean):void
+        {
+            if (!_blockingQueue) return;            
+            
+            _fnDebugOutput("Flushing cached messages");
+            _blockingQueue = false; 
+            
+            if (sendApiErrorCallbacks)
+            {
+                triggerCommsError(900, ReasonCodes.CLIENT_NETWORK_ERROR_TIMEOUT, "Timeout trying to reach brainCloud server");
+            }
+            else
+            {
+                releaseLoader();
+                _serviceCallsInProgress.length = 0;
+            }
+        }
 		
 		private function processQueue():void
 		{
@@ -173,13 +226,8 @@ package com.bitheads.braincloud.comms
 				_isAuthenticating = false;
 				_retryCount = 0;
 				
-				// set up request object
-				if (!_urlRequest)
-				{
-					_urlRequest = new URLRequest(_url);
-					_urlRequest.method = URLRequestMethod.POST;
-					_urlRequest.contentType = "application/json";
-				}
+				// set up request object		
+                _urlRequest.url = _url;
 				
 				var numMessagesWaiting:int = _serviceCallsWaiting.length;
 				_serviceCallsInProgress = _serviceCallsWaiting.splice(0, REQUEST_MESSAGE_LIMIT);
@@ -321,14 +369,40 @@ package com.bitheads.braincloud.comms
 		private function onSendSecurityError(event:SecurityErrorEvent):void
 		{
 			_fnErrorOutput("onSendSecurityError: " + event.toString());
-			triggerCommsError(900, ReasonCodes.CLIENT_NETWORK_ERROR_TIMEOUT, event.toString());
+			retry();
 		}
 		
-		public function onSendError(event:IOErrorEvent):void
+		private function onSendError(event:IOErrorEvent):void
 		{
 			_fnErrorOutput("Network error! " + event.toString());
-			triggerCommsError(900, ReasonCodes.CLIENT_NETWORK_ERROR_TIMEOUT, event.toString());
+			retry();
 		}
+        
+        private function retry():void
+        {
+            if (canRetry())
+			{
+				_fnErrorOutput("Server timed out. Retrying...");                
+                _retryCount++;
+				resendActivePacket();
+				startTimeoutTimer(getTimeoutForRetryCount(_retryCount));
+			}
+			else
+			{
+				_fnErrorOutput("Server timed out - retry limit reached.");
+                
+                if (_cacheMessagesOnNetworkError && _networkErrorCallback != null)
+                {
+                    _fnErrorOutput("Caching messages");
+                    _blockingQueue = true;
+                    _networkErrorCallback();
+                }
+                else
+                {                    
+                    triggerCommsError(900, ReasonCodes.CLIENT_NETWORK_ERROR_TIMEOUT, "Timeout trying to reach brainCloud server");
+                }
+			}
+        }
 		
 		private function triggerCommsError(statusCode:uint, reasonCode:uint, message:Object):void
 		{
@@ -349,21 +423,15 @@ package com.bitheads.braincloud.comms
 		private function onTimeout(in_event:TimerEvent):void
 		{
 			_retryCount++;
-			
-			if (canRetry())
-			{
-				_fnErrorOutput("Server timed out. Retrying...");
-				getLoader().close();
-				getLoader().load(_urlRequest);
-				
-				startTimeoutTimer(getTimeoutForRetryCount(_retryCount));
-			}
-			else
-			{
-				_fnErrorOutput("Server timed out - retry limit reached.");
-				triggerCommsError(900, ReasonCodes.CLIENT_NETWORK_ERROR_TIMEOUT, "Timeout trying to reach brainCloud server");
-			}
+			getLoader().close();
+			retry();			
 		}
+        
+        private function resendActivePacket():void
+        {   
+            _urlRequest.url = _url;      
+			getLoader().load(_urlRequest);
+        }
 		
 		private function startTimeoutTimer(timeout:uint):void
 		{
@@ -404,7 +472,13 @@ package com.bitheads.braincloud.comms
 			if (_loader == null)
 				return;
 			
-			_loader.close();
+			try { 
+                _loader.close();
+            }
+            catch(error:Error){
+                //not a problem
+            }
+            
 			_loader.removeEventListener(Event.COMPLETE, onResponseReceived);
 			_loader.removeEventListener(IOErrorEvent.IO_ERROR, onSendError);
 			_loader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, onSendSecurityError);
