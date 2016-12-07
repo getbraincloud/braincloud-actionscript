@@ -13,7 +13,9 @@ package com.bitheads.braincloud.services
             super(client);
         }
         
-        [Deprecated("Method is now available in Cloud Code only for security - removal after March 22 2016")] 
+        /**
+         * @deprecated Method is now available in Cloud Code only for security - removal after March 22 2016
+         */
         public function awardCurrency(currencyType:String, amount:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
@@ -73,7 +75,9 @@ package com.bitheads.braincloud.services
 			Client.sendRequest(serverCall);
 		}
         
-        [Deprecated("Method is now available in Cloud Code only for security - removal after March 22 2016")] 
+        /**
+         * @deprecated Method is now available in Cloud Code only for security - removal after March 22 2016
+         */
         public function consumeCurrency(currencyType:String, amount:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
@@ -186,7 +190,9 @@ package com.bitheads.braincloud.services
 			Client.sendRequest(serverCall);
 		}
         
-        [Deprecated("Method is now available in Cloud Code only for security - removal after March 22 2016")] 
+        /**
+         * @deprecated Method is now available in Cloud Code only for security - removal after March 22 2016
+         */
         public function resetCurrency(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{            
 			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.ResetPlayerVC, null, successCallback, errorCallback, cbObject);

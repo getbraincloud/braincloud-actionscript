@@ -286,6 +286,16 @@ package com.bitheads.braincloud.services
 			Client.sendRequest(serverCall);
 		}
         
+        /**
+         * Retrieve a list of all leaderboards
+         *
+         * Service Name - leaderboard
+         * Service Operation - LIST_ALL_LEADERBOARDS
+         *
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
         public function listAllLeaderboards(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.ListAllLeaderboards, null, successCallback, errorCallback, cbObject);
