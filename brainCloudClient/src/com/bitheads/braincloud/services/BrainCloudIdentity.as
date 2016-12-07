@@ -244,6 +244,22 @@ package com.bitheads.braincloud.services
         }
         
         /**
+         * Detaches parent from this player's profile
+         *
+         * Service Name - identity
+         * Service Operation - DETACH_PARENT
+         *
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function detachParent(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var serverCall:ServerCall = new ServerCall(ServiceName.Identity, ServiceOperation.DetachParent, null, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+        
+        /**
          * Attach a new identity to a parent app
          *
          * Service Name - identity

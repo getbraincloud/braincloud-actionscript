@@ -19,6 +19,7 @@ package com.bitheads.braincloud
         public static const AttachPeerProfile:String = "ATTACH_PEER_PROFILE";
         public static const DetachPeer:String = "DETACH_PEER";
         public static const GetPeerProfiles:String = "GET_PEER_PROFILES";
+        public static const DetachParent:String = "DETACH_PARENT";
         
         public static const Create:String = "CREATE";
         public static const CreateWithIndexedId:String = "CREATE_WITH_INDEXED_ID";
@@ -91,6 +92,7 @@ package com.bitheads.braincloud
         public static const GetGroupSocialLeaderboard:String = "GET_GROUP_SOCIAL_LEADERBOARD";
         public static const GetSummaryDataForProfileId:String = "GET_SUMMARY_DATA_FOR_PROFILE_ID";
         public static const GetPlayersSocialLeaderboard:String = "GET_PLAYERS_SOCIAL_LEADERBOARD";
+        public static const GetGlobalLeaderboardEntryCount:String = "GET_GLOBAL_LEADERBOARD_ENTRY_COUNT";
         
         public static const InitThirdParty:String = "initThirdParty";
         public static const PostThirdPartyLeaderboardScore:String = "postThirdPartyLeaderboardScore";

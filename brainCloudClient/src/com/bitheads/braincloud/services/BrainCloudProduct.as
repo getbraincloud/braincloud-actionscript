@@ -13,19 +13,7 @@ package com.bitheads.braincloud.services
             super(client);
         }
         
-        /**
-         * Award player the passed-in amount of currency. Returns
-         * JSON representing the new currency values.
-         *
-         * Service Name - Product
-         * Service Operation - AwardVC
-         *
-         * @param currencyType The currency type to award.
-         * @param amount The amount of currency to award.
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
-         */
+        [Deprecated("Method is now available in Cloud Code only for security - removal after March 22 2016")] 
         public function awardCurrency(currencyType:String, amount:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
@@ -34,31 +22,6 @@ package com.bitheads.braincloud.services
             };	
             
 			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.AwardVC, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-        
-        /**
-         * Awards currency in a parent app.
-         *
-         * Service Name - Product
-         * Service Operation - AWARD_PARENT_VC
-         *
-         * @param currencyType The ID of the parent currency
-         * @param amount The amount of currency to award
-         * @param parentLevel The level of the parent containing the currency
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
-         */
-        public function awardParentCurrency(currencyType:String, amount:uint, parentLevel:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
-                "vc_id": currencyType,
-                "vc_amount": amount,
-                "levelName": parentLevel
-            };	
-            
-			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.AwardParentVC, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
         
@@ -110,18 +73,7 @@ package com.bitheads.braincloud.services
 			Client.sendRequest(serverCall);
 		}
         
-        /**
-         * Consume the passed-in amount of currency from the player.
-         *
-         * Service Name - Product
-         * Service Operation - ConsumePlayerVC
-         *
-         * @param currencyType The currency type to consume.
-         * @param amount The amount of currency to consume.
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
-         */
+        [Deprecated("Method is now available in Cloud Code only for security - removal after March 22 2016")] 
         public function consumeCurrency(currencyType:String, amount:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
@@ -130,31 +82,6 @@ package com.bitheads.braincloud.services
             };	
             
 			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.ConsumeVC, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-        
-        /**
-         * Consumes currency in a parent app.
-         *
-         * Service Name - Product
-         * Service Operation - CONSUME_PARENT_VC
-         *
-         * @param currencyType The ID of the parent currency
-         * @param amount The amount of currency to consume
-         * @param parentLevel The level of the parent containing the currency
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
-         */
-        public function consumeParentCurrency(currencyType:String, amount:uint, parentLevel:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
-                "vc_id": currencyType,
-                "vc_amount":amount,
-                "levelName": parentLevel
-            };	
-            
-			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.ConsumeParentVC, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
         
@@ -194,29 +121,6 @@ package com.bitheads.braincloud.services
         public function getEligiblePromotions(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{            
 			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.EligiblePromotions, null, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-        
-        /**
-         * Gets information on a currency in a parent app.
-         *
-         * Service Name - Product
-         * Service Operation - GET_PARENT_VC
-         *
-         * @param currencyType The ID of the parent currency or null to retrieve all parent currencies
-         * @param parentLevel The level of the parent containing the currency
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
-         */
-        public function getParentCurrency(currencyType:String, parentLevel:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
-                "vc_id": currencyType,
-                "levelName": parentLevel
-            };	
-            
-			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.GetParentVC, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
         
@@ -282,40 +186,10 @@ package com.bitheads.braincloud.services
 			Client.sendRequest(serverCall);
 		}
         
-        /**
-         * Resets the player's currency back to zero.
-         *
-         * Service Name - Product
-         * Service Operation - ResetPlayerVC
-         *
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
-         */
+        [Deprecated("Method is now available in Cloud Code only for security - removal after March 22 2016")] 
         public function resetCurrency(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{            
 			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.ResetPlayerVC, null, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-        
-        /**
-         * Resets all currencies in a parent app.
-         *
-         * Service Name - Product
-         * Service Operation - RESET_PARENT_VC
-         *
-         * @param parentLevel The level of the parent containing the currencies
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
-         */
-        public function resetParentCurrency(parentLevel:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{      
-			var data:Object = {
-                "levelName": parentLevel
-            };	
-            
-			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.ResetParentVC, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
 	}

@@ -15,41 +15,7 @@ package com.bitheads.braincloud.services
         {
             super(client);
         }
-        
-        /**
-         * If a social leaderboard has been configured to reset periodically, each period
-         * can be considered to be a tournament. When the leaderboard resets, the tournament
-         * has ended and participants can be ranked based on their final scores.
-         *
-         * This API method will return the sorted leaderboard including:
-         * the player
-         * the game's pacers
-         * all friends who participated in the tournament
-         *
-         * This API method will return the leaderboard results for a particular
-         * tournament only once. If the method is called twice, the second call
-         * will yield an empty result.
-         *
-         * Note that if the leaderboard has not been configured to reset, the concept of a
-         * tournament does not apply.
-         *
-         * @param leaderboardId The id of the leaderboard
-         * @param replaceName True if the player's name should be replaced with "You"
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
-         */
-        public function getCompletedLeaderboardTournament(leaderboardId:String, replaceName:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
-                "leaderboardId": leaderboardId,
-                "replaceName":replaceName
-            };	
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetCompletedTournament, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-        
+                
         /**
          * Method returns a page of global leaderboard results.
          *
@@ -152,24 +118,14 @@ package com.bitheads.braincloud.services
          * @param sort Sort key Sort order of page.
          * @param beforeCount The count of number of players before the current player to include.
          * @param afterCount The count of number of players after the current player to include.
-         * @param includeLeaderboardSize Whether to return the leaderboard size
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getGlobalLeaderboardView(leaderboardId:String, sort:SortOrder, beforeCount:uint, afterCount:uint, includeLeaderboardSize:Boolean, 
+        public function getGlobalLeaderboardView(leaderboardId:String, sort:SortOrder, beforeCount:uint, afterCount:uint,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
-			var data:Object = {
-                "leaderboardId": leaderboardId,
-                "sort":sort.value,
-                "beforeCount":beforeCount,
-                "afterCount":afterCount,
-                "includeLeaderboardSize":includeLeaderboardSize
-            };		
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetGlobalLeaderboardView, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
+			getGlobalLeaderboardViewByVersion(leaderboardId, sort, beforeCount, afterCount, -1, successCallback, errorCallback, cbObject);
 		}
         
         /**
@@ -184,25 +140,46 @@ package com.bitheads.braincloud.services
          * @param sort Sort key Sort order of page.
          * @param beforeCount The count of number of players before the current player to include.
          * @param afterCount The count of number of players after the current player to include.
-         * @param includeLeaderboardSize Whether to return the leaderboard size
          * @param versionId The historical version to retrieve.
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getGlobalLeaderboardViewByVersion(leaderboardId:String, sort:SortOrder, beforeCount:uint, afterCount:uint, includeLeaderboardSize:Boolean, versionId:uint,
+        public function getGlobalLeaderboardViewByVersion(leaderboardId:String, sort:SortOrder, beforeCount:uint, afterCount:uint, versionId:int,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "leaderboardId": leaderboardId,
                 "sort":sort.value,
                 "beforeCount":beforeCount,
-                "afterCount":afterCount,
-                "includeLeaderboardSize":includeLeaderboardSize,
-                "versionId": versionId
-            };		
+                "afterCount":afterCount
+            };	
+            
+            if (versionId != -1)
+                data.versionId = versionId;
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetGlobalLeaderboardView, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+        
+        /**
+         * Gets the number of entries in a global leaderboard
+         *
+         * Service Name - leaderboard
+         * Service Operation - GET_GLOBAL_LEADERBOARD_ENTRY_COUNT
+         *
+         * @param leaderboardId The leaderboard ID
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function getGlobalLeaderboardEntryCount(leaderboardId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "leaderboardId": leaderboardId
+            };	
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetGlobalLeaderboardEntryCount, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
         
