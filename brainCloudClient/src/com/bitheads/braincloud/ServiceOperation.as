@@ -16,6 +16,9 @@ package com.bitheads.braincloud
         public static const GetExpiredIdentities:String = "GET_EXPIRED_IDENTITIES";
         public static const RefreshIdentity:String = "REFRESH_IDENTITY";
         public static const AttachParentWithIdentity:String = "ATTACH_PARENT_WITH_IDENTITY";
+        public static const AttachPeerProfile:String = "ATTACH_PEER_PROFILE";
+        public static const DetachPeer:String = "DETACH_PEER";
+        public static const GetPeerProfiles:String = "GET_PEER_PROFILES";
         
         public static const Create:String = "CREATE";
         public static const CreateWithIndexedId:String = "CREATE_WITH_INDEXED_ID";
@@ -222,6 +225,8 @@ package com.bitheads.braincloud
         public static const ScheduleCloudScript:String = "SCHEDULE_CLOUD_SCRIPT";
         public static const RunParentScript:String = "RUN_PARENT_SCRIPT";
         public static const CancelScheduledScript:String = "CANCEL_SCHEDULED_SCRIPT";
+        public static const RunPeerScript:String = "RUN_PEER_SCRIPT";
+        public static const RunPeerScriptAsync:String = "RUN_PEER_SCRIPT_ASYNC";
         
         public static const RedeemCode:String = "REDEEM_CODE";
         public static const GetRedeemedCodes:String = "GET_REDEEMED_CODES";

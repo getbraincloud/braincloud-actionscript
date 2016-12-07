@@ -143,5 +143,62 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.Script, ServiceOperation.CancelScheduledScript, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
+        
+        /**
+         * Runs a script from the context of a peer
+         *
+         * Service Name - Script
+         * Service Operation - RUN_PEER_SCRIPT
+         *
+         * @param scriptName The name of the script to be run
+         * @param jsonScriptData Data to be sent to the script in json format
+         * @param peer Peer the script belongs to
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function runPeerScript(scriptName:String, scriptData:Object, peer:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "scriptName": scriptName,
+                "peer": peer
+            };		
+            
+            if (isOptionalParamValid(scriptData)) {
+                data.scriptData = scriptData;
+            }
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Script, ServiceOperation.RunPeerScript, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+        
+        /**
+         * Runs a script asynchronously from the context of a peer
+         * This method does not wait for the script to complete before returning
+         *
+         * Service Name - Script
+         * Service Operation - RUN_PEER_SCRIPT_ASYNC
+         *
+         * @param scriptName The name of the script to be run
+         * @param jsonScriptData Data to be sent to the script in json format
+         * @param peer Peer the script belongs to
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function runPeerScriptAsync(scriptName:String, scriptData:Object, peer:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "scriptName": scriptName,
+                "peer": peer
+            };		
+            
+            if (isOptionalParamValid(scriptData)) {
+                data.scriptData = scriptData;
+            }
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Script, ServiceOperation.RunPeerScriptAsync, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
 	}
 }

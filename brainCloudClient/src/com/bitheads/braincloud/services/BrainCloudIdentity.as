@@ -276,6 +276,78 @@ package com.bitheads.braincloud.services
             Client.sendRequest(serverCall);
         }
         
+        /**
+         * Attaches a peer identity to this player's profile
+         *
+         * Service Name - identity
+         * Service Operation - ATTACH_PEER_PROFILE
+         *
+         * @param externalId The users id for the new credentials
+         * @param authenticationToken The password/token
+         * @param authenticationType Type of identity
+         * @param forceCreate Should a new profile be created if it does not exist?
+         * @param externalAuthName Optional - if attaching an external identity
+         * @param peer Name of the peer to connect to
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function attachPeerProfile(externalId:String, authenticationToken:String, authenticationType:AuthenticationType, forceCreate:Boolean, 
+            externalAuthName:String, peer:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "authenticationToken": authenticationToken,   
+                "authenticationType": authenticationType.name,
+                "externalId": externalId,     
+                "forceCreate": forceCreate,
+                "peer": peer
+            };
+                
+            if (isOptionalParamValid(externalAuthName)) {
+                data.externalAuthName = externalAuthName;
+            }
+                
+            var serverCall:ServerCall = new ServerCall(ServiceName.Identity, ServiceOperation.AttachPeerProfile, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+        
+        /**
+         * Detaches a peer identity from this player's profile
+         *
+         * Service Name - identity
+         * Service Operation - DETACH_PEER
+         *
+         * @param peer Name of the peer to connect to
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function detachPeer(peer:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "peer": peer
+            };
+                
+            var serverCall:ServerCall = new ServerCall(ServiceName.Identity, ServiceOperation.DetachPeer, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+        
+        /**
+         * Returns a list of peer profiles attached to this user
+         *
+         * Service Name - identity
+         * Service Operation - GET_PEER_PROFILES
+         *
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function getPeerProfiles(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var serverCall:ServerCall = new ServerCall(ServiceName.Identity, ServiceOperation.GetPeerProfiles, null, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+        
         
         /* Private */
         
