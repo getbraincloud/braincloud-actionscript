@@ -34,10 +34,6 @@ package com.bitheads.braincloud
 		public static const INVENTORY_TYPE_FACEBOOK:String = "facebook";
 		public static const INVENTORY_TYPE_ITUNES:String = "itunes";
 		
-		public static const VIRTUAL_CURRENCY_TYPE_COINS:String = "coin";
-		public static const VIRTUAL_CURRENCY_TYPE_BARS:String = "bar";
-		public static const VIRTUAL_CURRENCY_TYPE_COIN_MULTIPLIER:String = "coinMultiplier";
-		
 		public static const AUTH_TYPE_FACEBOOK : String = "Facebook";
 		public static const AUTH_TYPE_STUBBED : String = "Universal";
 		
