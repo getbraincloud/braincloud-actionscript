@@ -237,6 +237,21 @@ package com.bitheads.braincloud.comms
 				// set up request object		
                 _urlRequest.url = _url;
                 
+                // sort
+                for (var j:int = 0; j < _serviceCallsWaiting.length; ++j) {                    
+                    var sc:ServerCall = _serviceCallsWaiting[j] as ServerCall;
+                    
+                    if (sc.getOperation() !== ServiceOperation.Authenticate && sc.endOfBundleMarker === true) {
+                        break;
+                    }  
+                    
+                    if (sc.getOperation() === ServiceOperation.Authenticate) {
+                        _serviceCallsWaiting.splice(j, 1);
+                        _serviceCallsWaiting.push(sc);
+                        break;
+                    }                        
+                }
+                
 				// prepare json data for server
 				var jsonMessageList:Array = [];
                 
@@ -246,11 +261,12 @@ package com.bitheads.braincloud.comms
                     _serviceCallsInProgress.push(call);
                     _serviceCallsWaiting.splice(i, 1);
                     
-                    if (call.getOperation() == ServiceOperation.Authenticate) _isAuthenticating = true;
+                    if (call.getOperation() === ServiceOperation.Authenticate) 
+                        _isAuthenticating = true;
+                        
 					jsonMessageList.push(call.getJsonData());
                     
-                    if (call.getOperation() === ServiceOperation.Authenticate ||
-                        call.endOfBundleMarker === true) {
+                    if (call.getOperation() === ServiceOperation.Authenticate || call.endOfBundleMarker === true) {
                         break;
                     }                        
                 }
