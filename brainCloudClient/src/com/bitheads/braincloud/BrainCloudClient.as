@@ -48,6 +48,7 @@ package com.bitheads.braincloud
 		private var _scriptService:BrainCloudScript;
 		private var _s3HandlingService:BrainCloudS3Handling;
 		private var _timeService:BrainCloudTime;
+		private var _tournamentService:BrainCloudTournament;
 		
 		public function BrainCloudClient()
 		{
@@ -85,6 +86,7 @@ package com.bitheads.braincloud
 				_scriptService = new BrainCloudScript(this);
                 _s3HandlingService = new BrainCloudS3Handling(this);
 				_timeService = new BrainCloudTime(this);
+				_tournamentService = new BrainCloudTournament(this);
 				
 				initLocale();
 				
@@ -505,6 +507,11 @@ package com.bitheads.braincloud
 		public function get timeService():BrainCloudTime
 		{
 			return _timeService;
+		}
+		
+		public function get tournamentService():BrainCloudTournament
+		{
+			return _tournamentService;
 		}
 		
 		//} endregion 

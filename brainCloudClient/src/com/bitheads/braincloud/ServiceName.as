@@ -34,5 +34,6 @@ package com.bitheads.braincloud
         public static const SocialLeaderboard:String = "socialLeaderboard";
         public static const Twitter:String = "twitter";
         public static const Time:String = "time";
+        public static const Tournament:String = "tournament";
     }
 }
