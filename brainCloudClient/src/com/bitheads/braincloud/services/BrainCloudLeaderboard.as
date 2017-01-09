@@ -36,19 +36,10 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getGlobalLeaderboardPage(leaderboardId:String, sort:SortOrder, startIndex:uint, endIndex:uint, includeLeaderboardSize:Boolean, 
+        public function getGlobalLeaderboardPage(leaderboardId:String, sort:SortOrder, startIndex:uint, endIndex:uint,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
-			var data:Object = {
-                "leaderboardId": leaderboardId,
-                "sort":sort.value,
-                "startIndex":startIndex,
-                "endIndex":endIndex,
-                "includeLeaderboardSize":includeLeaderboardSize
-            };	
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetGlobalLeaderboardPage, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
+			getGlobalLeaderboardPageByVersion(leaderboardId, sort, startIndex, endIndex, -1, successCallback, errorCallback, cbObject);
 		}
         
         /**
@@ -63,23 +54,23 @@ package com.bitheads.braincloud.services
          * @param sort Sort key Sort order of page.
          * @param startIndex The index at which to start the page.
          * @param endIndex The index at which to end the page.
-         * @param includeLeaderboardSize Whether to return the leaderboard size
          * @param versionId The historical version to retrieve.
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getGlobalLeaderboardPageByVersion(leaderboardId:String, sort:SortOrder, startIndex:uint, endIndex:uint, includeLeaderboardSize:Boolean, versionId:uint,
+        public function getGlobalLeaderboardPageByVersion(leaderboardId:String, sort:SortOrder, startIndex:uint, endIndex:uint, versionId:int,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "leaderboardId": leaderboardId,
                 "sort":sort.value,
                 "startIndex":startIndex,
-                "endIndex":endIndex,
-                "includeLeaderboardSize":includeLeaderboardSize,
-                "versionId":versionId
+                "endIndex":endIndex
             };	
+            
+            if (versionId != -1)
+               data.versionId = versionId;
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetGlobalLeaderboardPage, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
@@ -333,6 +324,47 @@ package com.bitheads.braincloud.services
                 "rotationType": rotationType.value,
                 "rotationReset": rotationReset.time,
                 "retainCount": retainCount
+            };
+            
+            if (isOptionalParamValid(data)) {
+                callData.data = data;
+            }
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.PostScoreDynamic, callData, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+        
+        /**
+         * Post the players score to the given social leaderboard.
+         * Pass leaderboard config data to dynamically create if necessary.
+         * You can optionally send a user-defined json string of data
+         * with the posted score. This string could include information
+         * relevant to the posted score.
+         *
+         * Service Name - SocialLeaderboard
+         * Service Operation - PostScoreDynamic
+         *
+         * @param leaderboardId The leaderboard to post to
+         * @param score The score to post
+         * @param data Optional user-defined data to post with the score
+         * @param rotationReset Date to start rotation calculations
+         * @param retainedCount How many rotations to keep
+         * @param numDaysToRotate How many days between each rotation
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function postScoreToDynamicLeaderboardDays(leaderboardId:String, score:int, data:Object, leaderboardType:LeaderboardType, rotationType:RotationType, rotationReset:Date, retainCount:uint,
+            numDaysToRotate:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var callData:Object = {
+                "leaderboardId": leaderboardId,
+                "score":score,
+                "leaderboardType": leaderboardType.value,
+                "rotationType": "DAYS",
+                "rotationReset": rotationReset.time,
+                "retainCount": retainCount,
+                "numDaysToRotate": numDaysToRotate
             };
             
             if (isOptionalParamValid(data)) {
