@@ -112,12 +112,32 @@ package com.bitheads.braincloud
 		 * @param gameId The game id
 		 * @param gameVersion The game version
 		 */
-		public function initialize(gameId:String, secret:String, version:String, serverUrl:String = DEFAULT_SERVER_URL):void
+		public function initialize(gameId:String, secretKey:String, version:String, serverUrl:String = DEFAULT_SERVER_URL):void
 		{
+            var error:String = null;            
+            if (isNullOrEmpty(serverUrl))
+                error = "serverUrl was null or empty";
+            else if (isNullOrEmpty(secretKey))
+                error = "secretKey was null or empty";
+            else if (isNullOrEmpty(gameId))
+                error = "gameId was null or empty";
+            else if (isNullOrEmpty(gameVersion))
+                error = "gameVersion was null or empty";
+            
+            if (error != null) {
+                trace(error);
+                return;
+            }
+            
 			_gameId = gameId;
 			_version = version;
-			_comms.initialize(gameId, secret, serverUrl);
+			_comms.initialize(gameId, secretKey, serverUrl);
 		}
+        
+        private function isNullOrEmpty(str:String):Boolean
+        {
+            return str == null || str == "";
+        }
 		
         /**
 		* Initialize - initializes the identity service with the saved
