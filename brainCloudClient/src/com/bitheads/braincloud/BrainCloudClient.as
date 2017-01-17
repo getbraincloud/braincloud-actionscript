@@ -296,6 +296,11 @@ package com.bitheads.braincloud
 			return _comms.packetTimeouts;
 		}
 		
+		public function getSessionId():Array
+		{
+			return _comms.getSessionId();
+		}
+		
 		//} endregion 
 		
 		//{ region  Setters
