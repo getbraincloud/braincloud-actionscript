@@ -295,7 +295,8 @@ package com.bitheads.braincloud
         public static const GetTournamentStatus:String = "GET_TOURNAMENT_STATUS";      
         public static const JoinTournament:String = "JOIN_TOURNAMENT";      
         public static const LeaveTournament:String = "LEAVE_TOURNAMENT";      
-        public static const PostTournamentScore:String = "POST_TOURNAMENT_SCORE";      
+        public static const PostTournamentScore:String = "POST_TOURNAMENT_SCORE";    
+        public static const PostTournamentScoreWithResults:String = "POST_TOURNAMENT_SCORE_WITH_RESULTS";    
         public static const ViewCurrentReward:String = "VIEW_CURRENT_REWARD";      
         public static const ViewReward:String = "VIEW_REWARD";      
         public static const ClaimTournamentReward:String = "CLAIM_TOURNAMENT_REWARD";              

@@ -3,6 +3,7 @@ package com.bitheads.braincloud.services
 	import com.bitheads.braincloud.ServiceName;
 	import com.bitheads.braincloud.ServiceOperation;
 	import com.bitheads.braincloud.ServerCall;
+    import com.bitheads.braincloud.types.SortOrder;
 	
 	import com.bitheads.braincloud.BrainCloudClient;
 	
@@ -135,6 +136,56 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.Tournament, ServiceOperation.PostTournamentScore, reqData, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}    
+        
+        /**
+         * Post the users score to the leaderboard
+         *
+         * Service Name - tournament
+         * Service Operation - POST_TOURNAMENT_SCORE_WITH_RESULTS
+         *
+         * @param leaderboardId The leaderboard for the tournament
+         * @param score The score to post
+         * @param jsonData Optional data attached to the leaderboard entry
+         * @param roundStartedTime Time the user started the match resulting in the score being posted in UTC.
+         * @param sort Sort key Sort order of page.
+         * @param beforeCount The count of number of players before the current player to include.
+         * @param afterCount The count of number of players after the current player to include.
+         * @param initialScore The initial score for players first joining a tournament
+         *						  Usually 0, unless leaderboard is LOW_VALUE
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function postTournamentScoreWithResults(
+            leaderboardId:String, 
+            score:int, 
+            data:Object, 
+            roundStartedTime:Date, 
+            sort:SortOrder, 
+            beforeCount:uint, 
+            afterCount:uint,
+            initialScore:int,
+            successCallback:Function = null, 
+            errorCallback:Function = null, 
+            cbObject:Object = null):void
+		{
+			var reqData:Object = {
+                "leaderboardId": leaderboardId,
+                "score": score,
+                "roundStartedEpoch": roundStartedTime.getTime(),
+                "sort":sort.value,
+                "beforeCount":beforeCount,
+                "afterCount":afterCount,
+                "initialScore": initialScore
+            };		
+            
+            if (isOptionalParamValid(data)) {
+                reqData.data = data;
+            }
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Tournament, ServiceOperation.PostTournamentScoreWithResults, reqData, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		} 
         
         /**
          * Returns the user's expected reward based on the current scores
