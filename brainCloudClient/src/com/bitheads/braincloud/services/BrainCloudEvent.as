@@ -19,46 +19,18 @@ package com.bitheads.braincloud.services
          * Service Name - Event
          * Service Operation - DeleteIncoming
          *
-         * @param fromPlayerId The id of the player who sent the event
          * @param eventId The event id
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function deleteIncomingEvent(fromPlayerId:String, eventId:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function deleteIncomingEvent(eventId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "fromId": fromPlayerId,
-                "eventId": eventId
+                "evId": eventId
             };		
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.DeleteIncoming, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-        
-        /**
-         * Delete an event from the player's sent mailbox.
-         *
-         * Note that only events sent with the "recordLocally" flag
-         * set to true will be added to a player's sent mailbox.
-         *
-         * Service Name - Event
-         * Service Operation - DeleteSent
-         *
-         * @param toPlayerId The id of the player who is being sent the event
-         * @param eventId The event id
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
-         */
-        public function deleteSentEvent(toPlayerId:String, eventId:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
-                "toId": toPlayerId,
-                "eventId": eventId
-            };		
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.DeleteSent, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
         
@@ -68,20 +40,13 @@ package com.bitheads.braincloud.services
          * Service Name - Event
          * Service Operation - GetEvents
          *
-         * @param includeIncomingEvents Get events sent to the player
-         * @param includeSentEvents Get events sent from the player
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getEvents(includeIncomingEvents:Boolean, includeSentEvents:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function getEvents(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
-			var data:Object = {
-                "includeIncomingEvents": includeIncomingEvents,
-                "includeSentEvents": includeSentEvents
-            };		
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.GetEvents, data, successCallback, errorCallback, cbObject);
+			var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.GetEvents, null, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
         
@@ -101,19 +66,16 @@ package com.bitheads.braincloud.services
          * @param toPlayerId The id of the player who is being sent the event
          * @param eventType The user-defined type of the event.
          * @param eventData The user-defined data for this event encoded in JSON.
-         * @param recordLocally If true, a copy of this event will be saved in the
-         * user's sent events mailbox.
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function sendEvent(toPlayerId:String, eventType:String, eventData:Object, recordLocally:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function sendEvent(toPlayerId:String, eventType:String, eventData:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "toId": toPlayerId,
                 "eventType": eventType,
-                "eventData": eventData,
-                "recordLocally": recordLocally
+                "eventData": eventData
             };		
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.Send, data, successCallback, errorCallback, cbObject);
@@ -126,18 +88,16 @@ package com.bitheads.braincloud.services
          * Service Name - Event
          * Service Operation - UpdateEventData
          *
-         * @param fromPlayerId The id of the player who sent the event
          * @param eventId The event id
          * @param eventData The user-defined data for this event encoded in JSON.
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function updateIncomingEventData(fromPlayerId:String, eventId:uint, eventData:Object, recordLocally:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function updateIncomingEventData(eventId:String, eventData:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "fromId": fromPlayerId,
-                "eventId": eventId,
+                "evId": eventId,
                 "eventData": eventData
             };		
 			

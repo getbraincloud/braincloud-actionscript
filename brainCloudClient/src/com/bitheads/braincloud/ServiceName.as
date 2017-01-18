@@ -31,7 +31,6 @@ package com.bitheads.braincloud
         public static const S3Handling:String = "s3Handling";
         public static const Script:String = "script";
         public static const ServerTime:String = "time";
-        public static const SocialLeaderboard:String = "socialLeaderboard";
         public static const Twitter:String = "twitter";
         public static const Time:String = "time";
         public static const Tournament:String = "tournament";
