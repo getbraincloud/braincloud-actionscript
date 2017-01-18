@@ -93,6 +93,9 @@ package com.bitheads.braincloud
         public static const GetSummaryDataForProfileId:String = "GET_SUMMARY_DATA_FOR_PROFILE_ID";
         public static const GetPlayersSocialLeaderboard:String = "GET_PLAYERS_SOCIAL_LEADERBOARD";
         public static const GetGlobalLeaderboardEntryCount:String = "GET_GLOBAL_LEADERBOARD_ENTRY_COUNT";
+        public static const RemovePlayerScore:String = "REMOVE_PLAYER_SCORE";
+        public static const GetPlayerScore:String = "GET_PLAYER_SCORE";
+        public static const GetPlayerScoresFromLeaderboards:String = "GET_PLAYER_SCORES_FROM_LEADERBOARDS";
         
         public static const InitThirdParty:String = "initThirdParty";
         public static const PostThirdPartyLeaderboardScore:String = "postThirdPartyLeaderboardScore";

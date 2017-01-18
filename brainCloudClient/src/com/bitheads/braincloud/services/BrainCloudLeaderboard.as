@@ -424,5 +424,72 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.Reset, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
+        
+        /**
+         * Removes a player's score from the leaderboard
+         *
+         * Service Name - leaderboard
+         * Service Operation - REMOVE_PLAYER_SCORE
+         *
+         * @param leaderboardId The leaderboard ID
+         * @param versionId The version of the leaderboard. Use -1 for current.
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function removePlayerScore(leaderboardId:String, versionId:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "leaderboardId": leaderboardId,
+                "versionId": versionId
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.RemovePlayerScore, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+        
+        /**
+         * Gets a player's score from a leaderboard
+         *
+         * Service Name - leaderboard
+         * Service Operation - GET_PLAYER_SCORE
+         *
+         * @param leaderboardId The leaderboard ID
+         * @param versionId The version of the leaderboard. Use -1 for current.
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function getPlayerScore(leaderboardId:String, versionId:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "leaderboardId": leaderboardId,
+                "versionId": versionId
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetPlayerScore, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+        
+        /**
+         * Gets a player's score from multiple leaderboards
+         *
+         * Service Name - leaderboard
+         * Service Operation - GET_PLAYER_SCORES_FROM_LEADERBOARDS
+         *
+         * @param leaderboardIds A collection of leaderboardIds to retrieve scores from
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function getPlayerScoresFromLeaderboards(leaderboardIds:Array, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "leaderboardIds": leaderboardIds
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetPlayerScoresFromLeaderboards, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
 	}
 }
