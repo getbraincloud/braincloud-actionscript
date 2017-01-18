@@ -212,6 +212,8 @@ package com.bitheads.braincloud
         public static const IncrementUserEntityData:String = "INCREMENT_USER_ENTITY_DATA";
         public static const IncrementSharedUserEntityData:String = "INCREMENT_SHARED_USER_ENTITY_DATA";
         public static const IncrementGlobalEntityData:String = "INCREMENT_GLOBAL_ENTITY_DATA";
+        public static const UpdateEntityOwnerAndAcl:String = "UPDATE_ENTITY_OWNER_AND_ACL";
+        public static const MakeSystemEntity:String = "MAKE_SYSTEM_ENTITY";
         
         public static const GetAttributes:String = "GET_ATTRIBUTES";
         public static const UpdateAttributes:String = "UPDATE_ATTRIBUTES";

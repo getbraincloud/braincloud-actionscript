@@ -351,5 +351,53 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.IncrementGlobalEntityData, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
+        
+        /**
+         * Method updates an existing entity's Owner and ACL on the server.
+         *
+         * Service Name - globalEntity
+         * Service Operation - UPDATE_ENTITY_OWNER_AND_ACL
+         *
+         * @param entityId The entity ID
+         * @param version The version of the entity to update
+         * @param ownerId The owner ID
+         * @param acl The entity's access control list as JSON.
+         * @param cbObject The user object sent to the callback
+         */
+        public function updateEntityOwnerAndAcl(entityId:String, version:int, ownerId:String, acl:ACL, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "entityId": entityId,
+                "version": version,
+                "ownerId": ownerId,
+                "acl": acl.toObject()
+            };
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.UpdateEntityOwnerAndAcl, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+        
+        /**
+         * Method clears the owner id of an existing entity and sets the ACL on the server.
+         *
+         * Service Name - globalEntity
+         * Service Operation - MAKE_SYSTEM_ENTITY
+         *
+         * @param entityId The entity ID
+         * @param version The version of the entity to update
+         * @param acl The entity's access control list as JSON.
+         * @param cbObject The user object sent to the callback
+         */
+        public function makeSystemEntity(entityId:String, version:int, acl:ACL, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "entityId": entityId,
+                "version": version,
+                "acl": acl.toObject()
+            };
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.MakeSystemEntity, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
 	}
 }
