@@ -8,10 +8,10 @@ package com.bitheads.braincloud.comms
 	
 	public class BrainCloudComms
 	{
-		private static const REQUEST_MESSAGE_LIMIT:uint = 50;
 		private static const NO_PACKET_EXPECTED:int = -1;
 		
-		protected var _sessionId:String;
+        private var _maxBundleSize:int = 10;
+		private var _sessionId:String;
 		private var _profileId:String;
 		private var _isAuthenticated:Boolean;
 		
@@ -255,6 +255,8 @@ package com.bitheads.braincloud.comms
 				// prepare json data for server
 				var jsonMessageList:Array = [];
                 
+                var max:int =  Math.max(_serviceCallsWaiting.length - _maxBundleSize, 0);
+                
                 for (var i:int = _serviceCallsWaiting.length - 1; i >= 0; --i) {
                     var call:ServerCall = _serviceCallsWaiting[i] as ServerCall;
                     
@@ -357,6 +359,7 @@ package com.bitheads.braincloud.comms
 					_sessionId = data.sessionId;
 					_profileId = data.profileId;
 					_idleTimeout = data.playerSessionExpiry * 0.85;
+                    _maxBundleSize = data.maxBundleMsgs;
 					_client.authenticationService.profileId = _profileId;
 					_isAuthenticated = true;
 				}
