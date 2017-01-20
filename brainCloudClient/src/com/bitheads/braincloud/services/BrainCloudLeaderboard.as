@@ -408,12 +408,7 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * Reset the player's score for the given social leaderboard id.
-         *
-         * @param leaderboardId The leaderboard to post to
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
+         * @deprecated Use removePlayerScore instead - removal after March 22 2017
          */
         public function resetLeaderboardScore(leaderboardId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
