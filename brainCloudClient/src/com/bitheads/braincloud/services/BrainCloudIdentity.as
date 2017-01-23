@@ -268,14 +268,14 @@ package com.bitheads.braincloud.services
          * @param externalId The users id for the new credentials
          * @param authenticationToken The password/token
          * @param authenticationType Type of identity
-         * @param forceCreate Should a new profile be created if it does not exist?
          * @param externalAuthName Optional - if attaching an external identity
+         * @param forceCreate Should a new profile be created if it does not exist?
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function attachParentWithIdentity(externalId:String, authenticationToken:String, authenticationType:AuthenticationType, forceCreate:Boolean, 
-            externalAuthName:String = "", successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function attachParentWithIdentity(externalId:String, authenticationToken:String, authenticationType:AuthenticationType, 
+            externalAuthName:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
                 "authenticationToken": authenticationToken,   
@@ -298,25 +298,25 @@ package com.bitheads.braincloud.services
          * Service Name - identity
          * Service Operation - ATTACH_PEER_PROFILE
          *
+         * @param peer Name of the peer to connect to
          * @param externalId The users id for the new credentials
          * @param authenticationToken The password/token
          * @param authenticationType Type of identity
-         * @param forceCreate Should a new profile be created if it does not exist?
          * @param externalAuthName Optional - if attaching an external identity
-         * @param peer Name of the peer to connect to
+         * @param forceCreate Should a new profile be created if it does not exist?
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function attachPeerProfile(externalId:String, authenticationToken:String, authenticationType:AuthenticationType, forceCreate:Boolean, 
-            externalAuthName:String, peer:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function attachPeerProfile(peer:String, externalId:String, authenticationToken:String, authenticationType:AuthenticationType, 
+            externalAuthName:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
+                "peer": peer,
                 "authenticationToken": authenticationToken,   
                 "authenticationType": authenticationType.name,
                 "externalId": externalId,     
-                "forceCreate": forceCreate,
-                "peer": peer
+                "forceCreate": forceCreate
             };
                 
             if (isOptionalParamValid(externalAuthName)) {
