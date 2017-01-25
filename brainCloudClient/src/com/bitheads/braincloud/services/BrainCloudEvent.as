@@ -19,15 +19,15 @@ package com.bitheads.braincloud.services
          * Service Name - Event
          * Service Operation - DeleteIncoming
          *
-         * @param eventId The event id
+         * @param evId The event id
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function deleteIncomingEvent(eventId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function deleteIncomingEvent(evId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "evId": eventId
+                "evId": evId
             };		
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.DeleteIncoming, data, successCallback, errorCallback, cbObject);
@@ -88,16 +88,16 @@ package com.bitheads.braincloud.services
          * Service Name - Event
          * Service Operation - UpdateEventData
          *
-         * @param eventId The event id
+         * @param evId The event id
          * @param eventData The user-defined data for this event encoded in JSON.
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function updateIncomingEventData(eventId:String, eventData:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function updateIncomingEventData(evId:String, eventData:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "evId": eventId,
+                "evId": evId,
                 "eventData": eventData
             };		
 			
