@@ -134,27 +134,50 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.Friend, ServiceOperation.GetExternalIdForProfileId, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}  
-        
+                
         /**
          * Retrieves profile information for the specified user.
          *
-         * Service Name - Friend
-         * Service Operation - GetFriendProfileInfoForExternalId
+         * Service Name - friend
+         * Service Operation - GET_PROFILE_INFO_FOR_CREDENTIAL
          *
-         * @param externalId The friend's external id e.g. Facebook id
-         * @param authenticationType The authentication type of the friend id e.g. Facebook
+         * @param externalId The users's external ID
+         * @param authenticationType The authentication type of the user ID
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getFriendProfileInfoForExternalId(externalId:String, authenticationType:AuthenticationType, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function getProfileInfoForCredential(externalId:String, authenticationType:AuthenticationType, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "externalId": externalId,
                 "authenticationType": authenticationType.name
             };		
             
-			var serverCall:ServerCall = new ServerCall(ServiceName.Friend, ServiceOperation.GetFriendProfileInfoForExternalId, data, successCallback, errorCallback, cbObject);
+			var serverCall:ServerCall = new ServerCall(ServiceName.Friend, ServiceOperation.GetProfileInfoForCredential, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}  
+        
+        /**
+         * Retrieves profile information for the specified external auth user.
+         *
+         * Service Name - friend
+         * Service Operation - GET_PROFILE_INFO_FOR_EXTERNAL_AUTH_ID
+         *
+         * @param externalId External ID of the user to find
+         * @param externalAuthType The external authentication type used for this users's external ID
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function getProfileInfoForExternalAuthId(externalId:String, externalAuthType:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "externalId": externalId,
+                "externalAuthType": externalAuthType
+            };		
+            
+			var serverCall:ServerCall = new ServerCall(ServiceName.Friend, ServiceOperation.GetProfileInfoForExternalAuthId, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}  
         

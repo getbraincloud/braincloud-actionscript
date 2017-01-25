@@ -62,7 +62,8 @@ package com.bitheads.braincloud
         public static const UpdateIncrementToMaximum:String = "UPDATE_INCREMENT_TO_MAXIMUM";
         public static const ProcessStatistics:String = "PROCESS_STATISTICS";
         
-        public static const GetFriendProfileInfoForExternalId:String = "GET_FRIEND_PROFILE_INFO_FOR_EXTERNAL_ID";
+        public static const GetProfileInfoForCredential:String = "GET_PROFILE_INFO_FOR_CREDENTIAL";
+        public static const GetProfileInfoForExternalAuthId:String = "GET_PROFILE_INFO_FOR_EXTERNAL_AUTH_ID";
         public static const GetExternalIdForProfileId:String = "GET_EXTERNAL_ID_FOR_PROFILE_ID";
         public static const ReadFriendEntity:String = "READ_FRIEND_ENTITY";
         public static const ReadFriendsEntities:String = "READ_FRIENDS_ENTITIES";
