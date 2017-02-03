@@ -18,9 +18,9 @@ package com.bitheads.braincloud
 		/**
 		* Application's secret key, used for signature hash.
 		* 
-		* @todo Find out if this needs to match a server var???
+		* @todo Set this to your apps secret key
 		*/	
-		protected static const SECRET_KEY : String 			= "!@#awef#$%f54672";
+		public var SECRET_KEY : String 			= "!@#awef#$%f54672";
 		
 		protected static const REQUEST_MESSAGE_LIMIT : uint = 50;
 		protected static const REQUEST_TIMEOUT_DELAY : uint	= 15000; 	// in milliseconds
@@ -65,7 +65,7 @@ package com.bitheads.braincloud
 			_fnDebugOutput = trace;
 			_fnErrorOutput = trace;
 			_brainCloudClient = new BrainCloudClient();
-			_brainCloudClient.initialize("eggies", BrainCloudFBClient.SECRET_KEY, "blah", in_url);
+			_brainCloudClient.initialize("eggies", SECRET_KEY, "blah", in_url);
 			
 			m_eventDispatcher = new EventDispatcher;
 			m_facebookTimeoutTimer = new Timer( FACEBOOK_TIMEOUT, 1 );
