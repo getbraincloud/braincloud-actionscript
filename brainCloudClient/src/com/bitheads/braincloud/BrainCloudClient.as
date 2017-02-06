@@ -9,7 +9,7 @@ package com.bitheads.braincloud
 	
 	public class BrainCloudClient
 	{
-		private static const BRAINCLOUD_VERSION:String = "3.2.0";
+		private static const BRAINCLOUD_VERSION:String = "3.2.1";
 		private static const DEFAULT_SERVER_URL:String = "https://sharedprod.braincloudservers.com/dispatcherv2";
 		
 		private static var _instance:BrainCloudClient;

@@ -334,5 +334,6 @@ package com.bitheads.braincloud
         public static const CLIENT_UPLOAD_FILE_CANCELLED:int = 90100;
         public static const CLIENT_UPLOAD_FILE_TIMED_OUT:int = 90101;
         public static const CLIENT_UPLOAD_FILE_UNKNOWN:int = 90102;
+        public static const CLIENT_DISABLED:int = 90200;
 	}
 }

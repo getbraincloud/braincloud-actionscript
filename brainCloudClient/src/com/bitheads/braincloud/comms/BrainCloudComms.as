@@ -10,7 +10,7 @@ package com.bitheads.braincloud.comms
 	{
 		private static const NO_PACKET_EXPECTED:int = -1;
 		
-        private var _maxBundleSize:int = 10;
+		private var _maxBundleSize:int = 10;
 		private var _sessionId:String;
 		private var _profileId:String;
 		private var _isAuthenticated:Boolean;
@@ -51,11 +51,22 @@ package com.bitheads.braincloud.comms
 		private var _eventCallback:Function;
 		private var _globalErrorCallback:Function;
 		private var _networkErrorCallback:Function;
-        
-        //retry
-        private var _cacheMessagesOnNetworkError:Boolean = false;
-        private var _blockingQueue:Boolean = false;
-        
+		
+		//retry
+		private var _cacheMessagesOnNetworkError:Boolean = false;
+		private var _blockingQueue:Boolean = false;
+		
+		//For handling local session errors
+		private var _cachedStatusCode:int;
+		private var _cachedReasonCode:int;
+		private var _cachedStatusMessage:String;
+		
+		//kill switch
+		private var _killSwitchThreshold:int = 11;
+		private var _killSwitchEngaged:Boolean;
+		private var _killSwitchErrorCount:int;
+		private var _killSwitchService:String;
+		private var _killSwitchOperation:String;
 		
 		public function get isAuthenticated():Boolean
 		{
@@ -81,8 +92,8 @@ package com.bitheads.braincloud.comms
 		{
 			_eventCallback = callback;
 		}
-        
-        public function setNetworkErrorCallback(callback:Function):void
+		
+		public function setNetworkErrorCallback(callback:Function):void
 		{
 			_networkErrorCallback = callback;
 		}
@@ -102,10 +113,12 @@ package com.bitheads.braincloud.comms
 			
 			_fnDebugOutput = trace;
 			_fnErrorOutput = trace;
-            
-            _urlRequest = new URLRequest();
+			
+			_urlRequest = new URLRequest();
 			_urlRequest.method = URLRequestMethod.POST;
-			_urlRequest.contentType = "application/json";	
+			_urlRequest.contentType = "application/json";
+			
+			resetErrorCache();
 		}
 		
 		public function initialize(gameId:String, secret:String, serverUrl:String):void
@@ -124,24 +137,19 @@ package com.bitheads.braincloud.comms
 		{
 			return _url;
 		}
-        
-        public function insertEndOfMessageBundleMarker():void 
-        {
-            if (_serviceCallsWaiting.length > 0) {
-                var call:ServerCall = _serviceCallsWaiting[0] as ServerCall;
-                call.endOfBundleMarker = true;
-            }
-        }
+		
+		public function insertEndOfMessageBundleMarker():void
+		{
+			if (_serviceCallsWaiting.length > 0)
+			{
+				var call:ServerCall = _serviceCallsWaiting[0] as ServerCall;
+				call.endOfBundleMarker = true;
+			}
+		}
 		
 		public function runCallbacks():void
 		{
-            if (_blockingQueue) return;
-            
-			//send 
-			if (_loader === null)
-			{
-				processQueue();
-			}
+			if (_blockingQueue) return;
 			
 			//handle responses
 			if (_responses.length > 0)
@@ -157,6 +165,12 @@ package com.bitheads.braincloud.comms
 			{
 				_eventCallback(_eventResponses);
 				_eventResponses.length = 0;
+			}
+			
+			//send 
+			if (_loader === null)
+			{
+				processQueue();
 			}
 		}
 		
@@ -174,13 +188,13 @@ package com.bitheads.braincloud.comms
 			_responses.length = 0;
 			_eventResponses.length = 0;
 			_expectedIncomingPacketId = NO_PACKET_EXPECTED;
-            
-            _blockingQueue = false;
+			
+			_blockingQueue = false;
 		}
 		
 		public function onHeartbeat(in_event:TimerEvent):void
 		{
-			if (!_isAuthenticated || _blockingQueue) return;
+			if (!_isAuthenticated || _blockingQueue || _killSwitchEngaged) return;
 			var serv:ServerCall = new ServerCall(ServiceName.HeartBeat, ServiceOperation.Read, null, null, null, null);
 			sendRequest(serv);
 		}
@@ -189,40 +203,40 @@ package com.bitheads.braincloud.comms
 		{
 			_serviceCallsWaiting.unshift(serverCall);
 		}
-        
-        public function enableNetworkErrorMessageCaching(enabled:Boolean):void 
-        {
-            _cacheMessagesOnNetworkError = enabled;
-        }
-        
-        public function retryCachedMessages():void 
-        {
-            if (!_blockingQueue) return;            
-            
-            _fnDebugOutput("Retrying cached messages");
-            
-            _blockingQueue = false;
-            _retryCount = 0;
-            resendActivePacket();     
-        }
-        
-        public function flushCachedMessages(sendApiErrorCallbacks:Boolean):void
-        {
-            if (!_blockingQueue) return;            
-            
-            _fnDebugOutput("Flushing cached messages");
-            _blockingQueue = false; 
-            
-            if (sendApiErrorCallbacks)
-            {
-                triggerCommsError(900, ReasonCodes.CLIENT_NETWORK_ERROR_TIMEOUT, "Timeout trying to reach brainCloud server");
-            }
-            else
-            {
-                releaseLoader();
-                _serviceCallsInProgress.length = 0;
-            }
-        }
+		
+		public function enableNetworkErrorMessageCaching(enabled:Boolean):void
+		{
+			_cacheMessagesOnNetworkError = enabled;
+		}
+		
+		public function retryCachedMessages():void
+		{
+			if (!_blockingQueue) return;
+			
+			_fnDebugOutput("Retrying cached messages");
+			
+			_blockingQueue = false;
+			_retryCount = 0;
+			resendActivePacket();
+		}
+		
+		public function flushCachedMessages(sendApiErrorCallbacks:Boolean):void
+		{
+			if (!_blockingQueue) return;
+			
+			_fnDebugOutput("Flushing cached messages");
+			_blockingQueue = false;
+			
+			if (sendApiErrorCallbacks)
+			{
+				triggerCommsError(StatusCodes.CLIENT_NETWORK_ERROR, ReasonCodes.CLIENT_NETWORK_ERROR_TIMEOUT, "Timeout trying to reach brainCloud server");
+			}
+			else
+			{
+				releaseLoader();
+				_serviceCallsInProgress.length = 0;
+			}
+		}
 		
 		private function processQueue():void
 		{
@@ -235,67 +249,89 @@ package com.bitheads.braincloud.comms
 				_retryCount = 0;
 				
 				// set up request object		
-                _urlRequest.url = _url;
-                
-                // sort
-                for (var j:int = 0; j < _serviceCallsWaiting.length; ++j) {                    
-                    var sc:ServerCall = _serviceCallsWaiting[j] as ServerCall;
-                    
-                    if (sc.getOperation() !== ServiceOperation.Authenticate && sc.endOfBundleMarker === true) {
-                        break;
-                    }  
-                    
-                    if (sc.getOperation() === ServiceOperation.Authenticate) {
-                        _serviceCallsWaiting.splice(j, 1);
-                        _serviceCallsWaiting.push(sc);
-                        break;
-                    }                        
-                }
-                
+				_urlRequest.url = _url;
+				
+				// sort
+				for (var j:int = 0; j < _serviceCallsWaiting.length; ++j)
+				{
+					var sc:ServerCall = _serviceCallsWaiting[j] as ServerCall;
+					
+					if (sc.getOperation() !== ServiceOperation.Authenticate && sc.endOfBundleMarker === true)
+					{
+						break;
+					}
+					
+					if (sc.getOperation() === ServiceOperation.Authenticate)
+					{
+						_serviceCallsWaiting.splice(j, 1);
+						_serviceCallsWaiting.push(sc);
+						break;
+					}
+				}
+				
 				// prepare json data for server
 				var jsonMessageList:Array = [];
-                
-                var max:int =  Math.max(_serviceCallsWaiting.length - _maxBundleSize, 0);
-                
-                for (var i:int = _serviceCallsWaiting.length - 1; i >= 0; --i) {
-                    var call:ServerCall = _serviceCallsWaiting[i] as ServerCall;
-                    
-                    _serviceCallsInProgress.push(call);
-                    _serviceCallsWaiting.splice(i, 1);
-                    
-                    if (call.getOperation() === ServiceOperation.Authenticate) 
-                        _isAuthenticating = true;
-                        
+				
+				var max:int = Math.max(_serviceCallsWaiting.length - _maxBundleSize, 0);
+				
+				for (var i:int = _serviceCallsWaiting.length - 1; i >= 0; --i)
+				{
+					var call:ServerCall = _serviceCallsWaiting[i] as ServerCall;
+					
+					_serviceCallsInProgress.push(call);
+					_serviceCallsWaiting.splice(i, 1);
+					
+					if (call.getOperation() === ServiceOperation.Authenticate)
+						_isAuthenticating = true;
+					
 					jsonMessageList.push(call.getJsonData());
-                    
-                    if (call.getOperation() === ServiceOperation.Authenticate || call.endOfBundleMarker === true) {
-                        break;
-                    }                        
-                }
+					
+					if (call.getOperation() === ServiceOperation.Authenticate || call.endOfBundleMarker === true)
+					{
+						break;
+					}
+				}
 				
 				// bundle all messages
 				_expectedIncomingPacketId = _packetId++;
 				var allMessages:Object = {"messages": jsonMessageList, "sessionId": _sessionId, "packetId": _expectedIncomingPacketId};
 				var jsonString:String = JSON.stringify(allMessages);
 				
-				// Now we'll take our string append an application secret, and MD5 it, adding that to the HTTP header
-				// This is based loosely on facebook signatures... 
-				// http://developers.facebook.com/docs/authentication/fb_sig/
-				var sig:String = MD5.hash(jsonString + _secret);
-				
-				_urlRequest.data = jsonString;
-				_urlRequest.requestHeaders.push(new URLRequestHeader("X-SIG", sig));
-				
 				if (_loggingEnabled)
 				{
-					_fnDebugOutput("#BCC OUTGOING: " + _urlRequest.data);
+					_fnDebugOutput("#BCC OUTGOING: " + jsonString);
 				}
 				
-				// setup timeout timer... 
-				startTimeoutTimer(getTimeoutForRetryCount(_retryCount));
-				
-				getLoader().load(_urlRequest);
+				if (!_killSwitchEngaged)
+				{
+					if (_isAuthenticated || _isAuthenticating)
+						sendPacket(jsonString);
+					else
+					{
+						triggerCommsError(_cachedStatusCode, _cachedReasonCode, _cachedStatusMessage);
+					}
+				}
+				else
+				{
+					triggerCommsError(StatusCodes.CLIENT_NETWORK_ERROR, ReasonCodes.CLIENT_DISABLED, "Client has been disabled due to repeated errors from a single API call");
+				}
 			}
+		}
+		
+		private function sendPacket(jsonPacket:String):void
+		{
+			// Now we'll take our string append an application secret, and MD5 it, adding that to the HTTP header
+			// This is based loosely on facebook signatures... 
+			// http://developers.facebook.com/docs/authentication/fb_sig/
+			var sig:String = MD5.hash(jsonPacket + _secret);
+			
+			_urlRequest.data = jsonPacket;
+			_urlRequest.requestHeaders.push(new URLRequestHeader("X-SIG", sig));
+			
+			// setup timeout timer... 
+			startTimeoutTimer(getTimeoutForRetryCount(_retryCount));
+			
+			getLoader().load(_urlRequest);
 		}
 		
 		public function onResponseReceived(in_event:Event):void
@@ -333,7 +369,7 @@ package com.bitheads.braincloud.comms
 			}
 			
 			_expectedIncomingPacketId = NO_PACKET_EXPECTED;
-            _serviceCallsInProgress.length = 0;
+			_serviceCallsInProgress.length = 0;
 			
 			//event
 			if (_eventCallback != null && jsonData.hasOwnProperty("events"))
@@ -351,7 +387,7 @@ package com.bitheads.braincloud.comms
 			var cbObject:Object = serverCall.getCallbackObject();
 			
 			var statusCode:int = int(jsonObject["status"]);
-			if (statusCode == 200)
+			if (statusCode == StatusCodes.OK)
 			{
 				if (serverCall.getServiceName() == ServiceName.Authenticate)
 				{
@@ -359,9 +395,14 @@ package com.bitheads.braincloud.comms
 					_sessionId = data.sessionId;
 					_profileId = data.profileId;
 					_idleTimeout = data.playerSessionExpiry * 0.85;
-                    _maxBundleSize = data.maxBundleMsgs;
+					_maxBundleSize = data.maxBundleMsgs;
+                    
+                    if(data.hasOwnProperty("maxKillCount"))
+                        _killSwitchThreshold = data.maxKillCount;
+                    
 					_client.authenticationService.profileId = _profileId;
 					_isAuthenticated = true;
+					resetErrorCache();
 				}
 				else if (serverCall.getOperation() == ServiceOperation.Logout || serverCall.getOperation() == ServiceOperation.FullReset)
 				{
@@ -369,34 +410,41 @@ package com.bitheads.braincloud.comms
 					_profileId = "";
 					_client.authenticationService.profileId = "";
 					_isAuthenticated = false;
+					resetErrorCache();
 				}
 				
 				var successCallback:Function = serverCall.getSuccessCallback();
 				if (successCallback != null) successCallback(jsonObject, cbObject);
+				
+				resetKillSwitch();
 			}
 			else
 			{
 				var reasonCode:int = int(jsonObject["reason_code"])
 				
-				if (reasonCode == ReasonCodes.PLAYER_SESSION_EXPIRED || 
-                    reasonCode == ReasonCodes.NO_SESSION || 
-                    reasonCode == ReasonCodes.PLAYER_SESSION_LOGGED_OUT)
+				if (reasonCode == ReasonCodes.PLAYER_SESSION_EXPIRED || reasonCode == ReasonCodes.NO_SESSION || reasonCode == ReasonCodes.PLAYER_SESSION_LOGGED_OUT)
 				{
 					_sessionId = "";
 					_isAuthenticated = false;
 					_fnErrorOutput("Received session expired or not found, need to re-authenticate");
+					
+					// cache error if session related
+					_cachedStatusCode = statusCode;
+					_cachedReasonCode = reasonCode;
+					_cachedStatusMessage = jsonObject["status_message"];
 				}
-                else if (serverCall.getOperation() == ServiceOperation.Logout
-                    && reasonCode == ReasonCodes.CLIENT_NETWORK_ERROR_TIMEOUT)
-                {
-                    _isAuthenticated = false;
-                    _sessionId = "";
-                    _fnErrorOutput("Could not communicate with the server on logout due to network timeout");                    
-                }
+				else if (serverCall.getOperation() == ServiceOperation.Logout && reasonCode == ReasonCodes.CLIENT_NETWORK_ERROR_TIMEOUT)
+				{
+					_isAuthenticated = false;
+					_sessionId = "";
+					_fnErrorOutput("Could not communicate with the server on logout due to network timeout");
+				}
 				
 				var errorCallback:Function = serverCall.getErrorCallback();
 				if (errorCallback != null) errorCallback(statusCode, reasonCode, jsonObject, cbObject);
 				if (_globalErrorCallback != null) _globalErrorCallback(statusCode, reasonCode, jsonObject, cbObject);
+				
+				updateKillSwitch(serverCall.getServiceName(), serverCall.getOperation(), statusCode);
 			}
 		}
 		
@@ -411,32 +459,32 @@ package com.bitheads.braincloud.comms
 			_fnErrorOutput("Network error! " + event.toString());
 			retry();
 		}
-        
-        private function retry():void
-        {
-            if (canRetry())
+		
+		private function retry():void
+		{
+			if (canRetry())
 			{
-				_fnErrorOutput("Server timed out. Retrying...");                
-                _retryCount++;
+				_fnErrorOutput("Server timed out. Retrying...");
+				_retryCount++;
 				resendActivePacket();
 				startTimeoutTimer(getTimeoutForRetryCount(_retryCount));
 			}
 			else
 			{
 				_fnErrorOutput("Server timed out - retry limit reached.");
-                
-                if (_cacheMessagesOnNetworkError && _networkErrorCallback != null)
-                {
-                    _fnErrorOutput("Caching messages");
-                    _blockingQueue = true;
-                    _networkErrorCallback();
-                }
-                else
-                {                    
-                    triggerCommsError(900, ReasonCodes.CLIENT_NETWORK_ERROR_TIMEOUT, "Timeout trying to reach brainCloud server");
-                }
+				
+				if (_cacheMessagesOnNetworkError && _networkErrorCallback != null)
+				{
+					_fnErrorOutput("Caching messages");
+					_blockingQueue = true;
+					_networkErrorCallback();
+				}
+				else
+				{
+					triggerCommsError(StatusCodes.CLIENT_NETWORK_ERROR, ReasonCodes.CLIENT_NETWORK_ERROR_TIMEOUT, "Timeout trying to reach brainCloud server");
+				}
 			}
-        }
+		}
 		
 		private function triggerCommsError(statusCode:uint, reasonCode:uint, message:Object):void
 		{
@@ -458,14 +506,14 @@ package com.bitheads.braincloud.comms
 		{
 			_retryCount++;
 			getLoader().close();
-			retry();			
+			retry();
 		}
-        
-        private function resendActivePacket():void
-        {   
-            _urlRequest.url = _url;      
+		
+		private function resendActivePacket():void
+		{
+			_urlRequest.url = _url;
 			getLoader().load(_urlRequest);
-        }
+		}
 		
 		private function startTimeoutTimer(timeout:uint):void
 		{
@@ -501,18 +549,54 @@ package com.bitheads.braincloud.comms
 			return _packetTimeouts[_retryCount] * 1000;
 		}
 		
+		private function updateKillSwitch(service:String, operation:String, statusCode:int):void
+		{
+			if (statusCode == StatusCodes.CLIENT_NETWORK_ERROR) return;
+			
+			if (_killSwitchService == null)
+			{
+				_killSwitchService = service;
+				_killSwitchOperation = operation;
+				_killSwitchErrorCount++;
+			}
+			else if (service == _killSwitchService && operation == _killSwitchOperation)
+				_killSwitchErrorCount++;
+			
+			if (!_killSwitchEngaged && _killSwitchErrorCount >= _killSwitchThreshold)
+			{
+				_killSwitchEngaged = true;
+				_fnDebugOutput("Client disabled due to repeated errors from a single API call: " + service + " | " + operation);
+			}
+		}
+		
+		private function resetKillSwitch():void
+		{
+			_killSwitchErrorCount = 0;
+			_killSwitchService = null;
+			_killSwitchOperation = null;
+		}
+		
+		private function resetErrorCache():void
+		{
+			_cachedStatusCode = StatusCodes.FORBIDDEN;
+			_cachedReasonCode = ReasonCodes.NO_SESSION;
+			_cachedStatusMessage = "No session";
+		}
+		
 		private function releaseLoader():void
 		{
 			if (_loader == null)
 				return;
 			
-			try { 
-                _loader.close();
-            }
-            catch(error:Error) {
-                //not a problem
-            }
-            
+			try
+			{
+				_loader.close();
+			}
+			catch (error:Error)
+			{
+				//not a problem
+			}
+			
 			_loader.removeEventListener(Event.COMPLETE, onResponseReceived);
 			_loader.removeEventListener(IOErrorEvent.IO_ERROR, onSendError);
 			_loader.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, onSendSecurityError);
