@@ -121,9 +121,9 @@ package com.bitheads.braincloud.comms
 			resetErrorCache();
 		}
 		
-		public function initialize(gameId:String, secret:String, serverUrl:String):void
+		public function initialize(appId:String, secret:String, serverUrl:String):void
 		{
-			_gameId = gameId;
+			_gameId = appId;
 			_secret = secret;
 			_url = serverUrl;
 		}
