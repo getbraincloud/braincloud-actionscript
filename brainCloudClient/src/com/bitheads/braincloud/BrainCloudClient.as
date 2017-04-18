@@ -9,7 +9,7 @@ package com.bitheads.braincloud
 	
 	public class BrainCloudClient
 	{
-		private static const BRAINCLOUD_VERSION:String = "3.2.2";
+		private static const BRAINCLOUD_VERSION:String = "3.4.0";
 		private static const DEFAULT_SERVER_URL:String = "https://sharedprod.braincloudservers.com/dispatcherv2";
 		
 		private static var _instance:BrainCloudClient;
@@ -108,30 +108,30 @@ package com.bitheads.braincloud
 		 *
 		 * @param serverURL The url to the brainCloud server
 		 *     Currently this should be:  https://sharedprod.braincloudservers.com/dispatcherv2
-		 * @param secretKey The secret key for your game
-		 * @param gameId The game id
-		 * @param gameVersion The game version
+		 * @param secretKey The secret key for your app
+		 * @param appId The app id
+		 * @param version The version
 		 */
-		public function initialize(gameId:String, secretKey:String, version:String, serverUrl:String = DEFAULT_SERVER_URL):void
+		public function initialize(appId:String, secretKey:String, version:String, serverUrl:String = DEFAULT_SERVER_URL):void
 		{
             var error:String = null;            
             if (isNullOrEmpty(serverUrl))
                 error = "serverUrl was null or empty";
             else if (isNullOrEmpty(secretKey))
                 error = "secretKey was null or empty";
-            else if (isNullOrEmpty(gameId))
-                error = "gameId was null or empty";
-            else if (isNullOrEmpty(gameVersion))
-                error = "gameVersion was null or empty";
+            else if (isNullOrEmpty(appId))
+                error = "appId was null or empty";
+            else if (isNullOrEmpty(version))
+                error = "version was null or empty";
             
             if (error != null) {
                 trace(error);
                 return;
             }
             
-			_gameId = gameId;
+			_gameId = appId;
 			_version = version;
-			_comms.initialize(gameId, secretKey, serverUrl);
+			_comms.initialize(appId, secretKey, serverUrl);
 		}
         
         private function isNullOrEmpty(str:String):Boolean

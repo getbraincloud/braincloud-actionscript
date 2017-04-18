@@ -343,12 +343,12 @@ package com.bitheads.braincloud.services
          */
         public function incrementGlobalEntityData(entityId:String, data:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
-			var data:Object = {
+			var dataObj:Object = {
                 "entityId": entityId,
                 "data": data
             };
 			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.IncrementGlobalEntityData, data, successCallback, errorCallback, cbObject);
+			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.IncrementGlobalEntityData, dataObj, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
         

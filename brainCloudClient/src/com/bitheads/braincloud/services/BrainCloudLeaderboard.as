@@ -408,19 +408,6 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * @deprecated Use removePlayerScore instead - removal after March 22 2017
-         */
-        public function resetLeaderboardScore(leaderboardId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
-                "leaderboardId": leaderboardId
-            };		
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.Reset, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-        
-        /**
          * Removes a player's score from the leaderboard
          *
          * Service Name - leaderboard
