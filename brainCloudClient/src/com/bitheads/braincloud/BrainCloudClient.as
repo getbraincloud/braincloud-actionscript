@@ -16,7 +16,7 @@ package com.bitheads.braincloud
 		
 		private var _releasePlatform:Platform = Platform.Facebook;
 		private var _version:String = "1.0.0";
-		private var _gameId:String;
+		private var _appId:String;
 		private var _countryCode:String;
 		private var _languageCode:String;
 		private var _timeZoneOffset:Number;		
@@ -129,7 +129,7 @@ package com.bitheads.braincloud
                 return;
             }
             
-			_gameId = appId;
+			_appId = appId;
 			_version = version;
 			_comms.initialize(appId, secretKey, serverUrl);
 		}
@@ -247,9 +247,17 @@ package com.bitheads.braincloud
 		
 		//{ region  Getters
 		
+		/**
+		 * @deprecated Use appId instead - removal after March 22 2017
+		 */
 		public function get gameId():String
 		{
-			return _gameId;
+			return _appId;
+		}
+		
+		public function get appId():String
+		{
+			return _appId;
 		}
 		
 		public function get releasePlatform():Platform
@@ -257,7 +265,15 @@ package com.bitheads.braincloud
 			return _releasePlatform;
 		}
 		
+		/**
+		 * @deprecated Use version instead - removal after September 1 2017
+		 */
 		public function get gameVersion():String
+		{
+			return _version;
+		}
+		
+		public function get version():String
 		{
 			return _version;
 		}

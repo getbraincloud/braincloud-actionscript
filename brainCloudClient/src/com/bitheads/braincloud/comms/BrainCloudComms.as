@@ -22,7 +22,7 @@ package com.bitheads.braincloud.comms
 		
 		private var _url:String;
 		private var _secret:String;
-		private var _gameId:String;
+		private var _appId:String;
 		
 		private var _client:BrainCloudClient;
 		
@@ -123,7 +123,7 @@ package com.bitheads.braincloud.comms
 		
 		public function initialize(appId:String, secret:String, serverUrl:String):void
 		{
-			_gameId = appId;
+			_appId = appId;
 			_secret = secret;
 			_url = serverUrl;
 		}

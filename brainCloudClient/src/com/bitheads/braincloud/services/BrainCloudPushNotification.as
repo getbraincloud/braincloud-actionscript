@@ -14,7 +14,7 @@ package com.bitheads.braincloud.services
         }
         
         /**
-         * Deregisters all device tokens currently registered to the player.
+         * Deregisters all device tokens currently registered to the user.
          *
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
@@ -72,16 +72,16 @@ package com.bitheads.braincloud.services
          * Sends a simple push notification based on the passed in message.
          * NOTE: It is possible to send a push notification to oneself.
          *
-         * @param toPlayerId The braincloud playerId of the user to receive the notification
+         * @param toProfileId The braincloud profileId of the user to receive the notification
          * @param message Text of the push notification
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function sendSimplePushNotification(toPlayerId:String, message:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function sendSimplePushNotification(toProfileId:String, message:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "toPlayerId": toPlayerId,
+                "toPlayerId": toProfileId,
                 "message": message
             };
 			
@@ -93,15 +93,15 @@ package com.bitheads.braincloud.services
          * Sends a notification to a user based on a brainCloud portal configured notification template.
          * NOTE: It is possible to send a push notification to oneself.
          *
-         * @param toPlayerId The braincloud playerId of the user to receive the notification
+         * @param toProfileId The braincloud profileId of the user to receive the notification
          * @param notificationTemplateId Id of the notification template
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function sendRichPushNotification(toPlayerId:String, notificationTemplateId:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function sendRichPushNotification(toProfileId:String, notificationTemplateId:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
-			sendRichPushNotificationWithParams(toPlayerId, notificationTemplateId, null, successCallback, errorCallback, cbObject);
+			sendRichPushNotificationWithParams(toProfileId, notificationTemplateId, null, successCallback, errorCallback, cbObject);
 		}
         
         /**
@@ -110,18 +110,18 @@ package com.bitheads.braincloud.services
          * See the Portal documentation for more info.
          * NOTE: It is possible to send a push notification to oneself.
          *
-         * @param toPlayerId The braincloud playerId of the user to receive the notification
+         * @param toProfileId The braincloud profileId of the user to receive the notification
          * @param notificationTemplateId Id of the notification template
          * @param substitutions JSON defining the substitution params to use with the template
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function sendRichPushNotificationWithParams(toPlayerId:String, notificationTemplateId:int, substitutions:String, 
+        public function sendRichPushNotificationWithParams(toProfileId:String, notificationTemplateId:int, substitutions:String, 
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "toPlayerId": toPlayerId,
+                "toPlayerId": toProfileId,
                 "notificationTemplateId": notificationTemplateId
             };
             
@@ -191,18 +191,18 @@ package com.bitheads.braincloud.services
         /**
          * Sends a notification to a user consisting of alert content and custom data.
          *
-         * @param toPlayerId The playerId of the user to receive the notification
+         * @param toProfileId The profileId of the user to receive the notification
          * @param alertContentJson Body and title of alert
          * @param customDataJson Optional custom data
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function sendNormalizedPushNotification(toPlayerId:String, alertContent:Object, customData:Object, 
+        public function sendNormalizedPushNotification(toProfileId:String, alertContent:Object, customData:Object, 
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "toPlayerId": toPlayerId,
+                "toPlayerId": toProfileId,
                 "alertContent": alertContent
             };
             
