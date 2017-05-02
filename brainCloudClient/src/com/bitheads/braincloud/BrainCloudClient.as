@@ -15,7 +15,7 @@ package com.bitheads.braincloud
 		private static var _instance:BrainCloudClient;
 		
 		private var _releasePlatform:Platform = Platform.Facebook;
-		private var _version:String = "1.0.0";
+		private var _appVersion:String = "1.0.0";
 		private var _appId:String;
 		private var _countryCode:String;
 		private var _languageCode:String;
@@ -110,9 +110,9 @@ package com.bitheads.braincloud
 		 *     Currently this should be:  https://sharedprod.braincloudservers.com/dispatcherv2
 		 * @param secretKey The secret key for your app
 		 * @param appId The app id
-		 * @param version The version
+		 * @param appVersion The app version
 		 */
-		public function initialize(appId:String, secretKey:String, version:String, serverUrl:String = DEFAULT_SERVER_URL):void
+		public function initialize(appId:String, secretKey:String, appVersion:String, serverUrl:String = DEFAULT_SERVER_URL):void
 		{
             var error:String = null;            
             if (isNullOrEmpty(serverUrl))
@@ -121,8 +121,8 @@ package com.bitheads.braincloud
                 error = "secretKey was null or empty";
             else if (isNullOrEmpty(appId))
                 error = "appId was null or empty";
-            else if (isNullOrEmpty(version))
-                error = "version was null or empty";
+            else if (isNullOrEmpty(appVersion))
+                error = "appVersion was null or empty";
             
             if (error != null) {
                 trace(error);
@@ -130,7 +130,7 @@ package com.bitheads.braincloud
             }
             
 			_appId = appId;
-			_version = version;
+			_appVersion = appVersion;
 			_comms.initialize(appId, secretKey, serverUrl);
 		}
         
@@ -266,16 +266,24 @@ package com.bitheads.braincloud
 		}
 		
 		/**
-		 * @deprecated Use version instead - removal after September 1 2017
+		 * @deprecated Use appVersion instead - removal after September 1 2017
 		 */
 		public function get gameVersion():String
 		{
-			return _version;
+			return _appVersion;
 		}
 		
+		/**
+		 * @deprecated Use appVersion instead - removal after September 1 2017
+		 */
 		public function get version():String
 		{
-			return _version;
+			return _appVersion;
+		}
+		 
+		 public function get appVersion():String
+		{
+			return _appVersion;
 		}
 		
 		public function get countryCode():String

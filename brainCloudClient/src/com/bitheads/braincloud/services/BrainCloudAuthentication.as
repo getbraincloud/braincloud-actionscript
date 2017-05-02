@@ -298,7 +298,7 @@ package com.bitheads.braincloud.services
                 "gameId": Client.appId, 
                 "externalId": externalId, 
                 "releasePlatform": Client.releasePlatform.name, 
-                "gameVersion": Client.version, 
+                "gameVersion": Client.appVersion, 
                 "clientLibVersion": Client.clientLibVersion, 
                 "authenticationToken": authenticationToken, 
                 "authenticationType": authenticationType.name, 
