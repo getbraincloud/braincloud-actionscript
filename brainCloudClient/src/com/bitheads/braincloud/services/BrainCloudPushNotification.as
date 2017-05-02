@@ -187,7 +187,116 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.SendNormalizedToGroup, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
+		
+		
+        /**
+		* Schedules a normalized push notification to a user
+		*
+		* @param profileId The profileId of the user to receive the notification
+		* @param alertContent Body and title of alert
+		* @param customData Optional custom data
+		* @param startTime Start time of sending the push notification
+		* @param callback The method to be invoked when the server response is received
+		*/
+        public function scheduleNormalizedPushNotificationUTC(profileId:String, alertContent:Object, customData:Object, startTime:int,
+            successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "toPlayerId": toProfileId,
+                "alertContent": alertContent,
+				"startDateUTC" : startTime
+            };
+            
+            if (isOptionalParamValid(customData)) {
+                data.customData = customData;
+            }
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.ScheduleNormalizedNotification, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+		
+		
+        /**
+		* Schedules a normalized push notification to a user
+		*
+		* @param profileId The profileId of the user to receive the notification
+		* @param alertContentJson Body and title of alert
+		* @param customDataJson Optional custom data
+		* @param minutesFromNow Minutes from now to send the push notification
+		* @param callback The method to be invoked when the server response is received
+		*/
+        public function scheduleNormalizedPushNotificationMinutes(profileId:String, alertContent:Object, customData:Object, startTime:int,
+            successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "toPlayerId": toProfileId,
+                "alertContent": alertContent,
+				"minutesFromNow" : startTime
+            };
+            
+            if (isOptionalParamValid(customData)) {
+                data.customData = customData;
+            }
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.ScheduleNormalizedNotification, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+		
+		
+        /**
+		* Schedules a rich push notification to a user
+		*
+		* @param profileId The profileId of the user to receive the notification
+		* @param notificationTemplateId Body and title of alert
+		* @param substitutionsJson Optional custom data
+		* @param startTime Start time of sending the push notification
+		* @param callback The method to be invoked when the server response is received
+		*/
+        public function scheduleRichPushNotificationUTC(profileId:String, alertContent:Object, customData:Object, startTime:int,
+            successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "toPlayerId": toProfileId,
+                "alertContent": alertContent,
+				"startDateUTC" : startTime
+            };
+            
+            if (isOptionalParamValid(customData)) {
+                data.customData = customData;
+            }
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.ScheduleRichNotification, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+		
+		
+        /**
+		* Schedules a rich push notification to a user
+		*
+		* @param profileId The profileId of the user to receive the notification
+		* @param notificationTemplateId Body and title of alert
+		* @param substitutionsJson Optional custom data
+		* @param minutesFromNow Minutes from now to send the push notification
+		* @param callback The method to be invoked when the server response is received
+		*/
+        public function scheduleRichPushNotificationMinutes(profileId:String, alertContent:Object, customData:Object, startTime:int,
+            successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "toPlayerId": toProfileId,
+                "alertContent": alertContent,
+				"minutesFromNow" : startTime
+            };
+            
+            if (isOptionalParamValid(customData)) {
+                data.customData = customData;
+            }
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.ScheduleRichNotification, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
         
+      
         /**
          * Sends a notification to a user consisting of alert content and custom data.
          *
