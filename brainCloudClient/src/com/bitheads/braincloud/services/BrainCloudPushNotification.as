@@ -112,12 +112,12 @@ package com.bitheads.braincloud.services
          *
          * @param toProfileId The braincloud profileId of the user to receive the notification
          * @param notificationTemplateId Id of the notification template
-         * @param substitutions JSON defining the substitution params to use with the template
+         * @param substitutionJson JSON defining the substitution params to use with the template
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function sendRichPushNotificationWithParams(toProfileId:String, notificationTemplateId:int, substitutions:String, 
+        public function sendRichPushNotificationWithParams(toProfileId:String, notificationTemplateId:int, substitutionJson:String, 
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
@@ -125,8 +125,8 @@ package com.bitheads.braincloud.services
                 "notificationTemplateId": notificationTemplateId
             };
             
-            if (isOptionalParamValid(substitutions)) {
-                data.substitutions = substitutions;
+            if (isOptionalParamValid(substitutionJson)) {
+                data.substitutions = substitutionJson;
             }
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.SendRich, data, successCallback, errorCallback, cbObject);
@@ -140,12 +140,12 @@ package com.bitheads.braincloud.services
          *
          * @param groupId Target group
          * @param notificationTemplateId Template to use
-         * @param substitutions Map of substitution positions to strings
+         * @param substitutionJson Map of substitution positions to strings
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function sendTemplatedPushNotificationToGroup(groupId:String, notificationTemplateId:int, substitutions:String, 
+        public function sendTemplatedPushNotificationToGroup(groupId:String, notificationTemplateId:int, substitutionJson:String, 
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
@@ -153,8 +153,8 @@ package com.bitheads.braincloud.services
                 "notificationTemplateId": notificationTemplateId
             };
             
-            if (isOptionalParamValid(substitutions)) {
-                data.substitutions = substitutions;
+            if (isOptionalParamValid(substitutionJson)) {
+                data.substitutions = substitutionJson;
             }
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.SendTemplatedToGroup, data, successCallback, errorCallback, cbObject);
@@ -166,22 +166,22 @@ package com.bitheads.braincloud.services
          * See the Portal documentation for more info.
          *
          * @param groupId Target group
-         * @param alertContent Body and title of alert
-         * @param customData Optional custom data
+         * @param alertContentJson Body and title of alert
+         * @param customDataJson Optional custom data
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function sendNormalizedPushNotificationToGroup(groupId:String, alertContent:Object, customData:Object, 
+        public function sendNormalizedPushNotificationToGroup(groupId:String, alertContentJson:Object, customDataJson:Object, 
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "groupId": groupId,
-                "alertContent": alertContent
+                "alertContent": alertContentJson
             };
             
-            if (isOptionalParamValid(customData)) {
-                data.customData = customData;
+            if (isOptionalParamValid(customDataJson)) {
+                data.customData = customDataJson;
             }
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.SendNormalizedToGroup, data, successCallback, errorCallback, cbObject);
@@ -193,22 +193,22 @@ package com.bitheads.braincloud.services
 		* Schedules a normalized push notification to a user
 		*
 		* @param profileId The profileId of the user to receive the notification
-		* @param alertContent Body and title of alert
-		* @param customData Optional custom data
+		* @param alertContentJson Body and title of alert
+		* @param customDataJson Optional custom data
 		* @param startTime Start time of sending the push notification
 		* @param callback The method to be invoked when the server response is received
 		*/
-        public function scheduleNormalizedPushNotificationUTC(profileId:String, alertContent:Object, customData:Object, startTime:int,
+        public function scheduleNormalizedPushNotificationUTC(profileId:String, alertContentJson:Object, customDataJson:Object, startTime:int,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "toPlayerId": toProfileId,
-                "alertContent": alertContent,
+                "alertContent": alertContentJson,
 				"startDateUTC" : startTime
             };
             
-            if (isOptionalParamValid(customData)) {
-                data.customData = customData;
+            if (isOptionalParamValid(customDataJson)) {
+                data.customData = customDataJson;
             }
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.ScheduleNormalizedNotification, data, successCallback, errorCallback, cbObject);
@@ -225,17 +225,17 @@ package com.bitheads.braincloud.services
 		* @param minutesFromNow Minutes from now to send the push notification
 		* @param callback The method to be invoked when the server response is received
 		*/
-        public function scheduleNormalizedPushNotificationMinutes(profileId:String, alertContent:Object, customData:Object, startTime:int,
+        public function scheduleNormalizedPushNotificationMinutes(profileId:String, alertContentJson:Object, customDataJson:Object, minutesFromNow:int,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "toPlayerId": toProfileId,
-                "alertContent": alertContent,
-				"minutesFromNow" : startTime
+                "alertContent": alertContentJson,
+				"minutesFromNow" : minutesFromNow
             };
             
-            if (isOptionalParamValid(customData)) {
-                data.customData = customData;
+            if (isOptionalParamValid(customDataJson)) {
+                data.customData = customDataJson;
             }
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.ScheduleNormalizedNotification, data, successCallback, errorCallback, cbObject);
@@ -248,21 +248,21 @@ package com.bitheads.braincloud.services
 		*
 		* @param profileId The profileId of the user to receive the notification
 		* @param notificationTemplateId Body and title of alert
-		* @param substitutionsJson Optional custom data
+		* @param substitutionJson JSON defining the substitution params to use with the template
 		* @param startTime Start time of sending the push notification
 		* @param callback The method to be invoked when the server response is received
 		*/
-        public function scheduleRichPushNotificationUTC(profileId:String, alertContent:Object, customData:Object, startTime:int,
+        public function scheduleRichPushNotificationUTC(profileId:String, notificationTemplateId:Object, substitutionJson:Object, startTime:int,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "toPlayerId": toProfileId,
-                "alertContent": alertContent,
+                "notificationTemplateId": notificationTemplateId,
 				"startDateUTC" : startTime
             };
             
-            if (isOptionalParamValid(customData)) {
-                data.customData = customData;
+            if (isOptionalParamValid(substitutionJson)) {
+                data.substitutions = substitutionJson;
             }
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.ScheduleRichNotification, data, successCallback, errorCallback, cbObject);
@@ -275,21 +275,21 @@ package com.bitheads.braincloud.services
 		*
 		* @param profileId The profileId of the user to receive the notification
 		* @param notificationTemplateId Body and title of alert
-		* @param substitutionsJson Optional custom data
+		* @param substitutionJson JSON defining the substitution params to use with the template
 		* @param minutesFromNow Minutes from now to send the push notification
 		* @param callback The method to be invoked when the server response is received
 		*/
-        public function scheduleRichPushNotificationMinutes(profileId:String, alertContent:Object, customData:Object, startTime:int,
+        public function scheduleRichPushNotificationMinutes(profileId:String, notificationTemplateId:Object, substitutionJson:Object, minutesFromNow:int,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "toPlayerId": toProfileId,
-                "alertContent": alertContent,
-				"minutesFromNow" : startTime
+                "notificationTemplateId": notificationTemplateId,
+				"minutesFromNow" : minutesFromNow
             };
             
-            if (isOptionalParamValid(customData)) {
-                data.customData = customData;
+            if (isOptionalParamValid(substitutionJson)) {
+                data.substitutions = substitutionJson;
             }
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.ScheduleRichNotification, data, successCallback, errorCallback, cbObject);
@@ -307,16 +307,16 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function sendNormalizedPushNotification(toProfileId:String, alertContent:Object, customData:Object, 
+        public function sendNormalizedPushNotification(toProfileId:String, alertContentJson:Object, customDataJson:Object, 
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "toPlayerId": toProfileId,
-                "alertContent": alertContent
+                "alertContent": alertContentJson
             };
             
-            if (isOptionalParamValid(customData)) {
-                data.customData = customData;
+            if (isOptionalParamValid(customDataJson)) {
+                data.customData = customDataJson;
             }
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.SendNormalized, data, successCallback, errorCallback, cbObject);
@@ -333,16 +333,16 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function sendNormalizedPushNotificationBatch(profileIds:Array, alertContent:Object, customData:Object, 
+        public function sendNormalizedPushNotificationBatch(profileIds:Array, alertContentJson:Object, customDataJson:Object, 
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "profileIds": profileIds,
-                "alertContent": alertContent
+                "alertContent": alertContentJson
             };
             
-            if (isOptionalParamValid(customData)) {
-                data.customData = customData;
+            if (isOptionalParamValid(customDataJson)) {
+                data.customData = customDataJson;
             }
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.SendNormalizedBatch, data, successCallback, errorCallback, cbObject);
