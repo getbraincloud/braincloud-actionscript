@@ -17,12 +17,12 @@ package com.bitheads.braincloud.services
         }
         
         /**
-         * Links the current player and the specified players as brainCloud friends.
+         * Links the current user and the specified users as brainCloud friends.
          *
          * Service Name - Friend
          * Service Operation - ADD_FRIENDS
          *
-         * @param profileIds Collection of player IDs.
+         * @param profileIds Collection of profile IDs.
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
@@ -58,7 +58,7 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * Finds a list of players matching the search text by performing an exact match search
+         * Finds a list of users matching the search text by performing an exact match search
          *
          * Service Name - friend
          * Service Operation - FIND_USERS_BY_EXACT_NAME
@@ -81,8 +81,8 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * Finds a list of players matching the search text by performing a substring
-         * search of all player names.
+         * Finds a list of users matching the search text by performing a substring
+         * search of all user names.
          *
          * Service Name - friend
          * Service Operation - FIND_USERS_BY_SUBSTR_NAME
@@ -118,7 +118,7 @@ package com.bitheads.braincloud.services
         /**
          * Retrieves the external ID for the specified user profile ID on the specified social platform.
          *
-         * @param profileId Profile (player) ID.
+         * @param profileId User's Profile ID.
          * @param authenticationType Associated authentication type.
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
@@ -182,12 +182,12 @@ package com.bitheads.braincloud.services
 		}  
         
         /**
-         * Returns player state of a particular user.
+         * Returns user state of a particular user.
          *
          * Service Name - Friend
          * Service Operation - GET_SUMMARY_DATA_FOR_PROFILE_ID
          *
-         * @param profileId Profile Id of player to retrieve player state for.
+         * @param profileId Profile Id of user to retrieve user state for.
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
@@ -224,7 +224,7 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * Retrieves a list of player and friend platform information for all friends of the current player.
+         * Retrieves a list of user and friend platform information for all friends of the current user.
          *
          * Service Name - Friend
          * Service Operation - LIST_FRIENDS
@@ -270,7 +270,20 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * Read a friend's player state.
+		 * @deprecated Use readFriendUserState instead - removal after September 1 2017
+		 */
+		public function readFriendPlayerState(friendId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "friendId":friendId
+            };		
+            
+			var serverCall:ServerCall = new ServerCall(ServiceName.Friend, ServiceOperation.ReadFriendsPlayerState, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+		
+		/**
+         * Read a friend's user state.
          *
          * Service Name - Friend
          * Service Operation - ReadFriendsPlayerState
@@ -280,7 +293,7 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function readFriendPlayerState(friendId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function readFriendUserState(friendId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "friendId":friendId
@@ -312,12 +325,12 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * Unlinks the current player and the specified players as brainCloud friends.
+         * Unlinks the current user and the specified users as brainCloud friends.
          *
          * Service Name - Friend
          * Service Operation - REMOVE_FRIENDS
          *
-         * @param profileIds Collection of player IDs.
+         * @param profileIds Collection of profile IDs.
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
