@@ -155,7 +155,7 @@ package com.bitheads.braincloud.services
         }
         
         /**
-         * Refreshes an identity for this player
+         * Refreshes an identity for this user
          *
          * Service Name - identity
          * Service Operation - REFRESH_IDENTITY
@@ -192,15 +192,15 @@ package com.bitheads.braincloud.services
 		 *
 		 * @param childProfileId The profileId of the child profile to switch to
 		 * If null and forceCreate is true a new profile will be created
-		 * @param childGameId The appId of the child game to switch to
+		 * @param childAppId The appId of the child app to switch to
 		 * @param forceCreate Should a new profile be created if it does not exist?
 		 * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
 		 */
-        public function switchToChildProfile(childProfileId:String, childGameId:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function switchToChildProfile(childProfileId:String, childAppId:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
-			switchToChildProfileInternal(childProfileId, childGameId, forceCreate, false, successCallback, errorCallback, cbObject);
+			switchToChildProfileInternal(childProfileId, childAppId, forceCreate, false, successCallback, errorCallback, cbObject);
 		}
         
         /**
@@ -210,15 +210,15 @@ package com.bitheads.braincloud.services
 		 * Service Name - identity
 		 * Service Operation - SWITCH_TO_CHILD_PROFILE
 		 *
-		 * @param childGameId The App ID of the child game to switch to
+		 * @param childAppId The App ID of the child app to switch to
 		 * @param forceCreate Should a new profile be created if it does not exist?
 		 * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
 		 */
-        public function switchToSingletonChildProfile(childGameId:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function switchToSingletonChildProfile(childAppId:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
-			switchToChildProfileInternal(null, childGameId, forceCreate, true, successCallback, errorCallback, cbObject);
+			switchToChildProfileInternal(null, childAppId, forceCreate, true, successCallback, errorCallback, cbObject);
 		}
         
         /**
@@ -244,7 +244,7 @@ package com.bitheads.braincloud.services
         }
         
         /**
-         * Detaches parent from this player's profile
+         * Detaches parent from this user's profile
          *
          * Service Name - identity
          * Service Operation - DETACH_PARENT
@@ -293,7 +293,7 @@ package com.bitheads.braincloud.services
         }
         
         /**
-         * Attaches a peer identity to this player's profile
+         * Attaches a peer identity to this user's profile
          *
          * Service Name - identity
          * Service Operation - ATTACH_PEER_PROFILE
@@ -328,7 +328,7 @@ package com.bitheads.braincloud.services
         }
         
         /**
-         * Detaches a peer identity from this player's profile
+         * Detaches a peer identity from this user's profile
          *
          * Service Name - identity
          * Service Operation - DETACH_PEER
@@ -367,11 +367,11 @@ package com.bitheads.braincloud.services
         
         /* Private */
         
-        private function switchToChildProfileInternal(childProfileId:String, childGameId:String, forceCreate:Boolean, forceSingleton:Boolean,
+        private function switchToChildProfileInternal(childProfileId:String, childAppId:String, forceCreate:Boolean, forceSingleton:Boolean,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
-                "gameId": childGameId, 
+                "gameId": childAppId, 
                 "forceCreate": forceCreate, 
                 "forceSingleton": forceSingleton, 
                 "releasePlatform": Client.releasePlatform.name, 

@@ -15,10 +15,19 @@ package com.bitheads.braincloud.services
 		{
 			_client = client;
 		}
+		
+		/**
+		 * @deprecated Use readFriendUserState instead - removal after September 1 2017
+		 */
+		public function deletePlayer(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{				
+			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.FullReset, null, successCallback, errorCallback, cbObject);
+			_client.sendRequest(serverCall);
+		}
         
         /**
-         * Completely deletes the player record and all data fully owned by the
-         * player. After calling this method, the player will need to
+         * Completely deletes the user record and all data fully owned by the
+         * user. After calling this method, the user will need to
          * re-authenticate and create a new profile. This is mostly used for
          * debugging/qa.
          *
@@ -26,14 +35,14 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function deletePlayer(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function deleteUser(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{				
 			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.FullReset, null, successCallback, errorCallback, cbObject);
 			_client.sendRequest(serverCall);
 		}
         
         /**
-         * Retrieve the player attributes.
+         * Retrieve the user's attributes.
          *
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
@@ -46,7 +55,7 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * Logs player out of server.
+         * Logs user's out of server.
          *
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
@@ -58,24 +67,33 @@ package com.bitheads.braincloud.services
 			_client.sendRequest(serverCall);
 		}
         
+		/**
+		 * @deprecated Use readUserState instead - removal after September 1 2017
+		 */
+		public function readPlayerState(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{				
+			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.Read, null, successCallback, errorCallback, cbObject);
+			_client.sendRequest(serverCall);
+		}	
+		
         /**
-         * Read the state of the currently logged in player. This method returns a
-         * JSON object describing most of the player's data: entities, statistics,
+         * Read the state of the currently logged in user. This method returns a
+         * JSON object describing most of the user's data: entities, statistics,
          * level, currency. Apps will typically call this method after
-         * authenticating to get an up-to-date view of the player's data.
+         * authenticating to get an up-to-date view of the user's data.
          *
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function readPlayerState(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function readUserState(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{				
 			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.Read, null, successCallback, errorCallback, cbObject);
 			_client.sendRequest(serverCall);
 		}	
         
         /**
-         * Remove player attributes.
+         * Remove user's attributes.
          *
          * @param attributeNames Array of attribute names.
          * @param successCallback The success callback
@@ -92,25 +110,34 @@ package com.bitheads.braincloud.services
 			_client.sendRequest(serverCall);
 		}
         
+		/**
+		 * @deprecated Use resetUser instead - removal after September 1 2017
+		 */
+		public function resetPlayer(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{	
+			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.DataReset, null, successCallback, errorCallback, cbObject);
+			_client.sendRequest(serverCall);
+		}
+		
         /**
-         * This method will delete *most* data for the currently logged in player.
+         * This method will delete *most* data for the currently logged in user.
          * Data which is not deleted includes: currency, credentials, and purchase
          * transactions. ResetPlayer is different from DeletePlayer in that the
-         * player record will continue to exist after the reset (so the user does
+         * user record will continue to exist after the reset (so the user does
          * not need to re-authenticate).
          *
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function resetPlayer(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function resetUser(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{	
 			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.DataReset, null, successCallback, errorCallback, cbObject);
 			_client.sendRequest(serverCall);
 		}
         
         /**
-         * Update player attributes.
+         * Update user's attributes.
          *
          * @param attributes Single layer json string that is a set of key-value pairs
          * @param wipeExisting Whether to wipe existing attributes prior to update.
@@ -129,18 +156,31 @@ package com.bitheads.braincloud.services
 			_client.sendRequest(serverCall);
 		}
 
+		/**
+		 * @deprecated Use updateUserName instead - removal after September 1 2017
+		 */
+		public function updatePlayerName(userName:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "playerName": userName             
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.UpdateName, data, successCallback, errorCallback, cbObject);
+			_client.sendRequest(serverCall);
+		}
+		
         /**
-         * Sets the players visible name
+         * Sets the user's visible name
          *
-         * @param playerName The name of the player to be packed
+         * @param userName The name of the user to be packed
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-		public function updatePlayerName(playerName:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		public function updateUserName(userName:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "playerName": playerName             
+                "playerName": userName             
             };		
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.UpdateName, data, successCallback, errorCallback, cbObject);
@@ -148,11 +188,11 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * Updates the "friend summary data" associated with the logged in player.
+         * Updates the "friend summary data" associated with the logged in user.
          * Some operations will return this summary data. For instance the social
          * leaderboards will return the player's score in the leaderboard along
          * with the friend summary data. Generally this data is used to provide
-         * a quick overview of the player without requiring a separate API call
+         * a quick overview of the user without requiring a separate API call
          * to read their public stats or entity data.
          *
          * @param friendSummaryData A JSON string defining the summary data.
@@ -176,8 +216,21 @@ package com.bitheads.braincloud.services
 			_client.sendRequest(serverCall);
 		}	
         
+		/**
+		 * @deprecated Use updateUserPictureUrl instead - removal after September 1 2017
+		 */
+		public function updatePlayerPictureUrl(pictureUrl:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "playerPictureUrl": pictureUrl             
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.UpdatePlayerPicture, data, successCallback, errorCallback, cbObject);
+			_client.sendRequest(serverCall);
+		}
+		
         /**
-         * Update Player picture URL.
+         * Update user picture URL.
          *
          * Service Name - PlayerState
          * Service Operation - UPDATE_PICTURE_URL
@@ -187,7 +240,7 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function updatePlayerPictureUrl(pictureUrl:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function updateUserPictureUrl(pictureUrl:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "playerPictureUrl": pictureUrl             
@@ -198,7 +251,7 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * Update the player's contact email.
+         * Update the user's contact email.
          * Note this is unrelated to email authentication.
          *
          * Service Name - PlayerState
