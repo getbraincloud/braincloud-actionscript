@@ -294,6 +294,7 @@ package com.bitheads.braincloud
         //mail
         public static const SendBasicEmail:String = "SEND_BASIC_EMAIL";
         public static const SendAdvancedEmail:String = "SEND_ADVANCED_EMAIL";       
+		public static const SendAdvancedEmailByAddress:String = "SEND_ADVANCED_EMAIL_BY_ADDRESS";
         
         //Tournament
         public static const GetTournamentStatus:String = "GET_TOURNAMENT_STATUS";      
