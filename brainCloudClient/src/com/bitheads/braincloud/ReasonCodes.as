@@ -139,7 +139,7 @@ package com.bitheads.braincloud
         public static const S3_ERROR:int = 40350;
         public static const INVALID_ATTRIBUTES:int = 40351;
         public static const IMPORT_MISSING_GAME_DATA:int = 40352;
-        public static const IMPORT_MISSING_GAME_DATA:int = IMPORT_MISSING_GAME_APP;
+        public static const IMPORT_MISSING_GAME_APP:int = IMPORT_MISSING_GAME_DATA;
 		public static const IMPORT_SCHEMA_VERSION_TOO_OLD:int = 40353;
         public static const IMPORT_SCHEMA_VERSION_INVALID:int = 40355;
 

@@ -202,7 +202,7 @@ package com.bitheads.braincloud.services
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "toPlayerId": toProfileId,
+                "profileId": profileId,
                 "alertContent": alertContentJson,
 				"startDateUTC" : startTime
             };
@@ -229,7 +229,7 @@ package com.bitheads.braincloud.services
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "toPlayerId": toProfileId,
+                "profileId": profileId,
                 "alertContent": alertContentJson,
 				"minutesFromNow" : minutesFromNow
             };
@@ -256,7 +256,7 @@ package com.bitheads.braincloud.services
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "toPlayerId": toProfileId,
+                "profileId": profileId,
                 "notificationTemplateId": notificationTemplateId,
 				"startDateUTC" : startTime
             };
@@ -283,7 +283,7 @@ package com.bitheads.braincloud.services
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "toPlayerId": toProfileId,
+                "profileId": profileId,
                 "notificationTemplateId": notificationTemplateId,
 				"minutesFromNow" : minutesFromNow
             };
