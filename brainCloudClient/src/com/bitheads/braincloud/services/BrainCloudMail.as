@@ -61,5 +61,29 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.Mail, ServiceOperation.SendAdvancedEmail, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
+		
+		/**
+         * Sends an advanced email to the specified email address
+         *
+         * Service Name - mail
+         * Service Operation - SEND_ADVANCED_EMAIL_BY_ADDRESS
+         *
+         * @param emailAddress The user to send the email to
+         * @param serviceParams Parameters to send to the email service. See the documentation for
+         *	a full list. http://getbraincloud.com/apidocs/apiref/#capi-mail
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+		public function sendAdvancedEmailByAddress(emailAddress:String, serviceParams:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "emailAddress": emailAddress,
+                "serviceParams": serviceParams
+            };
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Mail, ServiceOperation.SendAdvancedEmailByAddress, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
 	}
 }
