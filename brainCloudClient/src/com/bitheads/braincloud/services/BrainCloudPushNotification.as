@@ -252,7 +252,7 @@ package com.bitheads.braincloud.services
 		* @param startTime Start time of sending the push notification
 		* @param callback The method to be invoked when the server response is received
 		*/
-        public function scheduleRichPushNotificationUTC(profileId:String, notificationTemplateId:Object, substitutionJson:Object, startTime:int,
+        public function scheduleRichPushNotificationUTC(profileId:String, notificationTemplateId:int, substitutionJson:Object, startTime:int,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
@@ -279,7 +279,7 @@ package com.bitheads.braincloud.services
 		* @param minutesFromNow Minutes from now to send the push notification
 		* @param callback The method to be invoked when the server response is received
 		*/
-        public function scheduleRichPushNotificationMinutes(profileId:String, notificationTemplateId:Object, substitutionJson:Object, minutesFromNow:int,
+        public function scheduleRichPushNotificationMinutes(profileId:String, notificationTemplateId:int, substitutionJson:Object, minutesFromNow:int,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
