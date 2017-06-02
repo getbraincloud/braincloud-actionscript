@@ -165,5 +165,47 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.GetStreamSummariesForTargetPlayer, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
+		
+		/**
+		 * Gets recent stream summaries for initiating player
+		 *
+		 * Service Name - PlaybackStream
+		 * Service Operation - GetRecentStreamsForInitiatingPlayer
+		 *
+		 * @param initiatingPlayerId The player that started the stream
+		 * @param maxNumStreams The max number of streams to query
+		 * @param callback The callback.
+		 */
+		public function getRecentStreamsForInitiatingPlayer(initiatingPlayerId:String, maxNumStreams:Number, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "initiatingPlayerId": initiatingPlayerId,
+				"maxNumStreams" : maxNumStreams
+            };
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.GetRecentStreamsForInitiatingPlayer, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+		
+		/**
+		 * Gets recent stream summaries for target player
+		 *
+		 * Service Name - PlaybackStream
+		 * Service Operation - GetRecentStreamsForTargetPlayer
+		 *
+		 * @param targetPlayerId The player that was target of the stream
+		 * @param maxNumStreams The max number of streams to query
+		 * @param callback The callback.
+		 */
+		public function getRecentStreamsForTargetPlayer(targetPlayerId:String, maxNumStreams:Number, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "targetPlayerId": targetPlayerId,
+				"maxNumStreams" : maxNumStreams
+            };
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.GetRecentStreamsForTargetPlayer, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
 	}
 }

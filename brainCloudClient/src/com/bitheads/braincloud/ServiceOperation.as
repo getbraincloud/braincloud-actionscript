@@ -199,7 +199,9 @@ package com.bitheads.braincloud
         public static const AddEvent:String = "ADD_EVENT";
         public static const GetStreamSummariesForInitiatingPlayer:String = "GET_STREAM_SUMMARIES_FOR_INITIATING_PLAYER";
         public static const GetStreamSummariesForTargetPlayer:String = "GET_STREAM_SUMMARIES_FOR_TARGET_PLAYER";
-        
+        public static const GetRecentStreamsForInitiatingPlayer:String = "GET_RECENT_STREAMS_FOR_INITIATING_PLAYER";
+        public static const GetRecentStreamsForTargetPlayer:String = "GET_RECENT_STREAMS_FOR_TARGET_PLAYER";
+		
         public static const GetUserInfo:String = "GET_USER_INFO";
         
         public static const StartSteamTransaction:String = "START_STEAM_TRANSACTION";
