@@ -41,7 +41,7 @@ package com.bitheads.braincloud
         public static const SendNormalizedToGroup:String = "SEND_NORMALIZED_TO_GROUP";
         public static const SendNormalized:String = "SEND_NORMALIZED";
         public static const SendNormalizedBatch:String = "SEND_NORMALIZED_BATCH";
-		public static const ScheduleRichNotifications:String = "SCHEDULE_RICH_NOTIFICATION";
+		public static const ScheduleRichNotification:String = "SCHEDULE_RICH_NOTIFICATION";
 		public static const ScheduleNormalizedNotification:String = "SCHEDULE_NORMALIZED_NOTIFICATION";
 		
         public static const Trigger:String = "TRIGGER";
