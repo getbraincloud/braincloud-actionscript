@@ -139,9 +139,8 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.GetInventory, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
-	}
-	
-	/**
+		
+		/**
          * Gets the player's currency for the given currency type
          * or all currency types if null passed in.
          *
@@ -162,5 +161,6 @@ package com.bitheads.braincloud.services
             
 			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.GetPlayerVC, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
+		}
 	}
 }
