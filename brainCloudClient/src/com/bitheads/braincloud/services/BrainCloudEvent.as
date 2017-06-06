@@ -161,7 +161,7 @@ package com.bitheads.braincloud.services
 		public function legacyDeleteSentEvent(toId:String, eventId:Number, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-               "toId": fromId,
+               "toId": toId,
                "eventId": eventId
             };		
 			
@@ -180,7 +180,7 @@ package com.bitheads.braincloud.services
                "includeSentEvents": includeSentEvents
             };		
 			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.Event, data, successCallback, errorCallback, cbObject);
+			var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.GetEvents, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
 	}
