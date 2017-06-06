@@ -139,5 +139,69 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.GetInventory, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
+		
+		/**
+		 * @deprecated Method is recommended to be used in Cloud Code only for security
+		 * If you need to use it client side, enable 'Allow Currency Calls from Client' on the brainCloud dashboard
+		 */
+        public function awardCurrency(currencyType:String, amount:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "vc_id": currencyType,
+                "vc_amount":amount
+            };	
+            
+			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.AwardVC, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+ 
+          
+        /**
+		 * @deprecated Method is recommended to be used in Cloud Code only for security
+		 * If you need to use it client side, enable 'Allow Currency Calls from Client' on the brainCloud dashboard
+		 */
+        public function consumeCurrency(currencyType:String, amount:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "vc_id": currencyType,
+                "vc_amount":amount
+            };	
+            
+			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.ConsumeVC, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+        
+        /**
+         * Gets the player's currency for the given currency type
+         * or all currency types if null passed in.
+         *
+         * Service Name Product
+         * Service Operation GetPlayerVC
+         *
+         * @param currencyType The currency type to retrieve or null
+         * if all currency types are being requested.
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function getCurrency(currencyType:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "vc_id": currencyType
+            };	
+            
+			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.GetPlayerVC, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+        
+		/**
+		 * @deprecated Method is recommended to be used in Cloud Code only for security
+		 * If you need to use it client side, enable 'Allow Currency Calls from Client' on the brainCloud dashboard
+		 */
+        public function resetCurrency(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{            
+			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.ResetPlayerVC, null, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
 	}
 }
