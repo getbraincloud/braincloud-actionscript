@@ -73,6 +73,11 @@ package com.bitheads.braincloud.comms
 			return _isAuthenticated;
 		}
 		
+		public function setAuthenticated():void
+		{
+			_isAuthenticated = true;
+		}
+		
 		public function get packetTimeouts():Array
 		{
 			return _packetTimeouts;
@@ -131,6 +136,11 @@ package com.bitheads.braincloud.comms
 		public function getSessionId():String
 		{
 			return _sessionId;
+		}
+		
+		public function setSessionId(sessionId:String):void
+		{
+			_sessionId = sessionId;
 		}
 		
 		public function getUrl():String
