@@ -22,7 +22,7 @@ package com.bitheads.braincloud.comms
 		
 		private var _url:String;
 		private var _secret:String;
-		private var _gameId:String;
+		private var _appId:String;
 		
 		private var _client:BrainCloudClient;
 		
@@ -71,6 +71,11 @@ package com.bitheads.braincloud.comms
 		public function get isAuthenticated():Boolean
 		{
 			return _isAuthenticated;
+		}
+		
+		public function setAuthenticated():void
+		{
+			_isAuthenticated = true;
 		}
 		
 		public function get packetTimeouts():Array
@@ -123,7 +128,7 @@ package com.bitheads.braincloud.comms
 		
 		public function initialize(appId:String, secret:String, serverUrl:String):void
 		{
-			_gameId = appId;
+			_appId = appId;
 			_secret = secret;
 			_url = serverUrl;
 		}
@@ -131,6 +136,11 @@ package com.bitheads.braincloud.comms
 		public function getSessionId():String
 		{
 			return _sessionId;
+		}
+		
+		public function setSessionId(sessionId:String):void
+		{
+			_sessionId = sessionId;
 		}
 		
 		public function getUrl():String

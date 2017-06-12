@@ -63,17 +63,17 @@ package com.bitheads.braincloud.services
          * Service Name - Event
          * Service Operation - Send
          *
-         * @param toPlayerId The id of the player who is being sent the event
+         * @param toProfileId The id of the profile who is being sent the event
          * @param eventType The user-defined type of the event.
          * @param eventData The user-defined data for this event encoded in JSON.
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function sendEvent(toPlayerId:String, eventType:String, eventData:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function sendEvent(toProfileId:String, eventType:String, eventData:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "toId": toPlayerId,
+                "toId": toProfileId,
                 "eventType": eventType,
                 "eventData": eventData
             };		

@@ -242,6 +242,21 @@ package com.bitheads.braincloud.services
 			Client.sendRequest(serverCall);
 		}
         
+		/**
+		 * @deprecated Use getSharedEntityForProfileId instead - removal after September 1 2017
+		 */
+		public function getSharedEntityForPlayerId(profileId:String, entityId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object;
+			data = {
+                "playerId": profileId,
+                "entityId": entityId
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Entity, ServiceOperation.ReadSharedEntity, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+		
         /**
          * Method returns a shared entity for the given player and entity ID.
          * An entity is shared if its ACL allows for the currently logged
@@ -250,17 +265,17 @@ package com.bitheads.braincloud.services
          * Service Name - Entity
          * Service Operation - READ_SHARED_ENTITY
          *
-         * @param playerId The the profile ID of the player who owns the entity
+         * @param profileId The the profile ID of the player who owns the entity
          * @param entityId The ID of the entity that will be retrieved
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getSharedEntityForPlayerId(playerId:String, entityId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function getSharedEntityForProfileId(profileId:String, entityId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object;
 			data = {
-                "playerId": playerId,
+                "playerId": profileId,
                 "entityId": entityId
             };		
 			
@@ -268,37 +283,74 @@ package com.bitheads.braincloud.services
 			Client.sendRequest(serverCall);
 		}
         
-        /**
-         * Method returns all shared entities for the given player id.
-         * An entity is shared if its ACL allows for the currently logged
-         * in player to read the data.
-         *
-         * Service Name - Entity
-         * Service Operation - ReadShared
-         *
-         * @param playerId The player id to retrieve shared entities for
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
-         */
-        public function getSharedEntitiesForPlayerId(playerId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
+		/**
+		 * @deprecated Use getSharedEntitiesForProfileId instead - removal after September 1 2017
+		 */
+		public function getSharedEntitiesForPlayerId(profileId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
 			var data:Object;
 			data = {
-                "playerId": playerId
+                "playerId": profileId
             };		
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.Entity, ServiceOperation.ReadShared, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
+		
+        /**
+         * Method returns all shared entities for the given profile id.
+         * An entity is shared if its ACL allows for the currently logged
+         * in user to read the data.
+         *
+         * Service Name - Entity
+         * Service Operation - ReadShared
+         *
+         * @param profileId The profile id to retrieve shared entities for
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function getSharedEntitiesForProfileId(profileId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+			var data:Object;
+			data = {
+                "playerId": profileId
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Entity, ServiceOperation.ReadShared, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+		
+		/**
+		 * @deprecated Use getSharedEntitiesListForProfileId instead - removal after September 1 2017
+		 */
+		public function getSharedEntitiesListForPlayerId(profileId:String, where:Object, orderBy:Object, maxReturn:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object;
+			data = {
+                "playerId": profileId,
+                "maxReturn": maxReturn
+            };	
+            
+            if (isOptionalParamValid(where)) {
+				data.where = where;
+			}	
+			
+			if (isOptionalParamValid(orderBy)) {
+				data.orderBy = orderBy;
+			}	
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Entity, ServiceOperation.ReadSharedEntitesList, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
         
         /**
-         * Method gets list of shared entities for the specified player based on type and/or where clause
+         * Method gets list of shared entities for the specified user based on type and/or where clause
          *
          * Service Name - Entity
          * Service Operation - READ_SHARED_ENTITIES_LIST
          *
-         * @param playerId The player ID to retrieve shared entities for
+         * @param profileId The profile ID to retrieve shared entities for
          * @param where Mongo style query
          * @param orderBy Sort order
          * @param maxReturn The maximum number of entities to return
@@ -306,11 +358,11 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getSharedEntitiesListForPlayerId(playerId:String, where:Object, orderBy:Object, maxReturn:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function getSharedEntitiesListForProfileId(profileId:String, where:Object, orderBy:Object, maxReturn:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object;
 			data = {
-                "playerId": playerId,
+                "playerId": profileId,
                 "maxReturn": maxReturn
             };	
             
@@ -354,7 +406,6 @@ package com.bitheads.braincloud.services
          * Service Operation - INCREMENT_USER_ENTITY_DATA
          *
          * @param entityId The id of the entity to update
-         * @param targetPlayerId Profile ID of the entity owner
          * @param data The entity's data object
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
@@ -378,17 +429,17 @@ package com.bitheads.braincloud.services
          * Service Operation - INCREMENT_SHARED_USER_ENTITY_DATA
          *
          * @param entityId The id of the entity to update
-         * @param targetPlayerId Profile ID of the entity owner
+         * @param targetProfileId Profile ID of the entity owner
          * @param data The entity's data object
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function incrementSharedUserEntityData(entityId:String, targetPlayerId:String, data:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function incrementSharedUserEntityData(entityId:String, targetProfileId:String, data:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var reqData:Object = {
                 "entityId": entityId, 
-                "targetPlayerId": targetPlayerId,
+                "targetPlayerId": targetProfileId,
                 "data": data        
             };		
 			
@@ -483,19 +534,19 @@ package com.bitheads.braincloud.services
          * Service Operation - UpdateShared
          *
          * @param entityId The id of the entity to update
-         * @param targetPlayerId The id of the player who owns the shared entity
+         * @param targetProfileId The id of the player who owns the shared entity
          * @param entityType The entity type as defined by the user
          * @param entityData The entity's data as a json string.
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function updateSharedEntity(entityId:String, targetPlayerId:String, entityType:String, entityData:Object, version:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function updateSharedEntity(entityId:String, targetProfileId:String, entityType:String, entityData:Object, version:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object;
 			data = {
                 "entityId": entityId, 
-                "targetPlayerId": targetPlayerId,
+                "targetPlayerId": targetProfileId,
                 "entityType": entityType,
                 "version": version
             };
