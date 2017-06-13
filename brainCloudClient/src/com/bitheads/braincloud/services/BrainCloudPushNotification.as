@@ -189,6 +189,181 @@ package com.bitheads.braincloud.services
 		}
 		
 		
+		/**
+	 	 * Schedules raw notifications based on user local time.
+		 *
+		 * @param profileId The profileId of the user to receive the notification
+		 * @param fcmContent Valid Fcm data content
+		 * @param iosContent Valid ios data content
+		 * @param facebookContent Facebook template string
+		 * @param startTime Start time of sending the push notification
+		 * @param callback The method to be invoked when the server response is received
+		 */
+		public function scheduleRawPushNotificationUTC(profileId:String, fcmContent:String, iosContent:String, facebookContent:String, 
+			startTime:Number, callback:Function):void 
+		{
+			var data:Object = {
+				"profileId": profileId,
+				"startDateUTC" : startTime
+			};
+			
+				
+			if (isOptionalParamValid(fcmContent)) {
+				data.fcmContent = fcmContent;
+			}
+				
+			if (isOptionalParamValid(iosContent)) {
+				data.iosContent = iosContent;
+			}
+				
+			if (isOptionalParamValid(facebookContent)) {
+				data.facebookContent = facebookContent;
+			}
+				
+			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.ScheduleRawNotification, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		
+		}
+	
+		/**
+		 * Schedules raw notifications based on user local time.
+		 *
+		 * @param profileId The profileId of the user to receive the notification
+		 * @param fcmContent Valid Fcm data content
+		 * @param iosContent Valid ios data content
+		 * @param facebookContent Facebook template string
+		 * @param minutesFromNow Minutes from now to send the push notification
+		 * @param callback The method to be invoked when the server response is received
+		 */
+		public function scheduleRawPushNotificationMinutes(profileId:String, fcmContent:String, iosContent:String, facebookContent:String, 
+			minutesFromNow:Number, callback:Function):void 
+		{
+			var data:Object = {
+				"profileId": profileId,
+				"minutesFromNow" : minutesFromNow
+			};
+			
+				
+			if (isOptionalParamValid(fcmContent)) {
+				data.fcmContent = fcmContent;
+			}
+				
+			if (isOptionalParamValid(iosContent)) {
+				data.iosContent = iosContent;
+			}
+				
+			if (isOptionalParamValid(facebookContent)) {
+				data.facebookContent = facebookContent;
+			}
+				
+			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.ScheduleRawNotification, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		
+		}
+
+		/**
+		 * Sends a raw push notification to a target user.
+		 *
+		 * @param toProfileId The profileId of the user to receive the notification
+		 * @param fcmContent Valid Fcm data content
+		 * @param iosContent Valid ios data content
+		 * @param facebookContent Facebook template string
+		 * @param callback The method to be invoked when the server response is received
+		 */
+		public function sendRawPushNotification(profileId:String, fcmContent:String, iosContent:String, facebookContent:String, 
+			callback:Function):void 
+		{
+			var data:Object = {
+				"toPlayerId": profileId
+			};
+			
+				
+			if (isOptionalParamValid(fcmContent)) {
+				data.fcmContent = fcmContent;
+			}
+				
+			if (isOptionalParamValid(iosContent)) {
+				data.iosContent = iosContent;
+			}
+				
+			if (isOptionalParamValid(facebookContent)) {
+				data.facebookContent = facebookContent;
+			}
+				
+			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.SendRaw, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		
+		}
+
+		/**
+		 * Sends a raw push notification to a target list of users.
+		 *
+		 * @param profileIds Collection of profile IDs to send the notification to
+		 * @param fcmContent Valid Fcm data content
+		 * @param iosContent Valid ios data content
+		 * @param facebookContent Facebook template string
+		 * @param callback The method to be invoked when the server response is received
+		 */
+		public function sendRawPushNotificationBatch(profileId:String, fcmContent:String, iosContent:String, facebookContent:String, 
+			callback:Function):void 
+		{
+			var data:Object = {
+				"profileId": profileId
+			};
+			
+				
+			if (isOptionalParamValid(fcmContent)) {
+				data.fcmContent = fcmContent;
+			}
+				
+			if (isOptionalParamValid(iosContent)) {
+				data.iosContent = iosContent;
+			}
+				
+			if (isOptionalParamValid(facebookContent)) {
+				data.facebookContent = facebookContent;
+			}
+				
+			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.SendRawBatch, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		
+		}
+
+		/**
+		 * Sends a raw push notification to a target group.
+		 *
+		 * @param groupId Target group
+		 * @param fcmContent Valid Fcm data content
+		 * @param iosContent Valid ios data content
+		 * @param facebookContent Facebook template string
+		 * @param callback The method to be invoked when the server response is received
+		 */
+		public function sendRawPushNotificationToGroup(groupId:String, fcmContent:String, iosContent:String, facebookContent:String, 
+			callback:Function):void 
+		{
+			var data:Object = {
+				"profileId": profileId
+			};
+			
+				
+			if (isOptionalParamValid(fcmContent)) {
+				data.fcmContent = fcmContent;
+			}
+				
+			if (isOptionalParamValid(iosContent)) {
+				data.iosContent = iosContent;
+			}
+				
+			if (isOptionalParamValid(facebookContent)) {
+				data.facebookContent = facebookContent;
+			}
+				
+			var serverCall:ServerCall = new ServerCall(ServiceName.PushNotification, ServiceOperation.SendRawToGroup, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		
+		}
+		
+		
         /**
 		* Schedules a normalized push notification to a user
 		*

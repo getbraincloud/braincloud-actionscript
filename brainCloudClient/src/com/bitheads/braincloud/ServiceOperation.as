@@ -37,12 +37,16 @@ package com.bitheads.braincloud
         public static const Register:String = "REGISTER";
         public static const SendSimple:String = "SEND_SIMPLE";
         public static const SendRich:String = "SEND_RICH";
+		public static const SendRaw:String = "SEND_RAW";
+		public static const SendRawBatch:String = "SEND_RAW_BATCH";
+		public static const SendRawToGroup:String = "SEND_RAW_TO_GROUP";
         public static const SendTemplatedToGroup:String = "SEND_TEMPLATED_TO_GROUP";
         public static const SendNormalizedToGroup:String = "SEND_NORMALIZED_TO_GROUP";
         public static const SendNormalized:String = "SEND_NORMALIZED";
         public static const SendNormalizedBatch:String = "SEND_NORMALIZED_BATCH";
 		public static const ScheduleRichNotification:String = "SCHEDULE_RICH_NOTIFICATION";
 		public static const ScheduleNormalizedNotification:String = "SCHEDULE_NORMALIZED_NOTIFICATION";
+		public static const ScheduleRawNotification:String = "SCHEDULE_RAW_NOTIFICATION";
 		
         public static const Trigger:String = "TRIGGER";
         public static const TriggerMultiple:String = "TRIGGER_MULTIPLE";
