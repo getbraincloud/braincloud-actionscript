@@ -141,6 +141,37 @@ package com.bitheads.braincloud.services
 		}
 		
 		/**
+		 * @deprecated Method is recommended to be used in Cloud Code only for security
+		 * If you need to use it client side, enable 'Allow Currency Calls from Client' on the brainCloud dashboard
+		 */
+        public function awardCurrency(currencyType:String, amount:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "vc_id": currencyType,
+                "vc_amount":amount
+            };	
+            
+			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.AwardVC, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+ 
+          
+        /**
+		 * @deprecated Method is recommended to be used in Cloud Code only for security
+		 * If you need to use it client side, enable 'Allow Currency Calls from Client' on the brainCloud dashboard
+		 */
+        public function consumeCurrency(currencyType:String, amount:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "vc_id": currencyType,
+                "vc_amount":amount
+            };	
+            
+			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.ConsumeVC, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+        
+        /**
          * Gets the player's currency for the given currency type
          * or all currency types if null passed in.
          *
@@ -160,6 +191,16 @@ package com.bitheads.braincloud.services
             };	
             
 			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.GetPlayerVC, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+        
+		/**
+		 * @deprecated Method is recommended to be used in Cloud Code only for security
+		 * If you need to use it client side, enable 'Allow Currency Calls from Client' on the brainCloud dashboard
+		 */
+        public function resetCurrency(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{            
+			var serverCall:ServerCall = new ServerCall(ServiceName.Product, ServiceOperation.ResetPlayerVC, null, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
 	}

@@ -37,11 +37,17 @@ package com.bitheads.braincloud
         public static const Register:String = "REGISTER";
         public static const SendSimple:String = "SEND_SIMPLE";
         public static const SendRich:String = "SEND_RICH";
+		public static const SendRaw:String = "SEND_RAW";
+		public static const SendRawBatch:String = "SEND_RAW_BATCH";
+		public static const SendRawToGroup:String = "SEND_RAW_TO_GROUP";
         public static const SendTemplatedToGroup:String = "SEND_TEMPLATED_TO_GROUP";
         public static const SendNormalizedToGroup:String = "SEND_NORMALIZED_TO_GROUP";
         public static const SendNormalized:String = "SEND_NORMALIZED";
         public static const SendNormalizedBatch:String = "SEND_NORMALIZED_BATCH";
-        
+		public static const ScheduleRichNotification:String = "SCHEDULE_RICH_NOTIFICATION";
+		public static const ScheduleNormalizedNotification:String = "SCHEDULE_NORMALIZED_NOTIFICATION";
+		public static const ScheduleRawNotification:String = "SCHEDULE_RAW_NOTIFICATION";
+		
         public static const Trigger:String = "TRIGGER";
         public static const TriggerMultiple:String = "TRIGGER_MULTIPLE";
         public static const TriggerGrantExperience:String = "TRIGGER_GRANT_EXPERIENCE";
@@ -197,7 +203,9 @@ package com.bitheads.braincloud
         public static const AddEvent:String = "ADD_EVENT";
         public static const GetStreamSummariesForInitiatingPlayer:String = "GET_STREAM_SUMMARIES_FOR_INITIATING_PLAYER";
         public static const GetStreamSummariesForTargetPlayer:String = "GET_STREAM_SUMMARIES_FOR_TARGET_PLAYER";
-        
+        public static const GetRecentStreamsForInitiatingPlayer:String = "GET_RECENT_STREAMS_FOR_INITIATING_PLAYER";
+        public static const GetRecentStreamsForTargetPlayer:String = "GET_RECENT_STREAMS_FOR_TARGET_PLAYER";
+		
         public static const GetUserInfo:String = "GET_USER_INFO";
         
         public static const StartSteamTransaction:String = "START_STEAM_TRANSACTION";
@@ -291,6 +299,7 @@ package com.bitheads.braincloud
         //mail
         public static const SendBasicEmail:String = "SEND_BASIC_EMAIL";
         public static const SendAdvancedEmail:String = "SEND_ADVANCED_EMAIL";       
+		public static const SendAdvancedEmailByAddress:String = "SEND_ADVANCED_EMAIL_BY_ADDRESS";
         
         //Tournament
         public static const GetTournamentStatus:String = "GET_TOURNAMENT_STATUS";      

@@ -14,7 +14,7 @@ package com.bitheads.braincloud.services
         }
         
         /**
-         * Read game's global properties
+         * Read app's global properties
          *
          * Service Name - GlobalApp
          * Service Operation - ReadProperties

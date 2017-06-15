@@ -52,21 +52,24 @@ package com.bitheads.braincloud
         public static const UNABLE_TO_GET_FRIENDS_FROM_FACEBOOK:int = 40300;
         public static const BAD_SIGNATURE:int = 40301;
 
-        /// <summary>Cannot validate player
+        /// <summary>Cannot validate user
         /// </summary>
         public static const UNABLE_TO_VALIDATE_PLAYER:int = 40302;
+		public static const UNABLE_TO_VALIDATE_USER:int = UNABLE_TO_VALIDATE_PLAYER;
 
         /// <summary>Session expired</summary>
         public static const PLAYER_SESSION_EXPIRED:int = 40303;
-
+		public static const USER_SESSION_EXPIRED:int = PLAYER_SESSION_EXPIRED;
+		
 
         /// <summary>SESSION NOT FOUND ERROR</summary>
         public static const NO_SESSION:int = 40304;
 
         public static const PLAYER_SESSION_MISMATCH:int = 40305;
+		public static const USER_SESSION_MISMATCH:int = PLAYER_SESSION_MISMATCH;
         public static const OPERATION_REQUIRES_A_SESSION:int = 40306;
 
-        /// <summary>Player provided the wrong email and / or password</summary>
+        /// <summary>User provided the wrong email and / or password</summary>
         public static const TOKEN_DOES_NOT_MATCH_USER:int = 40307;
 
         public static const EVENT_CAN_ONLY_SEND_TO_FRIEND_OR_SELF:int = 40309;
@@ -80,7 +83,9 @@ package com.bitheads.braincloud
 
         /// <summary>You must have an active session in order to call this api</summary>
         public static const INVALID_GAME_ID:int = 40316;
+		public static const INVALID_APP_ID:int = INVALID_GAME_ID;
 
+		
         /// <summary>This product and receipt have already been claimed</summary>
         public static const APPLE_TRANS_ID_ALREADY_CLAIMED:int = 40317;
 
@@ -88,10 +93,12 @@ package com.bitheads.braincloud
         public static const BRAINCLOUD_VERSION_NOT_SUPPORTED:int = 40319;
         public static const PLATFORM_NOT_SUPPORTED:int = 40320;
         public static const INVALID_PLAYER_STATISTICS_EVENT_NAME:int = 40321;
-
+		public static const INVALID_USER_STATISTICS_EVENT_NAME:int = INVALID_PLAYER_STATISTICS_EVENT_NAME;
+		
         /// <summary>App Version No Longer Supported</summary>
         public static const GAME_VERSION_NOT_SUPPORTED:int = 40322;
-
+		public static const APP_VERSION_NOT_SUPPORTED:int = GAME_VERSION_NOT_SUPPORTED;
+		
         public static const BAD_REFERENCE_DATA:int = 40324;
         public static const MISSING_OAUTH_TOKEN:int = 40325;
         public static const MISSING_OAUTH_VERIFIER:int = 40326;
@@ -99,6 +106,7 @@ package com.bitheads.braincloud
         public static const MISSING_TWEET:int = 40328;
         public static const FACEBOOK_PAYMENT_ID_ALREADY_PROCESSED:int = 40329;
         public static const DISABLED_GAME:int = 40330;
+		public static const DISABLED_APP:int = DISABLED_GAME;
         public static const MATCH_MAKING_DISABLED:int = 40331;
         public static const UPDATE_FAILED:int = 40332;
         public static const INVALID_OPERATION:int = 40333;  // invalid operation for API call
@@ -131,7 +139,8 @@ package com.bitheads.braincloud
         public static const S3_ERROR:int = 40350;
         public static const INVALID_ATTRIBUTES:int = 40351;
         public static const IMPORT_MISSING_GAME_DATA:int = 40352;
-        public static const IMPORT_SCHEMA_VERSION_TOO_OLD:int = 40353;
+        public static const IMPORT_MISSING_GAME_APP:int = IMPORT_MISSING_GAME_DATA;
+		public static const IMPORT_SCHEMA_VERSION_TOO_OLD:int = 40353;
         public static const IMPORT_SCHEMA_VERSION_INVALID:int = 40355;
 
         /// <summary>Max Concurrent Player Count Reached</summary>
@@ -152,7 +161,9 @@ package com.bitheads.braincloud
         public static const INVALID_STATISTIC_NAME:int = 40369;
         public static const INVALID_HTTP_REQUEST:int = 40370;
         public static const GAME_LIMIT_REACHED:int = 40371;
+		public static const APP_LIMIT_REACHED:int = GAME_LIMIT_REACHED;
         public static const GAME_RUNSTATE_DISABLED:int = 40372;
+        public static const APP_RUNSTATE_DISABLED:int = GAME_RUNSTATE_DISABLED;
         public static const INVALID_COMPANY_ID:int = 40373;
         public static const INVALID_PLAYER_ID:int = 40374;
         public static const INVALID_TEMPLATE_ID:int = 40375;
@@ -160,8 +171,10 @@ package com.bitheads.braincloud
 
         /// <summary>Game has to parent to switch profile to</summary>
         public static const MISSING_GAME_PARENT:int = 40377;
+        public static const MISSING_APP_PARENT:int = MISSING_GAME_PARENT;
 
         public static const GAME_PARENT_MISMATCH:int = 40378;
+		public static const APP_PARENT_MISMATCH:int = GAME_PARENT_MISMATCH;
         public static const CHILD_PLAYER_MISSING:int = 40379;
         public static const MISSING_PLAYER_PARENT:int = 40380;
         public static const PLAYER_PARENT_MISMATCH:int = 40381;
@@ -171,7 +184,9 @@ package com.bitheads.braincloud
         public static const GROUP_MEMBER_NOT_FOUND:int = 40385;
         public static const INVALID_SORT:int = 40386;
         public static const GAME_NOT_FOUND:int = 40387;
+		public static const APP_NOT_FOUND:int = GAME_NOT_FOUND;
         public static const GAMES_NOT_IN_SAME_COMPANY:int = 40388;
+		public static const APPS_NOT_IN_SAME_COMPANY:int = GAMES_NOT_IN_SAME_COMPANY;
         public static const IMPORT_NO_PARENT_ASSIGNED:int = 40389;
         public static const IMPORT_PARENT_CURRENCIES_MISMATCH:int = 40390;
         public static const INVALID_SUBSTITUION_ENTRY:int = 40391;

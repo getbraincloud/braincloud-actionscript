@@ -277,7 +277,7 @@ package com.bitheads.braincloud.services
 		{
 			var data:Object = {
                 "externalId": externalId,
-                "gameId": Client.gameId                 
+                "gameId": Client.appId                 
             };		
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.Authenticate, ServiceOperation.ResetEmailPassword, data, successCallback, errorCallback, cbObject);
@@ -295,10 +295,10 @@ package com.bitheads.braincloud.services
             cbObject:Object):void
 		{
 			var data:Object = {
-                "gameId": Client.gameId, 
+                "gameId": Client.appId, 
                 "externalId": externalId, 
                 "releasePlatform": Client.releasePlatform.name, 
-                "gameVersion": Client.gameVersion, 
+                "gameVersion": Client.appVersion, 
                 "clientLibVersion": Client.clientLibVersion, 
                 "authenticationToken": authenticationToken, 
                 "authenticationType": authenticationType.name, 

@@ -22,7 +22,7 @@ package com.bitheads.braincloud.services
          * Service Operation - ACCEPT_GROUP_INVITATION
          *
          * @param groupId ID of the group.
-         * @param successCallback The success callback
+         * @param successCallback The success callbackupdateGroupMember
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
