@@ -125,16 +125,8 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * Gets stream summaries for initiating player
-         *
-         * Service Name - PlaybackStream
-         * Service Operation - GET_STREAM_SUMMARIES_FOR_INITIATING_PLAYER
-         *
-         * @param initiatingPlayerId The player that started the stream
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
-         */
+	 * @deprecated Use getRecentStreamsForInitiatingPlayer instead - removal after September 1 2017
+	 */
         public function getStreamSummariesForInitiatingPlayer(initiatingPlayerId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
@@ -146,16 +138,8 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * Gets stream summaries for target player
-         *
-         * Service Name - PlaybackStream
-         * Service Operation - GET_STREAM_SUMMARIES_FOR_TARGET_PLAYER
-         *
-         * @param targetPlayerId The player that started the stream
-         * @param successCallback The success callback
-         * @param errorCallback The failure callback.
-         * @param cbObject The user object sent to the callback
-         */
+	 * @deprecated Use getRecentStreamsForTargetPlayer instead - removal after September 1 2017
+	 */
         public function getStreamSummariesForTargetPlayer(targetPlayerId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
