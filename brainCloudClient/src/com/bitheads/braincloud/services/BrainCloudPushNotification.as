@@ -200,7 +200,7 @@ package com.bitheads.braincloud.services
 		 * @param callback The method to be invoked when the server response is received
 		 */
 		public function scheduleRawPushNotificationUTC(profileId:String, fcmContent:String, iosContent:String, facebookContent:String, 
-			startTime:Number, callback:Function):void 
+			startTime:Number, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void 
 		{
 			var data:Object = {
 				"profileId": profileId,
@@ -236,7 +236,7 @@ package com.bitheads.braincloud.services
 		 * @param callback The method to be invoked when the server response is received
 		 */
 		public function scheduleRawPushNotificationMinutes(profileId:String, fcmContent:String, iosContent:String, facebookContent:String, 
-			minutesFromNow:Number, callback:Function):void 
+			minutesFromNow:Number, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void 
 		{
 			var data:Object = {
 				"profileId": profileId,
@@ -271,7 +271,7 @@ package com.bitheads.braincloud.services
 		 * @param callback The method to be invoked when the server response is received
 		 */
 		public function sendRawPushNotification(profileId:String, fcmContent:String, iosContent:String, facebookContent:String, 
-			callback:Function):void 
+			successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void 
 		{
 			var data:Object = {
 				"toPlayerId": profileId
@@ -305,7 +305,7 @@ package com.bitheads.braincloud.services
 		 * @param callback The method to be invoked when the server response is received
 		 */
 		public function sendRawPushNotificationBatch(profileId:String, fcmContent:String, iosContent:String, facebookContent:String, 
-			callback:Function):void 
+			successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void 
 		{
 			var data:Object = {
 				"profileId": profileId
@@ -339,10 +339,10 @@ package com.bitheads.braincloud.services
 		 * @param callback The method to be invoked when the server response is received
 		 */
 		public function sendRawPushNotificationToGroup(groupId:String, fcmContent:String, iosContent:String, facebookContent:String, 
-			callback:Function):void 
+			successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void 
 		{
 			var data:Object = {
-				"profileId": profileId
+				"groupId": groupId
 			};
 			
 				
