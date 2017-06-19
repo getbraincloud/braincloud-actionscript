@@ -304,11 +304,11 @@ package com.bitheads.braincloud.services
 		 * @param facebookContent Facebook template string
 		 * @param callback The method to be invoked when the server response is received
 		 */
-		public function sendRawPushNotificationBatch(profileId:String, fcmContent:String, iosContent:String, facebookContent:String, 
+		public function sendRawPushNotificationBatch(profileIds:Array, fcmContent:String, iosContent:String, facebookContent:String, 
 			successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void 
 		{
 			var data:Object = {
-				"profileId": profileId
+				"profileIds": profileIds
 			};
 			
 				
