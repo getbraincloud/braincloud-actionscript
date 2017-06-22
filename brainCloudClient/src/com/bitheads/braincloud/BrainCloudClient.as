@@ -9,7 +9,7 @@ package com.bitheads.braincloud
 	
 	public class BrainCloudClient
 	{
-		private static const BRAINCLOUD_VERSION:String = "3.5.1";
+		private static const BRAINCLOUD_VERSION:String = "3.5.2";
 		private static const DEFAULT_SERVER_URL:String = "https://sharedprod.braincloudservers.com/dispatcherv2";
 		
 		private static var _instance:BrainCloudClient;
@@ -347,30 +347,6 @@ package com.bitheads.braincloud
 		public function set timeZoneOffset(offset:Number):void
 		{
 			_timeZoneOffset = offset;
-		}
-		
-		/**
-		 * The brainCloud client considers itself reauthenticated
-		 * with the given session
-		 *
-		 * Warning: ensure the user is within your session expiry (set on the dashboard)
-		 * before using this call. This optional method exists to reduce
-		 * authentication calls, in event the user needs to restart the app
-		 * in rapid succession.
-		 * 
-		 * @param sessionId the recent session id from a previous authentication
-		 */
-		public function restoreRecentRession(sessionId:String): void
-		{
-			if (sessionId == "") 
-			{
-				// Cannot use a blank session Id. Authenticate once,
-				// and save that session for short-term use
-				return;
-			}
-			
-			_comms.setSessionId(sessionId);
-			_comms.setAuthenticated();
 		}
 		
         /**
