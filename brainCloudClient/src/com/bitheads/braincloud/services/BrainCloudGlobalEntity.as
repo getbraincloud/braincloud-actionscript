@@ -351,6 +351,33 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.IncrementGlobalEntityData, dataObj, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
+		
+		
+		/**
+		* Gets a list of up to randomCount randomly selected entities from the server based on the where condition and specified maximum return count.
+		*
+		* Service Name - globalEntity
+		* Service Operation - GET_RANDOM_ENTITIES_MATCHING
+		*
+		* @param where Mongo style query string
+		* @param maxReturn The maximum number of entities to return
+		* @param callback The callback object
+		*/
+        public function getRandomEntitiesMatching(where:Object, maxReturn:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var dataObj:Object = {
+                "maxReturn": maxReturn
+            };
+			
+			
+            if (isOptionalParamValid(where)) {
+                dataObj.where = where;
+            }
+            
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.GetRandomEntitiesMatching, dataObj, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
         
         /**
          * Method updates an existing entity's Owner and ACL on the server.
