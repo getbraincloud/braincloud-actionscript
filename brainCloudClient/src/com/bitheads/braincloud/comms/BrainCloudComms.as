@@ -337,6 +337,7 @@ package com.bitheads.braincloud.comms
 			
 			_urlRequest.data = jsonPacket;
 			_urlRequest.requestHeaders.push(new URLRequestHeader("X-SIG", sig));
+			_urlRequest.requestHeaders.push(new URLRequestHeader("X-APPID", _appId));
 			
 			// setup timeout timer... 
 			startTimeoutTimer(getTimeoutForRetryCount(_retryCount));
