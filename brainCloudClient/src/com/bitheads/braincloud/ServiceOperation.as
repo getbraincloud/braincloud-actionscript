@@ -152,6 +152,7 @@ package com.bitheads.braincloud
         public static const ShieldOn:String = "SHIELD_ON";
         public static const ShieldOnFor:String = "SHIELD_ON_FOR";
         public static const ShieldOff:String = "SHIELD_OFF";
+		public static const IncrementShieldOnFor:String = "INCREMENT_SHIELD_ON_FOR";
         public static const GetShieldExpiry:String = "GET_SHIELD_EXPIRY";
         public static const FindPlayers:String = "FIND_PLAYERS";
         public static const FindPlayersUsingFilter:String = "FIND_PLAYERS_USING_FILTER";

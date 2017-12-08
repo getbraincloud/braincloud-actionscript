@@ -160,7 +160,28 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.ShieldOn, null, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
-        
+
+		/**
+		 * Increases the shield on time by specified number of minutes 
+		 *
+		 * Service Name - MatchMaking
+		 * Service Operation - IncrementShieldOnFor
+		 *
+		 * @param minutes Number of minutes to increase the shield time for
+		 * @param successCallback The success callback
+		 * @param errorCallback The failure callback.
+		 * @param cbObject The user object sent to the callback
+		 */
+		public function incrementShieldOnFor(minutes:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+				"minutes": minutes
+			};
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.IncrementShieldOnFor, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+		
         /**
          * Gets the shield expiry for the given player id. Passing in a null player id
          * will return the shield expiry for the current player. The value returned is
