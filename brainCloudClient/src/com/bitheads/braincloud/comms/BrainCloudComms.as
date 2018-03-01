@@ -304,7 +304,7 @@ package com.bitheads.braincloud.comms
 				
 				// bundle all messages
 				_expectedIncomingPacketId = _packetId++;
-				var allMessages:Object = {"messages": jsonMessageList, "sessionId": _sessionId, "packetId": _expectedIncomingPacketId};
+				var allMessages:Object = {"messages": jsonMessageList, "sessionId": _sessionId, "packetId": _expectedIncomingPacketId, "gameId" : _appId};
 				var jsonString:String = JSON.stringify(allMessages);
 				
 				if (_loggingEnabled)
