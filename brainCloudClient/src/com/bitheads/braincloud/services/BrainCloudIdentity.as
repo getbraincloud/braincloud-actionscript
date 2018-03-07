@@ -183,6 +183,34 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.Identity, ServiceOperation.RefreshIdentity, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
         }
+		
+		/**
+		* Allows email identity email address to be changed
+		*
+		* Service Name - identity
+		* Service Operation - CHANGE_EMAIL_IDENTITY
+		*
+		* @param oldEmailAddress Old email address
+		* @param password Password for identity
+		* @param newEmailAddress New email address
+		* @param updateContactEmail Whether to update contact email in profile
+		* @param successCallback The success callback
+        * @param errorCallback The failure callback
+		* @param cbObject The user object sent to the callback
+		*/
+        public function changeEmailIdentity(oldEmailAddress:String, password:String, newEmailAddress:String,
+            updateContactEmail:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "oldEmailAddress": oldEmailAddress,     
+                "authenticationToken": password,   
+                "newEmailAddress": newEmailAddress,
+				"updateContactEmail": updateContactEmail
+            };
+            
+			var serverCall:ServerCall = new ServerCall(ServiceName.Identity, ServiceOperation.RefreshIdentity, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+        }
         
         /**
 		 * Switch to a Child Profile

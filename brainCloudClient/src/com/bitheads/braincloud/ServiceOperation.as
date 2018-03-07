@@ -15,6 +15,7 @@ package com.bitheads.braincloud
         public static const GetIdentities:String = "GET_IDENTITIES";
         public static const GetExpiredIdentities:String = "GET_EXPIRED_IDENTITIES";
         public static const RefreshIdentity:String = "REFRESH_IDENTITY";
+		public static const ChangeEmailIdentity:String = "CHANGE_EMAIL_IDENTITY";
         public static const AttachParentWithIdentity:String = "ATTACH_PARENT_WITH_IDENTITY";
         public static const AttachPeerProfile:String = "ATTACH_PEER_PROFILE";
         public static const DetachPeer:String = "DETACH_PEER";
