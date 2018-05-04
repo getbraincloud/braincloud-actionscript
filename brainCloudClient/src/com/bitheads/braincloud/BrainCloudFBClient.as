@@ -327,14 +327,20 @@ package com.bitheads.braincloud
 		
 		public function retrieveListOfFriends( in_callBackFunction:Function):void
 		{
-			var _query:String = "/me/friends?fields=id,name,installed,scores,games &limit=50 &";
-			Facebook.api(_query, in_callBackFunction);
+			if (m_authenticationType != BrainCloudFBClient.AUTH_TYPE_STUBBED)
+			{
+				var _query:String = "/me/friends?fields=id,name,installed,games,picture&limit=50&";
+				Facebook.api(_query, in_callBackFunction, {"access_token": _currentFBAuthResponse.accessToken});
+			}
 		}
 		
 		public function retrieveListOfInvitableFriends( in_callBackFunction:Function):void
 		{
-			var _queryInvitable:String = "/me/invitable_friends?fields=id,name,installed,games,picture &limit=50 &";
-			Facebook.api(_queryInvitable, in_callBackFunction);
+			if (m_authenticationType != BrainCloudFBClient.AUTH_TYPE_STUBBED)
+			{
+				var _queryInvitable:String = "/me/friends?fields=id,name,installed,games,picture&limit=50&";
+				Facebook.api(_queryInvitable, in_callBackFunction, {"access_token": _currentFBAuthResponse.accessToken});
+			}
 		}
 		
 		/**
