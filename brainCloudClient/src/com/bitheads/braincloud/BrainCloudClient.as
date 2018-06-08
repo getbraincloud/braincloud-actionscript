@@ -138,6 +138,14 @@ package com.bitheads.braincloud
         {
             return str == null || str == "";
         }
+
+        /**
+            Pass 0 to restore default, 85% of session expiry set in brainCloud portal.
+        */
+        public function setHeartbeat(ms:uint):void
+        {
+            _comms.setHeartbeat(ms);
+        }
 		
         /**
 		* Initialize - initializes the identity service with the saved

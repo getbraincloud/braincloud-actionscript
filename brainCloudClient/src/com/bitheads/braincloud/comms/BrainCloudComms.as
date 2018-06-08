@@ -44,6 +44,7 @@ package com.bitheads.braincloud.comms
 		private var _heartbeatTimer:Timer;
 		private var _timeoutTimer:Timer;
 		private var _idleTimeout:uint;
+		private var _desiredIdleTimeout:uint = 0;
 		
 		private var _loggingEnabled:Boolean = true;
 		
@@ -407,10 +408,10 @@ package com.bitheads.braincloud.comms
 					_profileId = data.profileId;
 					_idleTimeout = data.playerSessionExpiry * 0.85;
 					_maxBundleSize = data.maxBundleMsgs;
-                    
-                    if(data.hasOwnProperty("maxKillCount"))
-                        _killSwitchThreshold = data.maxKillCount;
-                    
+					
+					if(data.hasOwnProperty("maxKillCount"))
+						_killSwitchThreshold = data.maxKillCount;
+					
 					_client.authenticationService.profileId = _profileId;
 					_isAuthenticated = true;
 					resetErrorCache();
@@ -626,11 +627,31 @@ package com.bitheads.braincloud.comms
 			
 			return _loader;
 		}
+
+		public function setHeartbeat(ms:uint):void
+		{
+			if (_desiredIdleTimeout != ms)
+			{
+				_desiredIdleTimeout = ms;
+				if (_heartbeatTimer.running)
+				{
+					stopHeartbeatTimer();
+					startHeartbeatTimer();
+				}
+			}
+		}
 		
 		private function startHeartbeatTimer():void
 		{
 			_heartbeatTimer.reset();
-			_heartbeatTimer.delay = _idleTimeout > 0 ? _idleTimeout * 1000 : 60000;
+			if (_desiredIdleTimeout == 0)
+			{
+				_heartbeatTimer.delay = _idleTimeout > 0 ? _idleTimeout * 1000 : 60000;
+			}
+			else
+			{
+				_heartbeatTimer.delay = _desiredIdleTimeout;
+			}
 			_heartbeatTimer.start();
 		}
 		
