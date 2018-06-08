@@ -8,6 +8,7 @@ package
 
     import com.bitheads.braincloud.BrainCloudClient;
 
+    import CommsTest;
     import GroupTest;
     
     public class Main extends Sprite 
@@ -39,6 +40,7 @@ package
             loadIds();
 
             GroupTest.createTests(m_tests);
+            CommsTest.createTests(m_tests);
                 
             BrainCloudClient.instance.initialize(APP_ID, SECRET, APP_VERSION, SERVER_URL);
 
@@ -68,20 +70,6 @@ package
             m_currentTestId = 0;
 
             runNextTest();
-
-            // for each (var test:Test in m_tests)
-            // {
-            //     trace("");
-            //     trace("Running test: " + test.getName());
-
-            //     ++testCount;
-
-            //     if (!test.before()) continue;
-            //     if (!test.run()) continue;
-            //     if (!test.after()) continue;
-
-            //     ++testPass;
-            // }
         }
 
         private function runNextTest():void
@@ -94,6 +82,8 @@ package
 
             var test:Test = m_tests[m_currentTestId];
             ++m_currentTestId;
+
+            trace("test: " + test.getName());
 
             // Callback tree, yay!
             test.before(function():void
