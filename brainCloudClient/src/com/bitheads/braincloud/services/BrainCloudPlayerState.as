@@ -157,16 +157,19 @@ package com.bitheads.braincloud.services
 		}
 
 		/**
-		 * @deprecated Use updateUserName instead - removal after September 1 2017
+		 * @deprecated Use updateName instead - removal after September 1 2017
 		 */
-		public function updatePlayerName(userName:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		public function updatePlayerName(name:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
-			var data:Object = {
-                "playerName": userName             
-            };		
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.UpdateName, data, successCallback, errorCallback, cbObject);
-			_client.sendRequest(serverCall);
+			updateName(name, successCallback, errorCallback, cbObject);
+		}
+		
+		/**
+		 * @deprecated Use updateName instead
+		 */
+		public function updateUserName(name:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			updateName(name, successCallback, errorCallback, cbObject);
 		}
 		
         /**
@@ -177,10 +180,10 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-		public function updateUserName(userName:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		public function updateName(name:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "playerName": userName             
+                "playerName": name             
             };		
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.UpdateName, data, successCallback, errorCallback, cbObject);
