@@ -401,9 +401,23 @@ package com.bitheads.braincloud.comms
 			var statusCode:int = int(jsonObject["status"]);
 			if (statusCode == StatusCodes.OK)
 			{
+				var data:Object = jsonObject.data;
+
+				// A session id or a profile id could potentially come back in any messages
+				if (data != null)
+				{
+					if (data.sessionId != null)
+					{
+						_sessionId = data.sessionId;
+					}
+					if (data.profileId != null)
+					{
+						_profileId = data.profileId;
+					}
+				}
+
 				if (serverCall.getServiceName() == ServiceName.Authenticate)
 				{
-					var data:Object = jsonObject.data;
 					_sessionId = data.sessionId;
 					_profileId = data.profileId;
 					_idleTimeout = data.playerSessionExpiry * 0.85;
