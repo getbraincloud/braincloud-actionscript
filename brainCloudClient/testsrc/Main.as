@@ -1,8 +1,6 @@
 package
 {
 
-import asunit.textui.TestRunner;
-
 import com.bitheads.braincloud.BrainCloudClient;
 
 import flash.display.Sprite;
@@ -20,88 +18,50 @@ import flash.utils.Timer;
 public class Main extends Sprite
 {
 
-    public var APP_ID:String = "";
-    public var SECRET:String = "";
-    public var APP_VERSION:String = "";
-    public var SERVER_URL:String = "";
-    public var PARENT_LEVEL_NAME :String= "";
-    public var CHILD_APP_ID:String = "";
-    public var PEER_NAME:String = "";
-
-
-    public static var unitTests:TestRunner;
-
+    public var APP_ID:String = "";	// Add your App Id
+    public var SECRET:String = "";	// And your App Secret
+    public var APP_VERSION:String = "1.0";
+ 
+	var bc:BrainCloudClient;
+	
     public function Main()
     {
-        //Load for ids text file
-        var file:File = File.userDirectory.resolvePath("ids.txt");
-        var fileStream:FileStream = new FileStream();
-        fileStream.open(file, FileMode.READ);
-        var dataString:String = fileStream.readUTFBytes(file.size);
-        fileStream.close();
-
-
-        var stringList = dataString.split("\r\n");
-
-        for each (var str in stringList)
-        {
-            if(str.indexOf("serverUrl") >= 0)
-            {
-                SERVER_URL = str.split("=")[1];
-            }
-            if(str.indexOf("appId") >= 0)
-            {
-                APP_ID = str.split("=")[1];
-            }
-            if(str.indexOf("secret") >= 0)
-            {
-                SECRET = str.split("=")[1];
-            }
-            if(str.indexOf("version") >= 0)
-            {
-                APP_VERSION = str.split("=")[1];
-            }
-            if(str.indexOf("parentLevelName") >= 0)
-            {
-                PARENT_LEVEL_NAME = str.split("=")[1];
-            }
-            if(str.indexOf("peerName") >= 0)
-            {
-                PEER_NAME = str.split("=")[1];
-            }
-        }
-
-        BrainCloudClient.instance.initialize(APP_ID, SECRET, APP_VERSION, SERVER_URL);
-
-        var timer:Timer = new Timer(10, 0)
-        timer.addEventListener(TimerEvent.TIMER, onTimer);
-        timer.start();
-
-        var runTestsTimer:Timer = new Timer(100, 1)
-        runTestsTimer.addEventListener(TimerEvent.TIMER, onRunTests);
-        runTestsTimer.start();
-    }
-
+		trace("Main");
+		
+		bc = new BrainCloudClient();
+		bc.initialize(APP_ID, SECRET, APP_VERSION);
+		
+		bc.authenticationService.anonymousId = bc.authenticationService.generateAnonymousId();
+		
+		bc.authenticationService.authenticateAnonymous(true, SuccessCallback, ErrorCallback, null);
+		
+		var updateTimer:Timer = new Timer(1, 0);
+		updateTimer.addEventListener(TimerEvent.TIMER, OnUpdate);
+		updateTimer.start();
+		
+	}
+	
+	public function OnUpdate(event:Event):void
+	{
+		bc.runCallbacks();
+	}
+	
+	public function SuccessCallback(jsonObject:Object, cbObject:Object):void 
+	{
+		var jsonString:String = JSON.stringify(jsonObject);
+		trace("SuccessCallback: " + jsonString);
+	}
+	
+	public function ErrorCallback(statusCode:int, reasonCode:int, jsonObject:Object, cbObject:Object):void 
+	{
+		var jsonString:String = JSON.stringify(jsonObject);
+		trace("ErrorCallback: " + jsonString);
+	}
+	
     private function init(e:Event = null):void
     {
         removeEventListener(Event.ADDED_TO_STAGE, init);
     }
-
-    private function onRunTests(timerEvent:TimerEvent):void
-    {
-        unitTests = new TestRunner();
-        stage.addChild(unitTests);
-
-        unitTests.start(TestSuiteAll, null, TestRunner.SHOW_TRACE);
-    }
-
-
-    private function onTimer(timerEvent:TimerEvent):void
-    {
-        BrainCloudClient.instance.runCallbacks();
-
-    }
-
 }
 
 }
