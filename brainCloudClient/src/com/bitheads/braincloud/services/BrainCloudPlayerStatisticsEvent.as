@@ -1,32 +1,32 @@
 package com.bitheads.braincloud.services
 {
-	import com.bitheads.braincloud.ServiceName;
-	import com.bitheads.braincloud.ServiceOperation;
-	import com.bitheads.braincloud.ServerCall;
-	
-	import com.bitheads.braincloud.BrainCloudClient;
-	
-	public class BrainCloudPlayerStatisticsEvent extends BrainCloudService
-	{		        
+    import com.bitheads.braincloud.ServiceName;
+    import com.bitheads.braincloud.ServiceOperation;
+    import com.bitheads.braincloud.ServerCall;
+    
+    import com.bitheads.braincloud.BrainCloudClient;
+    
+    public class BrainCloudPlayerStatisticsEvent extends BrainCloudService
+    {                
         public function BrainCloudPlayerStatisticsEvent(client:BrainCloudClient) 
         {
             super(client);
         }
         
-		/**
-		 * @deprecated Use triggerStatsEvent instead - removal after September 1 2017
-		 */
-		public function triggerPlayerStatisticsEvent(eventName:String, multiplier:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        /**
+         * @deprecated Use triggerStatsEvent instead - removal after September 1 2017
+         */
+        public function triggerPlayerStatisticsEvent(eventName:String, multiplier:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
                 "eventName": eventName,
                 "eventMultiplier": multiplier
             };
             
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerStatisticsEvent, ServiceOperation.Trigger, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-		
+            var serverCall:ServerCall = new ServerCall(ServiceName.PlayerStatisticsEvent, ServiceOperation.Trigger, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+        
         /**
          * Trigger an event server side that will increase the users statistics.
          * This may cause one or more awards to be sent back to the user - 
@@ -47,28 +47,28 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function triggerStatsEvent(eventName:String, multiplier:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "eventName": eventName,
                 "eventMultiplier": multiplier
             };
             
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerStatisticsEvent, ServiceOperation.Trigger, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-		
-		/**
-		 * @deprecated Use triggerStatsEvent instead - removal after September 1 2017
-		 */
-		public function triggerPlayerStatisticsEvents(events:Array, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+            var serverCall:ServerCall = new ServerCall(ServiceName.PlayerStatisticsEvent, ServiceOperation.Trigger, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+        
+        /**
+         * @deprecated Use triggerStatsEvent instead - removal after September 1 2017
+         */
+        public function triggerPlayerStatisticsEvents(events:Array, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
                 "events": events
             };
             
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerStatisticsEvent, ServiceOperation.TriggerMultiple, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            var serverCall:ServerCall = new ServerCall(ServiceName.PlayerStatisticsEvent, ServiceOperation.TriggerMultiple, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * See documentation for TriggerPlayerStatisticsEvent for more documentation.
@@ -92,13 +92,13 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function triggerStatsEvents(events:Array, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "events": events
             };
             
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerStatisticsEvent, ServiceOperation.TriggerMultiple, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-	}
+            var serverCall:ServerCall = new ServerCall(ServiceName.PlayerStatisticsEvent, ServiceOperation.TriggerMultiple, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+    }
 }

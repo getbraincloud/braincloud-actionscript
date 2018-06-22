@@ -1,9 +1,10 @@
 package com.bitheads.braincloud 
-{	
+{    
     public class ServiceName
     {
-		public static const AsyncMatch:String = "asyncMatch";
+        public static const AsyncMatch:String = "asyncMatch";
         public static const Authenticate:String = "authenticationV2";
+        public static const Chat:String = "chat";
         public static const DataStream:String = "dataStream";
         public static const Entity:String = "entity";
         public static const Event:String = "event";

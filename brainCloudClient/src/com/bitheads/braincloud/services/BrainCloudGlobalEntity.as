@@ -1,14 +1,14 @@
 package com.bitheads.braincloud.services
 {
-	import com.bitheads.braincloud.ServiceName;
-	import com.bitheads.braincloud.ServiceOperation;
-	import com.bitheads.braincloud.ServerCall;
+    import com.bitheads.braincloud.ServiceName;
+    import com.bitheads.braincloud.ServiceOperation;
+    import com.bitheads.braincloud.ServerCall;
     import com.bitheads.braincloud.types.ACL;
-	
-	import com.bitheads.braincloud.BrainCloudClient;
-	
-	public class BrainCloudGlobalEntity extends BrainCloudService
-	{		        
+    
+    import com.bitheads.braincloud.BrainCloudClient;
+    
+    public class BrainCloudGlobalEntity extends BrainCloudService
+    {                
         public function BrainCloudGlobalEntity(client:BrainCloudClient) 
         {
             super(client);
@@ -29,8 +29,8 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function createEntity(entityType:String, timeToLive:int, entityAcl:ACL, entityData:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "entityType": entityType,
                 "timeToLive": timeToLive,
                 "data": entityData
@@ -39,10 +39,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(entityAcl)) {
                 data.acl = entityAcl.toObject();
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.Create, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.Create, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
                 
         /**
          * Method creates a new entity on the server with an indexed id.
@@ -61,8 +61,8 @@ package com.bitheads.braincloud.services
          */
         public function createEntityWithIndexedId(entityType:String, indexedId:String, timeToLive:int, entityAcl:ACL, entityData:Object, 
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "entityType": entityType,
                 "indexedId": indexedId,
                 "timeToLive": timeToLive,
@@ -72,10 +72,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(entityAcl)) {
                 data.acl = entityAcl.toObject();
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.CreateWithIndexedId, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.CreateWithIndexedId, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
                 
         /**
          * Method updates an existing entity on the server.
@@ -93,16 +93,16 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function updateEntity(entityId:String, version:int, entityData:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "entityId": entityId,
                 "version": version,
                 "data": entityData
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.Update, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.Update, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Method updates an existing entity's ACL on the server.
@@ -120,16 +120,16 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function updateEntityAcl(entityId:String, version:int, entityAcl:ACL, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "entityId": entityId,
                 "version": version,
                 "acl": entityAcl.toObject()
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.UpdateAcl, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}        
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.UpdateAcl, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }        
         
         /**
          * Method updates an existing entity's time to live on the server.
@@ -147,16 +147,16 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function updateEntityTimeToLive(entityId:String, version:int, timeToLive:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "entityId": entityId,
                 "version": version,
                 "timeToLive": timeToLive
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.UpdateTimeToLive, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.UpdateTimeToLive, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Method deletes an existing entity on the server.
@@ -171,15 +171,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function deleteEntity(entityId:String, version:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "entityId": entityId,
                 "version": version
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.Delete, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.Delete, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Method reads an existing entity from the server.
@@ -193,14 +193,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function readEntity(entityId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "entityId": entityId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.Read, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.Read, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Method gets list of entities from the server base on type and/or where clause
@@ -219,8 +219,8 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function getList(where:Object, orderBy:Object, maxReturn:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "maxReturn": maxReturn
             };
             
@@ -231,10 +231,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(orderBy)) {
                 data.orderBy = orderBy;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.GetList, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.GetList, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Method gets list of entities from the server base on indexed id
@@ -249,15 +249,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function getListByIndexedId(entityIndexedId:String, maxReturn:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "indexedId": entityIndexedId,
                 "maxReturn": maxReturn
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.GetListByIndexedId, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.GetListByIndexedId, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Method gets a count of entities based on the where clause
@@ -271,14 +271,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function getListCount(where:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "where": where
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.GetListCount, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}   
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.GetListCount, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }   
         
         /**
          * Method uses a paging system to iterate through Global Entities.
@@ -295,14 +295,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function getPage(context:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "context": context
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.GetPage, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.GetPage, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Method to retrieve previous or next pages after having called
@@ -319,15 +319,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function getPageOffset(context:String, pageOffset:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "context": context,
                 "pageOffset": pageOffset
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.GetPageOffset, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.GetPageOffset, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Partial increment of entity data field items. Partial set of items incremented as specified.
@@ -342,42 +342,42 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function incrementGlobalEntityData(entityId:String, data:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var dataObj:Object = {
+        {
+            var dataObj:Object = {
                 "entityId": entityId,
                 "data": data
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.IncrementGlobalEntityData, dataObj, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-		
-		
-		/**
-		* Gets a list of up to randomCount randomly selected entities from the server based on the where condition and specified maximum return count.
-		*
-		* Service Name - globalEntity
-		* Service Operation - GET_RANDOM_ENTITIES_MATCHING
-		*
-		* @param where Mongo style query string
-		* @param maxReturn The maximum number of entities to return
-		* @param callback The callback object
-		*/
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.IncrementGlobalEntityData, dataObj, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+        
+        
+        /**
+        * Gets a list of up to randomCount randomly selected entities from the server based on the where condition and specified maximum return count.
+        *
+        * Service Name - globalEntity
+        * Service Operation - GET_RANDOM_ENTITIES_MATCHING
+        *
+        * @param where Mongo style query string
+        * @param maxReturn The maximum number of entities to return
+        * @param callback The callback object
+        */
         public function getRandomEntitiesMatching(where:Object, maxReturn:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var dataObj:Object = {
+        {
+            var dataObj:Object = {
                 "maxReturn": maxReturn
             };
-			
-			
+            
+            
             if (isOptionalParamValid(where)) {
                 dataObj.where = where;
             }
             
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.GetRandomEntitiesMatching, dataObj, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.GetRandomEntitiesMatching, dataObj, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Method updates an existing entity's Owner and ACL on the server.
@@ -392,17 +392,17 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function updateEntityOwnerAndAcl(entityId:String, version:int, ownerId:String, acl:ACL, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "entityId": entityId,
                 "version": version,
                 "ownerId": ownerId,
                 "acl": acl.toObject()
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.UpdateEntityOwnerAndAcl, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.UpdateEntityOwnerAndAcl, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Method clears the owner id of an existing entity and sets the ACL on the server.
@@ -416,15 +416,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function makeSystemEntity(entityId:String, version:int, acl:ACL, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "entityId": entityId,
                 "version": version,
                 "acl": acl.toObject()
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.MakeSystemEntity, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-	}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.MakeSystemEntity, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+    }
 }

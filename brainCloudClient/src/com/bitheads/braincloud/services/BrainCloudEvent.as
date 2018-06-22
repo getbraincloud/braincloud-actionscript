@@ -1,13 +1,13 @@
 package com.bitheads.braincloud.services
 {
-	import com.bitheads.braincloud.ServiceName;
-	import com.bitheads.braincloud.ServiceOperation;
-	import com.bitheads.braincloud.ServerCall;
-	
-	import com.bitheads.braincloud.BrainCloudClient;
-	
-	public class BrainCloudEvent extends BrainCloudService
-	{		        
+    import com.bitheads.braincloud.ServiceName;
+    import com.bitheads.braincloud.ServiceOperation;
+    import com.bitheads.braincloud.ServerCall;
+    
+    import com.bitheads.braincloud.BrainCloudClient;
+    
+    public class BrainCloudEvent extends BrainCloudService
+    {                
         public function BrainCloudEvent(client:BrainCloudClient) 
         {
             super(client);
@@ -25,14 +25,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function deleteIncomingEvent(evId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "evId": evId
-            };		
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.DeleteIncoming, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            };        
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.DeleteIncoming, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Get the events currently queued for the player.
@@ -45,10 +45,10 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function getEvents(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.GetEvents, null, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+        {
+            var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.GetEvents, null, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Sends an event to the designated player id with the attached json data.
@@ -71,16 +71,16 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function sendEvent(toProfileId:String, eventType:String, eventData:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "toId": toProfileId,
                 "eventType": eventType,
                 "eventData": eventData
-            };		
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.Send, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            };        
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.Send, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Updates an event in the player's incoming event mailbox.
@@ -95,14 +95,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function updateIncomingEventData(evId:String, eventData:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "evId": evId,
                 "eventData": eventData
-            };		
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.UpdateEventData, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-	}
+            };        
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Event, ServiceOperation.UpdateEventData, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+    }
 }

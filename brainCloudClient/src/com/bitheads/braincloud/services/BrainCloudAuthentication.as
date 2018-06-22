@@ -1,59 +1,59 @@
 package com.bitheads.braincloud.services
 {
-	import com.bitheads.braincloud.ServiceName;
-	import com.bitheads.braincloud.ServiceOperation;
-	import com.bitheads.braincloud.ServerCall;
-	import com.bitheads.braincloud.types.AuthenticationType;
-	
-	import com.bitheads.braincloud.BrainCloudClient;
-	
-	public class BrainCloudAuthentication extends BrainCloudService
-	{		
-		private var _profileId:String;
-		private var _anonymousId:String;
-		
-		public function BrainCloudAuthentication(client:BrainCloudClient)
-		{
-			super(client);
-		}
-		
-		public function get anonymousId():String
-		{
-			return _anonymousId;
-		}
-		
-		public function set anonymousId(anonymousId:String):void
-		{
-			_anonymousId = anonymousId;
-		}
-		
-		public function get profileId():String
-		{
-			return _profileId;
-		}
-		
-		public function set profileId(profileId:String):void
-		{
-			_profileId = profileId;
-		}
+    import com.bitheads.braincloud.ServiceName;
+    import com.bitheads.braincloud.ServiceOperation;
+    import com.bitheads.braincloud.ServerCall;
+    import com.bitheads.braincloud.types.AuthenticationType;
+    
+    import com.bitheads.braincloud.BrainCloudClient;
+    
+    public class BrainCloudAuthentication extends BrainCloudService
+    {        
+        private var _profileId:String;
+        private var _anonymousId:String;
+        
+        public function BrainCloudAuthentication(client:BrainCloudClient)
+        {
+            super(client);
+        }
+        
+        public function get anonymousId():String
+        {
+            return _anonymousId;
+        }
+        
+        public function set anonymousId(anonymousId:String):void
+        {
+            _anonymousId = anonymousId;
+        }
+        
+        public function get profileId():String
+        {
+            return _profileId;
+        }
+        
+        public function set profileId(profileId:String):void
+        {
+            _profileId = profileId;
+        }
         
         /**
          * Used to clear the saved profile id - to use in cases when the user is
          * attempting to switch to a different game profile.
          */
         public function clearSavedProfileId():void
-		{
-			_profileId = "";
-		}
+        {
+            _profileId = "";
+        }
         
         /**
-		* Used to create the anonymous installation id for the brainCloud profile.
-		* @return A unique Anonymous ID
-		*/
+        * Used to create the anonymous installation id for the brainCloud profile.
+        * @return A unique Anonymous ID
+        */
         public function generateAnonymousId():String
-		{
-			return createUUID();
-		}
+        {
+            return createUUID();
+        }
         
         /**
          * Initialize - initializes the identity service with a saved
@@ -63,11 +63,11 @@ package com.bitheads.braincloud.services
          * @param profileId The id of the profile id that was most recently used by the app (on this device)
          */
         public function initialize(profileId:String, anonymousId:String):void
-		{
-			_profileId = profileId;
+        {
+            _profileId = profileId;
             _anonymousId = anonymousId;
-		}
-		
+        }
+        
         /**
          * Authenticate a user anonymously with brainCloud - used for apps that don't want to bother
          * the user to login, or for users who are sensitive to their privacy
@@ -80,11 +80,11 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-		public function authenticateAnonymous(forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			authenticate(_anonymousId, "", AuthenticationType.Anonymous, null, forceCreate, successCallback, errorCallback, cbObject);
-		}
-		
+        public function authenticateAnonymous(forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            authenticate(_anonymousId, "", AuthenticationType.Anonymous, null, forceCreate, successCallback, errorCallback, cbObject);
+        }
+        
         /*
          * Authenticate the user with brainCloud using their Facebook Credentials
          *
@@ -99,10 +99,10 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-		public function authenticateFacebook(fbUserId:String, fbAuthToken:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			authenticate(fbUserId, fbAuthToken, AuthenticationType.Facebook, null, forceCreate, successCallback, errorCallback, cbObject);
-		}
+        public function authenticateFacebook(fbUserId:String, fbAuthToken:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            authenticate(fbUserId, fbAuthToken, AuthenticationType.Facebook, null, forceCreate, successCallback, errorCallback, cbObject);
+        }
         
         /*
          * Authenticate the user using their Game Center id
@@ -141,10 +141,10 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function authenticateEmailPassword(email:String, password:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			authenticate(email, password, AuthenticationType.Email, null, forceCreate, successCallback, errorCallback, cbObject);
-		}
-		
+        {
+            authenticate(email, password, AuthenticationType.Email, null, forceCreate, successCallback, errorCallback, cbObject);
+        }
+        
         /*
          * Authenticate the user using a userid and password (without any validation on the userid).
          * Similar to AuthenticateEmailPassword - except that that method has additional features to
@@ -160,10 +160,10 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-		public function authenticateUniversal(userId:String, password:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			authenticate(userId, password, AuthenticationType.Universal, null, forceCreate, successCallback, errorCallback, cbObject);
-		}
+        public function authenticateUniversal(userId:String, password:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            authenticate(userId, password, AuthenticationType.Universal, null, forceCreate, successCallback, errorCallback, cbObject);
+        }
         
         /*
          * Authenticate the user using a steam userid and session ticket (without any validation on the userid).
@@ -179,9 +179,9 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function authenticateSteam(userId:String, sessionticket:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			authenticate(userId, sessionticket, AuthenticationType.Steam, null, forceCreate, successCallback, errorCallback, cbObject);
-		}
+        {
+            authenticate(userId, sessionticket, AuthenticationType.Steam, null, forceCreate, successCallback, errorCallback, cbObject);
+        }
         
         /*
          * Authenticate the user using a google userid(email address) and google authentication token.
@@ -197,9 +197,9 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function authenticateGoogle(userId:String, token:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			authenticate(userId, token, AuthenticationType.Google, null, forceCreate, successCallback, errorCallback, cbObject);
-		}
+        {
+            authenticate(userId, token, AuthenticationType.Google, null, forceCreate, successCallback, errorCallback, cbObject);
+        }
         
         /*
          * Authenticate the user using a Twitter userid, authentication token, and secret from Twitter.
@@ -216,9 +216,9 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function authenticateTwitter(userId:String, token:String, secret:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			authenticate(userId, token + ":" + secret, AuthenticationType.Twitter, null, forceCreate, successCallback, errorCallback, cbObject);
-		}
+        {
+            authenticate(userId, token + ":" + secret, AuthenticationType.Twitter, null, forceCreate, successCallback, errorCallback, cbObject);
+        }
         
         /*
          * Authenticate the user using a Pase userid and authentication token
@@ -234,9 +234,9 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function authenticateParse(userId:String, token:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			authenticate(userId, token, AuthenticationType.Parse, null, forceCreate, successCallback, errorCallback, cbObject);
-		}
+        {
+            authenticate(userId, token, AuthenticationType.Parse, null, forceCreate, successCallback, errorCallback, cbObject);
+        }
         
         /**
          * Authenticate the user via cloud code (which in turn validates the supplied credentials against an external system).
@@ -254,9 +254,9 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function authenticateExternal(userId:String, token:String, externalAuthName:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			authenticate(userId, token, AuthenticationType.External, externalAuthName, forceCreate, successCallback, errorCallback, cbObject);
-		}
+        {
+            authenticate(userId, token, AuthenticationType.External, externalAuthName, forceCreate, successCallback, errorCallback, cbObject);
+        }
         
         /**
          * Reset Email password - Sends a password reset email to the specified address
@@ -274,17 +274,17 @@ package com.bitheads.braincloud.services
          * SECURITY_ERROR (40209) - If the email address cannot be found.
          */
         public function resetEmailPassword(externalId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "externalId": externalId,
                 "gameId": Client.appId                 
-            };		
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Authenticate, ServiceOperation.ResetEmailPassword, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-		
-		private function authenticate(
+            };        
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Authenticate, ServiceOperation.ResetEmailPassword, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+        
+        private function authenticate(
             externalId:String, 
             authenticationToken:String, 
             authenticationType:AuthenticationType, 
@@ -293,8 +293,8 @@ package com.bitheads.braincloud.services
             successCallback:Function, 
             errorCallback:Function, 
             cbObject:Object):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "gameId": Client.appId, 
                 "externalId": externalId, 
                 "releasePlatform": Client.releasePlatform.name, 
@@ -310,15 +310,15 @@ package com.bitheads.braincloud.services
                 "countryCode": Client.countryCode,
                 "clientLib": "as3"                 
             };
-			
-			if (externalAuthName)
-			{
-				data.externalAuthName = externalAuthName;
-			}			
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Authenticate, ServiceOperation.Authenticate, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            if (externalAuthName)
+            {
+                data.externalAuthName = externalAuthName;
+            }            
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Authenticate, ServiceOperation.Authenticate, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         private function createUUID():String {     
             var uid:Array = new Array();
@@ -336,5 +336,5 @@ package com.bitheads.braincloud.services
              
             return String.fromCharCode.apply( null, uid );
         }
-	}
+    }
 }

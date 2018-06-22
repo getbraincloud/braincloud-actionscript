@@ -1,6 +1,6 @@
 package
 {
-	import com.bitheads.braincloud.*;
+    import com.bitheads.braincloud.*;
     import flash.utils.setTimeout;
 
     public class CommsTest

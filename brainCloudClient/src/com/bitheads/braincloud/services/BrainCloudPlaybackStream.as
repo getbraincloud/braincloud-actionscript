@@ -1,13 +1,13 @@
 package com.bitheads.braincloud.services
 {
-	import com.bitheads.braincloud.ServiceName;
-	import com.bitheads.braincloud.ServiceOperation;
-	import com.bitheads.braincloud.ServerCall;
-	
-	import com.bitheads.braincloud.BrainCloudClient;
-	
-	public class BrainCloudPlaybackStream extends BrainCloudService
-	{		        
+    import com.bitheads.braincloud.ServiceName;
+    import com.bitheads.braincloud.ServiceOperation;
+    import com.bitheads.braincloud.ServerCall;
+    
+    import com.bitheads.braincloud.BrainCloudClient;
+    
+    public class BrainCloudPlaybackStream extends BrainCloudService
+    {                
         public function BrainCloudPlaybackStream(client:BrainCloudClient) 
         {
             super(client);
@@ -26,15 +26,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function startStream(targetPlayerId:String, includeSharedData:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "targetPlayerId": targetPlayerId,
                 "includeSharedData": includeSharedData
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.StartStream, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.StartStream, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Reads a stream
@@ -48,14 +48,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function readStream(playbackStreamId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "playbackStreamId": playbackStreamId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.ReadStream, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.ReadStream, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Ends a stream
@@ -69,14 +69,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function endStream(playbackStreamId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "playbackStreamId": playbackStreamId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.EndStream, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.EndStream, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Deletes a stream
@@ -90,14 +90,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function deleteStream(playbackStreamId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "playbackStreamId": playbackStreamId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.DeleteStream, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.DeleteStream, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Adds a stream event
@@ -113,74 +113,74 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function addEvent(playbackStreamId:String, eventData:Object, summary:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "playbackStreamId": playbackStreamId,
                 "eventData": eventData,
                 "summary": summary
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.AddEvent, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.AddEvent, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
-	 * @deprecated Use getRecentStreamsForInitiatingPlayer instead - removal after September 1 2017
-	 */
+     * @deprecated Use getRecentStreamsForInitiatingPlayer instead - removal after September 1 2017
+     */
         public function getStreamSummariesForInitiatingPlayer(initiatingPlayerId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "initiatingPlayerId": initiatingPlayerId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.GetStreamSummariesForInitiatingPlayer, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.GetStreamSummariesForInitiatingPlayer, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
-	 * @deprecated Use getRecentStreamsForTargetPlayer instead - removal after September 1 2017
-	 */
+     * @deprecated Use getRecentStreamsForTargetPlayer instead - removal after September 1 2017
+     */
         public function getStreamSummariesForTargetPlayer(targetPlayerId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "targetPlayerId": targetPlayerId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.GetStreamSummariesForTargetPlayer, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-		
-		/**
-		 * Gets recent stream summaries for initiating player
-		 *
-		 * Service Name - PlaybackStream
-		 * Service Operation - GetRecentStreamsForInitiatingPlayer
-		 *
-		 * @param initiatingPlayerId The player that started the stream
-		 * @param maxNumStreams The max number of streams to query
-		 * @param callback The callback.
-		 */
-		public function getRecentStreamsForInitiatingPlayer(initiatingPlayerId:String, maxNumStreams:Number, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.GetStreamSummariesForTargetPlayer, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+        
+        /**
+         * Gets recent stream summaries for initiating player
+         *
+         * Service Name - PlaybackStream
+         * Service Operation - GetRecentStreamsForInitiatingPlayer
+         *
+         * @param initiatingPlayerId The player that started the stream
+         * @param maxNumStreams The max number of streams to query
+         * @param callback The callback.
+         */
+        public function getRecentStreamsForInitiatingPlayer(initiatingPlayerId:String, maxNumStreams:Number, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
                 "initiatingPlayerId": initiatingPlayerId,
-				"maxNumStreams" : maxNumStreams
+                "maxNumStreams" : maxNumStreams
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.GetRecentStreamsForInitiatingPlayer, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-		
-		/**
-		 * Gets recent stream summaries for target player
-		 *
-		 * Service Name - PlaybackStream
-		 * Service Operation - GetRecentStreamsForTargetPlayer
-		 *
-		 * @param targetPlayerId The player that was target of the stream
-		 * @param maxNumStreams The max number of streams to query
-		 * @param callback The callback.
-		 */
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.PlaybackStream, ServiceOperation.GetRecentStreamsForInitiatingPlayer, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+        
+        /**
+         * Gets recent stream summaries for target player
+         *
+         * Service Name - PlaybackStream
+         * Service Operation - GetRecentStreamsForTargetPlayer
+         *
+         * @param targetPlayerId The player that was target of the stream
+         * @param maxNumStreams The max number of streams to query
+         * @param callback The callback.
+    	 */
 		public function getRecentStreamsForTargetPlayer(targetPlayerId:String, maxNumStreams:Number, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {

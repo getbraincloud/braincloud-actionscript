@@ -1,13 +1,13 @@
 package com.bitheads.braincloud.services
 {
-	import com.bitheads.braincloud.ServiceName;
-	import com.bitheads.braincloud.ServiceOperation;
-	import com.bitheads.braincloud.ServerCall;
-	
-	import com.bitheads.braincloud.BrainCloudClient;
-	
-	public class BrainCloudMatchMaking extends BrainCloudService
-	{		        
+    import com.bitheads.braincloud.ServiceName;
+    import com.bitheads.braincloud.ServiceOperation;
+    import com.bitheads.braincloud.ServerCall;
+    
+    import com.bitheads.braincloud.BrainCloudClient;
+    
+    public class BrainCloudMatchMaking extends BrainCloudService
+    {                
         public function BrainCloudMatchMaking(client:BrainCloudClient) 
         {
             super(client);
@@ -24,10 +24,10 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function read(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.Read, null, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+        {
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.Read, null, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Sets player rating
@@ -41,14 +41,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function setPlayerRating(playerRating:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "playerRating": playerRating
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.SetPlayerRating, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.SetPlayerRating, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Resets player rating
@@ -61,10 +61,10 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function resetPlayerRating(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.ResetPlayerRating, null, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+        {
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.ResetPlayerRating, null, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Increments player rating
@@ -78,14 +78,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function incrementPlayerRating(increment:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "playerRating": increment
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.IncrementPlayerRating, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.IncrementPlayerRating, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Decrements player rating
@@ -99,14 +99,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function decrementPlayerRating(decrement:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "playerRating": decrement
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.DecrementPlayerRating, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.DecrementPlayerRating, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Turns shield on
@@ -119,10 +119,10 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function turnShieldOn(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.ShieldOn, null, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+        {
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.ShieldOn, null, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Turns shield on for the specified number of minutes
@@ -136,14 +136,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function turnShieldOnFor(minutes:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "minutes": minutes
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.ShieldOnFor, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.ShieldOnFor, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Turns shield off
@@ -156,32 +156,32 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function turnShieldOff(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.ShieldOn, null, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+        {
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.ShieldOn, null, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
 
-		/**
-		 * Increases the shield on time by specified number of minutes 
-		 *
-		 * Service Name - MatchMaking
-		 * Service Operation - IncrementShieldOnFor
-		 *
-		 * @param minutes Number of minutes to increase the shield time for
-		 * @param successCallback The success callback
-		 * @param errorCallback The failure callback.
-		 * @param cbObject The user object sent to the callback
-		 */
-		public function incrementShieldOnFor(minutes:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
-				"minutes": minutes
-			};
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.IncrementShieldOnFor, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-		
+        /**
+         * Increases the shield on time by specified number of minutes 
+         *
+         * Service Name - MatchMaking
+         * Service Operation - IncrementShieldOnFor
+         *
+         * @param minutes Number of minutes to increase the shield time for
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function incrementShieldOnFor(minutes:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "minutes": minutes
+            };
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.IncrementShieldOnFor, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+        
         /**
          * Gets the shield expiry for the given player id. Passing in a null player id
          * will return the shield expiry for the current player. The value returned is
@@ -196,14 +196,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function getShieldExpiry(playerId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "playerId": playerId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.GetShieldExpiry, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.GetShieldExpiry, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Finds matchmaking enabled players
@@ -218,9 +218,9 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function findPlayers(rangeDelta:int, numMatches:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			findPlayersWithAttributes(rangeDelta, numMatches, null, successCallback, errorCallback, cbObject);
-		}
+        {
+            findPlayersWithAttributes(rangeDelta, numMatches, null, successCallback, errorCallback, cbObject);
+        }
         
         /**
          * Finds matchmaking enabled players with additional attributes
@@ -234,8 +234,8 @@ package com.bitheads.braincloud.services
          * @param callback The method to be invoked when the server response is received
          */
         public function findPlayersWithAttributes(rangeDelta:int, numMatches:int, attributes:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "rangeDelta": rangeDelta,
                 "numMatches": numMatches
             };
@@ -243,10 +243,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(attributes)) {
                 data.attributes = attributes;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.FindPlayers, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.FindPlayers, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Finds matchmaking enabled players using a cloud code filter
@@ -262,9 +262,9 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function findPlayersUsingFilter(rangeDelta:int, numMatches:int, extraParms:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			findPlayersWithAttributesUsingFilter(rangeDelta, numMatches, null, extraParms, successCallback, errorCallback, cbObject);
-		}
+        {
+            findPlayersWithAttributesUsingFilter(rangeDelta, numMatches, null, extraParms, successCallback, errorCallback, cbObject);
+        }
         
         /**
          * Finds matchmaking enabled players using a cloud code filter
@@ -281,8 +281,8 @@ package com.bitheads.braincloud.services
          */
         public function findPlayersWithAttributesUsingFilter(rangeDelta:int, numMatches:int, attributes:Object, extraParms:Object,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "rangeDelta": rangeDelta,
                 "numMatches": numMatches
             };
@@ -294,10 +294,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(extraParms)) {
                 data.extraParms = extraParms;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.FindPlayersUsingFilter, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.FindPlayersUsingFilter, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Enables Match Making for the Player
@@ -310,10 +310,10 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function enableMatchMaking(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.EnableMatchMaking, null, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+        {
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.EnableMatchMaking, null, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Disables Match Making for the Player
@@ -326,9 +326,9 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function disableMatchMaking(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.DisableMatchMaking, null, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-	}
+        {
+            var serverCall:ServerCall = new ServerCall(ServiceName.MatchMaking, ServiceOperation.DisableMatchMaking, null, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+    }
 }

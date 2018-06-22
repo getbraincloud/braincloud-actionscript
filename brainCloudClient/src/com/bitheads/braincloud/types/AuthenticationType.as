@@ -1,8 +1,8 @@
 package com.bitheads.braincloud.types
-{	
-	public class AuthenticationType
-	{
-		public static const Anonymous:AuthenticationType = new AuthenticationType("Anonymous");
+{    
+    public class AuthenticationType
+    {
+        public static const Anonymous:AuthenticationType = new AuthenticationType("Anonymous");
         public static const Universal:AuthenticationType = new AuthenticationType("Universal");
         public static const Email:AuthenticationType = new AuthenticationType("Email");
         public static const Facebook:AuthenticationType = new AuthenticationType("Facebook");
@@ -28,5 +28,5 @@ package com.bitheads.braincloud.types
         public function equals(authType:AuthenticationType):Boolean {
             return _name === authType.name;
         }
-	}
+    }
 }
