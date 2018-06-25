@@ -29,12 +29,6 @@ brainCloud consists of:
 
 ![architecture](/Screenshots/bc-architecture.png?raw=true)
 
-## What's the difference between the brainCloud Wrapper and the brainCloud Client?
-The wrapper contains quality of life improvement around the brainCloud Client. It may contain device specific code, such as serializing the user's login id on an Android or iOS device.
-It is recommended to use the wrapper by default.
-
-![wrapper](/Screenshots/bc-wrapper.png?raw=true)
-
 ## How do I initialize brainCloud?
 You initialize the brainCloud Client with the following code
 
@@ -50,7 +44,7 @@ _appVersion is the current version of our app. Having an _appVersion less than y
 ![versions](/Screenshots/bc-minVersions.png?raw=true)
 
 ## How do I authenticate a user with brainCloud?
-The simplest form of authenticating with brainCloud Wrapper is an Anonymous Authentication.
+The simplest form of authenticating with brainCloud is an Anonymous Authentication.
 ```as3
 _bc.authenticationService.anonymousId = bc.authenticationService.generateAnonymousId();
 _bc.authenticationService.authenticateAnonymous(_forceCreate, SuccessCallback, ErrorCallback, null);
