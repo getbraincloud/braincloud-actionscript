@@ -1,8 +1,8 @@
 package com.bitheads.braincloud 
 {
-	public class ServiceOperation 
-	{
-		public static const None:String = "NONE";
+    public class ServiceOperation 
+    {
+        public static const None:String = "NONE";
 
         public static const Authenticate:String = "AUTHENTICATE";
         public static const Attach:String = "ATTACH";
@@ -15,7 +15,7 @@ package com.bitheads.braincloud
         public static const GetIdentities:String = "GET_IDENTITIES";
         public static const GetExpiredIdentities:String = "GET_EXPIRED_IDENTITIES";
         public static const RefreshIdentity:String = "REFRESH_IDENTITY";
-		public static const ChangeEmailIdentity:String = "CHANGE_EMAIL_IDENTITY";
+        public static const ChangeEmailIdentity:String = "CHANGE_EMAIL_IDENTITY";
         public static const AttachParentWithIdentity:String = "ATTACH_PARENT_WITH_IDENTITY";
         public static const AttachPeerProfile:String = "ATTACH_PEER_PROFILE";
         public static const DetachPeer:String = "DETACH_PEER";
@@ -38,17 +38,17 @@ package com.bitheads.braincloud
         public static const Register:String = "REGISTER";
         public static const SendSimple:String = "SEND_SIMPLE";
         public static const SendRich:String = "SEND_RICH";
-		public static const SendRaw:String = "SEND_RAW";
-		public static const SendRawBatch:String = "SEND_RAW_BATCH";
-		public static const SendRawToGroup:String = "SEND_RAW_TO_GROUP";
+        public static const SendRaw:String = "SEND_RAW";
+        public static const SendRawBatch:String = "SEND_RAW_BATCH";
+        public static const SendRawToGroup:String = "SEND_RAW_TO_GROUP";
         public static const SendTemplatedToGroup:String = "SEND_TEMPLATED_TO_GROUP";
         public static const SendNormalizedToGroup:String = "SEND_NORMALIZED_TO_GROUP";
         public static const SendNormalized:String = "SEND_NORMALIZED";
         public static const SendNormalizedBatch:String = "SEND_NORMALIZED_BATCH";
-		public static const ScheduleRichNotification:String = "SCHEDULE_RICH_NOTIFICATION";
-		public static const ScheduleNormalizedNotification:String = "SCHEDULE_NORMALIZED_NOTIFICATION";
-		public static const ScheduleRawNotification:String = "SCHEDULE_RAW_NOTIFICATION";
-		
+        public static const ScheduleRichNotification:String = "SCHEDULE_RICH_NOTIFICATION";
+        public static const ScheduleNormalizedNotification:String = "SCHEDULE_NORMALIZED_NOTIFICATION";
+        public static const ScheduleRawNotification:String = "SCHEDULE_RAW_NOTIFICATION";
+        
         public static const Trigger:String = "TRIGGER";
         public static const TriggerMultiple:String = "TRIGGER_MULTIPLE";
         public static const TriggerGrantExperience:String = "TRIGGER_GRANT_EXPERIENCE";
@@ -153,7 +153,7 @@ package com.bitheads.braincloud
         public static const ShieldOn:String = "SHIELD_ON";
         public static const ShieldOnFor:String = "SHIELD_ON_FOR";
         public static const ShieldOff:String = "SHIELD_OFF";
-		public static const IncrementShieldOnFor:String = "INCREMENT_SHIELD_ON_FOR";
+        public static const IncrementShieldOnFor:String = "INCREMENT_SHIELD_ON_FOR";
         public static const GetShieldExpiry:String = "GET_SHIELD_EXPIRY";
         public static const FindPlayers:String = "FIND_PLAYERS";
         public static const FindPlayersUsingFilter:String = "FIND_PLAYERS_USING_FILTER";
@@ -207,7 +207,7 @@ package com.bitheads.braincloud
         public static const GetStreamSummariesForTargetPlayer:String = "GET_STREAM_SUMMARIES_FOR_TARGET_PLAYER";
         public static const GetRecentStreamsForInitiatingPlayer:String = "GET_RECENT_STREAMS_FOR_INITIATING_PLAYER";
         public static const GetRecentStreamsForTargetPlayer:String = "GET_RECENT_STREAMS_FOR_TARGET_PLAYER";
-		
+        
         public static const GetUserInfo:String = "GET_USER_INFO";
         
         public static const StartSteamTransaction:String = "START_STEAM_TRANSACTION";
@@ -226,7 +226,7 @@ package com.bitheads.braincloud
         public static const IncrementUserEntityData:String = "INCREMENT_USER_ENTITY_DATA";
         public static const IncrementSharedUserEntityData:String = "INCREMENT_SHARED_USER_ENTITY_DATA";
         public static const IncrementGlobalEntityData:String = "INCREMENT_GLOBAL_ENTITY_DATA";
-		public static const GetRandomEntitiesMatching:String = "GET_RANDOM_ENTITIES_MATCHING";
+        public static const GetRandomEntitiesMatching:String = "GET_RANDOM_ENTITIES_MATCHING";
         
         public static const UpdateEntityOwnerAndAcl:String = "UPDATE_ENTITY_OWNER_AND_ACL";
         public static const MakeSystemEntity:String = "MAKE_SYSTEM_ENTITY";
@@ -303,7 +303,7 @@ package com.bitheads.braincloud
         //mail
         public static const SendBasicEmail:String = "SEND_BASIC_EMAIL";
         public static const SendAdvancedEmail:String = "SEND_ADVANCED_EMAIL";       
-		public static const SendAdvancedEmailByAddress:String = "SEND_ADVANCED_EMAIL_BY_ADDRESS";
+        public static const SendAdvancedEmailByAddress:String = "SEND_ADVANCED_EMAIL_BY_ADDRESS";
         
         //Tournament
         public static const GetTournamentStatus:String = "GET_TOURNAMENT_STATUS";      
@@ -313,6 +313,18 @@ package com.bitheads.braincloud
         public static const PostTournamentScoreWithResults:String = "POST_TOURNAMENT_SCORE_WITH_RESULTS";    
         public static const ViewCurrentReward:String = "VIEW_CURRENT_REWARD";      
         public static const ViewReward:String = "VIEW_REWARD";      
-        public static const ClaimTournamentReward:String = "CLAIM_TOURNAMENT_REWARD";              
-	}
+        public static const ClaimTournamentReward:String = "CLAIM_TOURNAMENT_REWARD";          
+
+        //Chat
+        public static const ChannelConnect:String = "CHANNEL_CONNECT";
+        public static const ChannelDisconnect:String = "CHANNEL_DISCONNECT";
+        public static const DeleteChatMessage:String = "DELETE_CHAT_MESSAGE";
+        public static const GetChannelId:String = "GET_CHANNEL_ID";
+        public static const GetChannelInfo:String = "GET_CHANNEL_INFO";
+        public static const GetChatMessage:String = "GET_CHAT_MESSAGE";
+        public static const GetRecentMessages:String = "GET_RECENT_MESSAGES";
+        public static const GetSubscribedChannels:String = "GET_SUBSCRIBED_CHANNELS";
+        public static const PostChatMessage:String = "POST_CHAT_MESSAGE";
+        public static const UpdateChatMessage:String = "UPDATE_CHAT_MESSAGE";
+    }
 }

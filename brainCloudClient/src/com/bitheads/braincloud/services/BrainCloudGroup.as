@@ -1,16 +1,16 @@
 package com.bitheads.braincloud.services
 {
-	import com.bitheads.braincloud.ServiceName;
-	import com.bitheads.braincloud.ServiceOperation;
-	import com.bitheads.braincloud.ServerCall;
+    import com.bitheads.braincloud.ServiceName;
+    import com.bitheads.braincloud.ServiceOperation;
+    import com.bitheads.braincloud.ServerCall;
     import com.bitheads.braincloud.types.GroupACL;
     import com.bitheads.braincloud.types.AutoJoinStrategy;
     import com.bitheads.braincloud.types.Role;
-	
-	import com.bitheads.braincloud.BrainCloudClient;
-	
-	public class BrainCloudGroup extends BrainCloudService
-	{		        
+    
+    import com.bitheads.braincloud.BrainCloudClient;
+    
+    public class BrainCloudGroup extends BrainCloudService
+    {                
         public function BrainCloudGroup(client:BrainCloudClient) 
         {
             super(client);
@@ -27,14 +27,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function acceptGroupInvitation(groupId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId  
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.AcceptGroupInvitation, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.AcceptGroupInvitation, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Add a member to the group.
@@ -51,8 +51,8 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function addMemberToGroup(groupId:String, profileId:String, role:Role, attributes:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId,
                 "profileId": profileId,
                 "role": role.value
@@ -61,10 +61,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(attributes)) {
                 data.attributes = attributes;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.AcceptGroupInvitation, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.AcceptGroupInvitation, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Approve an outstanding request to join the group.
@@ -81,8 +81,8 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function approveGroupJoinRequest(groupId:String, profileId:String, role:Role, attributes:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId,
                 "profileId": profileId,
                 "role": role.value
@@ -91,10 +91,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(attributes)) {
                 data.attributes = attributes;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.AcceptGroupInvitation, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.AcceptGroupInvitation, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Automatically join an open group that matches the search criteria and has space available.
@@ -110,8 +110,8 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function autoJoinGroup(groupType:String, autoJoinStrategy:AutoJoinStrategy, dataQuery:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupType": groupType,
                 "autoJoinStrategy": autoJoinStrategy.value
             };
@@ -119,10 +119,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(dataQuery)) {
                 data.where = dataQuery;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.AutoJoinGroup, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.AutoJoinGroup, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Cancel an outstanding invitation to the group.
@@ -137,15 +137,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function cancelGroupInvitation(groupId:String, profileId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId,
                 "profileId": profileId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.CancelGroupInvitation, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.CancelGroupInvitation, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Create a group.
@@ -166,8 +166,8 @@ package com.bitheads.braincloud.services
          */
         public function createGroup(name:String, groupType:String, isOpenGroup:Boolean, acl:GroupACL, ownerAttributes:Object, defaultMemberAttributes:Object, data:Object, 
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var dataObj:Object = {
+        {
+            var dataObj:Object = {
                 "groupType": groupType
             };
             
@@ -190,10 +190,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(defaultMemberAttributes)) {
                 dataObj.defaultMemberAttributes = defaultMemberAttributes;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.CreateGroup, dataObj, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.CreateGroup, dataObj, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Create a group entity.
@@ -212,8 +212,8 @@ package com.bitheads.braincloud.services
          */
         public function createGroupEntity(groupId:String, isOwnedByGroupMember:Boolean, entityType:String, acl:GroupACL, data:Object,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var dataObj:Object = {
+        {
+            var dataObj:Object = {
                 "groupId": groupId
             };
             
@@ -232,10 +232,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(data)) {
                 dataObj.data = data;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.CreateGroupEntity, dataObj, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.CreateGroupEntity, dataObj, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Delete a group.
@@ -250,15 +250,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function deleteGroup(groupId:String, version:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var dataObj:Object = {
+        {
+            var dataObj:Object = {
                 "groupId": groupId,
                 "version": version
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.DeleteGroup, dataObj, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.DeleteGroup, dataObj, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Delete a group entity.
@@ -274,15 +274,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function deleteGroupEntity(groupId:String, entityId:String, version:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var dataObj:Object = {
+        {
+            var dataObj:Object = {
                 "groupId": groupId,
                 "version": version
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.DeleteGroupEntity, dataObj, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.DeleteGroupEntity, dataObj, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Read information on groups to which the current player belongs.
@@ -295,10 +295,10 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function getMyGroups(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.GetMyGroups, null, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+        {
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.GetMyGroups, null, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Increment elements for the group's data field.
@@ -313,15 +313,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function incrementGroupData(groupId:String, data:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var dataObj:Object = {
+        {
+            var dataObj:Object = {
                 "groupId": groupId,
                 "data": data
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.IncrementGroupData, dataObj, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.IncrementGroupData, dataObj, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Increment elements for the group entity's data field.
@@ -337,15 +337,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function incrementGroupEntityData(groupId:String, data:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var dataObj:Object = {
+        {
+            var dataObj:Object = {
                 "groupId": groupId,
                 "data": data
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.IncrementGlobalEntityData, dataObj, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.IncrementGlobalEntityData, dataObj, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Invite a member to the group.
@@ -362,8 +362,8 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function inviteGroupMember(groupId:String, profileId:String, role:Role, attributes:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId,
                 "profileId": profileId
             };
@@ -375,10 +375,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(attributes)) {
                 data.attributes = attributes;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.InviteGroupMember, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.InviteGroupMember, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Join an open group or request to join a closed group.
@@ -392,14 +392,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function joinGroup(groupId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.JoinGroup, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.JoinGroup, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Leave a group in which the player is a member.
@@ -413,14 +413,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function leaveGroup(groupId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.LeaveGroup, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.LeaveGroup, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Read a page of group information.
@@ -434,14 +434,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function listGroupsPage(context:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "context": context
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ListGroupsPage, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ListGroupsPage, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Read a page of group information.
@@ -456,15 +456,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function listGroupsPageByOffset(encodedContext:String, offset:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "context": encodedContext,
                 "offset": offset
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ListGroupsPageByOffset, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ListGroupsPageByOffset, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Read information on groups to which the specified player belongs.  Access is subject to restrictions.
@@ -478,14 +478,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function listGroupsWithMember(profileId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "profileId": profileId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ListGroupsWithMember, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ListGroupsWithMember, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Read the specified group.
@@ -499,14 +499,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function readGroup(groupId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ReadGroup, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ReadGroup, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Read the data of the specified group.
@@ -520,14 +520,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function readGroupData(groupId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ReadGroupData, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ReadGroupData, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Read a page of group entity information.
@@ -541,14 +541,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function readGroupEntitiesPage(context:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "context": context
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ReadGroupEntitiesPage, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ReadGroupEntitiesPage, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Read a page of group entity information.
@@ -563,15 +563,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function readGroupEntitiesPageByOffset(encodedContext:String, offset:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "context": encodedContext,
                 "offset": offset
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ReadGroupEntitiesPageByOffset, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ReadGroupEntitiesPageByOffset, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Read the specified group entity.
@@ -586,15 +586,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function readGroupEntity(groupId:String, entityId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId,
                 "entityId": entityId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ReadGroupEntity, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ReadGroupEntity, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Read the members of the group.
@@ -608,14 +608,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function readGroupMembers(groupId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ReadGroupMembers, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.ReadGroupMembers, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Reject an outstanding invitation to join the group.
@@ -629,14 +629,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function rejectGroupInvitation(groupId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.RejectGroupInvitation, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.RejectGroupInvitation, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Reject an outstanding request to join the group.
@@ -651,15 +651,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function rejectGroupJoinRequest(groupId:String, profileId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId,
                 "profileId": profileId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.RejectGroupJoinRequest, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.RejectGroupJoinRequest, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Remove a member from the group.
@@ -674,15 +674,15 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function removeGroupMember(groupId:String, profileId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId,
                 "profileId": profileId
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.RemoveGroupMember, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.RemoveGroupMember, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Updates a group's data.
@@ -698,16 +698,16 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function updateGroupData(groupId:String, version:int, data:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var dataObj:Object = {
+        {
+            var dataObj:Object = {
                 "groupId": groupId,
                 "version": version,
                 "data": data
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.UpdateGroupData, dataObj, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.UpdateGroupData, dataObj, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Update a group entity.
@@ -724,17 +724,17 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function updateGroupEntityData(groupId:String, entityId:String, version:int, data:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var dataObj:Object = {
+        {
+            var dataObj:Object = {
                 "groupId": groupId,
                 "entityId": entityId,
                 "version": version,
                 "data": data
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.UpdateGroupEntity, dataObj, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.UpdateGroupEntity, dataObj, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Update a member of the group.
@@ -751,8 +751,8 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function updateGroupMember(groupId:String, profileId:String, role:Role, attributes:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId,
                 "profileId": profileId
             };
@@ -764,10 +764,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(attributes)) {
                 data.attributes = attributes;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.UpdateGroupMember, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.UpdateGroupMember, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Updates a group's name.
@@ -782,14 +782,14 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          */
         public function updateGroupName(groupId:String, name:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "groupId": groupId,
                 "name": name
             };
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.UpdateGroupName, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-	}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.UpdateGroupName, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+    }
 }

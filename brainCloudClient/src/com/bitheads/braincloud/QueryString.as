@@ -1,18 +1,18 @@
 package com.bitheads.braincloud
 {
-	import flash.utils.Dictionary;
-	import flash.utils.getQualifiedClassName;
+    import flash.utils.Dictionary;
+    import flash.utils.getQualifiedClassName;
    
     /**
      * Singleton used to grab data out of the query string.
      *
      * @author Matt Przybylski [http://www.reintroducing.com]
-	 * @author Steve Jones : Modifications to accept URL from an embedded movie
-	 * 
-	 * NOTE:: replace all occurences of '&' in your index.html to '~' so that this can parse it easily
-	 * 		strings with & get truncated
-	 * 		var flashvars = {};
-			flashvars.url = window.location.href.toString().replace(/&/gi ,"~" );
+     * @author Steve Jones : Modifications to accept URL from an embedded movie
+     * 
+     * NOTE:: replace all occurences of '&' in your index.html to '~' so that this can parse it easily
+     *         strings with & get truncated
+     *         var flashvars = {};
+            flashvars.url = window.location.href.toString().replace(/&/gi ,"~" );
      * @version 1.1
      */
     public class QueryString
@@ -31,21 +31,21 @@ package com.bitheads.braincloud
        
         public function QueryString(in_url:String)
         {
-			_url = in_url;
-			if (_url != null )
-				parseValues();
+            _url = in_url;
+            if (_url != null )
+                parseValues();
         }
        
 //- PRIVATE & PROTECTED METHODS ---------------------------------------------------------------------------
        
         private function parseValues():void
         {
-			_pairDict = new Dictionary();
+            _pairDict = new Dictionary();
             _pairs = this._url.split("?")[1].split("~");
            
             var pairName:String;
             var pairValue:String;
-			
+            
             for (var i:int = 0; i <this._pairs.length; i++)
             {
                 pairName = _pairs[i].split("=")[0];

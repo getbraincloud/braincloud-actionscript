@@ -1,13 +1,13 @@
 package com.bitheads.braincloud.services
 {
-	import com.bitheads.braincloud.ServiceName;
-	import com.bitheads.braincloud.ServiceOperation;
-	import com.bitheads.braincloud.ServerCall;
-	
-	import com.bitheads.braincloud.BrainCloudClient;
-	
-	public class BrainCloudProfanity extends BrainCloudService
-	{		        
+    import com.bitheads.braincloud.ServiceName;
+    import com.bitheads.braincloud.ServiceOperation;
+    import com.bitheads.braincloud.ServerCall;
+    
+    import com.bitheads.braincloud.BrainCloudClient;
+    
+    public class BrainCloudProfanity extends BrainCloudService
+    {                
         public function BrainCloudProfanity(client:BrainCloudClient) 
         {
             super(client);
@@ -37,8 +37,8 @@ package com.bitheads.braincloud.services
          */
         public function profanityCheck(text:String, languages:String, flagEmail:Boolean, flagPhone:Boolean, flagUrls:Boolean, 
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "text": text,
                 "flagEmail": flagEmail,
                 "flagPhone": flagPhone,
@@ -48,10 +48,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(languages)) {
                 data.languages = languages;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Profanity, ServiceOperation.ProfanityCheck, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Profanity, ServiceOperation.ProfanityCheck, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Replaces the characters of profanity text with a passed character(s).
@@ -78,8 +78,8 @@ package com.bitheads.braincloud.services
          */
         public function profanityReplaceText(text:String, replaceSymbol:String, languages:String, flagEmail:Boolean, flagPhone:Boolean, flagUrls:Boolean, 
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "text": text,
                 "replaceSymbol": replaceSymbol,
                 "flagEmail": flagEmail,
@@ -90,10 +90,10 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(languages)) {
                 data.languages = languages;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Profanity, ServiceOperation.ProfanityReplaceText, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Profanity, ServiceOperation.ProfanityReplaceText, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Checks supplied text for profanity and returns a list of bad wors.
@@ -119,8 +119,8 @@ package com.bitheads.braincloud.services
          */
         public function profanityIdentifyBadWords(text:String, languages:String, flagEmail:Boolean, flagPhone:Boolean, flagUrls:Boolean, 
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
-		{
-			var data:Object = {
+        {
+            var data:Object = {
                 "text": text,
                 "flagEmail": flagEmail,
                 "flagPhone": flagPhone,
@@ -130,9 +130,9 @@ package com.bitheads.braincloud.services
             if (isOptionalParamValid(languages)) {
                 data.languages = languages;
             }
-			
-			var serverCall:ServerCall = new ServerCall(ServiceName.Profanity, ServiceOperation.ProfanityIdenitfyBadWords, data, successCallback, errorCallback, cbObject);
-			Client.sendRequest(serverCall);
-		}
-	}
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Profanity, ServiceOperation.ProfanityIdenitfyBadWords, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+    }
 }
