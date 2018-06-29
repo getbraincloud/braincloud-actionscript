@@ -192,18 +192,18 @@ package com.bitheads.braincloud.services
         
         /**
         * Send a potentially rich chat message.
-        * <content> must contain at least a "plain" field for plain-text messaging.
+        * <content> must contain at least a "text" field for text messaging.
         *
         * Service Name - Chat
         * Service Operation - postChatMessage
         *
         * @param channelId Channel id to post message to.
-        * @param plain the text message.
+        * @param content the text message.
         * @param rich custom data.
-         * @param recordInHistory true if the message persist in history
+        * @param recordInHistory true if the message persist in history
         * @param callback The method to be invoked when the server response is received.
         */
-        public function postChatMessage(channelId:String, plain:String, rich:Object, recordInHistory:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function postChatMessage(channelId:String, content:Object, recordInHistory:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object;
             data = {
@@ -211,6 +211,34 @@ package com.bitheads.braincloud.services
                 "content": {
                     "plain": plain,
                     "rich": (rich == null) ? {} : rich
+                },
+                "recordInHistory": recordInHistory
+            };
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Chat, ServiceOperation.PostChatMessage, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+        
+        /**
+        * Send a potentially rich chat message.
+        * <content> must contain at least a "text" field for text messaging.
+        *
+        * Service Name - Chat
+        * Service Operation - postChatMessage
+        *
+        * @param channelId Channel id to post message to.
+        * @param content the text message.
+        * @param rich custom data.
+        * @param recordInHistory true if the message persist in history
+        * @param callback The method to be invoked when the server response is received.
+        */
+        public function postChatMessageSimple(channelId:String, text:String, recordInHistory:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object;
+            data = {
+                "channelId": channelId,
+                "content": {
+                    "text": text
                 },
                 "recordInHistory": recordInHistory
             };
