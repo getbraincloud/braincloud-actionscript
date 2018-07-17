@@ -456,5 +456,17 @@ package com.bitheads.braincloud
         public static const BASIC_AUTH_FAILURE:int = 550013;
         public static const MONGO_DB_EXCEPTION:int = 600001;
         public static const CONCURRENT_LOCK_ERROR:int = 600002;
+        public static const LOBBY_NOT_FOUND:int = 40613;
+        public static const MESSAGE_CONTENT_INVALID_JSON:int = 40614;
+        public static const RTT_FEATURE_NOT_CONFIGURED:int = 40615;
+        public static const CLOUD_CODE_ONLY_METHOD:int = 40616;
+        public static const MESSAGE_FROM_JSON_ID_MUST_BE_NULL:int = 40617;
+        public static const MESSAGE_FROM_JSON_NAME_MANDATORY:int = 40618;
+        public static const INVALID_LOBBY_STEP_ALIGNMENT:int = 40619;
+        public static const INVALID_LOBBY_STEP_STRATEGY:int = 40620;
+        public static const MESSAGING_MAX_RECIPIENTS_EXCEEDED:int = 40621;
+        public static const LOBBY_FEATURE_NOT_CONFIGURED:int = 40622;
+        public static const TOO_MANY_USERS_FOR_TEAM:int = 40623;
+        public static const TOO_MANY_USERS_FOR_LOBBY_TYPE:int = 40624;
     }
 }
