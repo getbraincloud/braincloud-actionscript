@@ -208,10 +208,7 @@ package com.bitheads.braincloud.services
             var data:Object;
             data = {
                 "channelId": channelId,
-                "content": {
-                    "plain": plain,
-                    "rich": (rich == null) ? {} : rich
-                },
+                "content": content,
                 "recordInHistory": recordInHistory
             };
             
