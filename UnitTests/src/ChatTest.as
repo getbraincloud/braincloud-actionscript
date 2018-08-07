@@ -101,7 +101,7 @@ package
 
             tests.push(new Test("Chat:postChatMessage()", Test.setUpWithAuthenticate, Test.tearDownLogout, function(success:Function, fail:Function):void
             {
-                BrainCloudClient.instance.chatService.postChatMessage(channelId, "Hello World!", {"custom": 1}, true, function(result:Object, cb:Object):void
+                BrainCloudClient.instance.chatService.postChatMessage(channelId, {test:"Hello World!", rich:{"custom": 1}}, true, function(result:Object, cb:Object):void
                     {
                         msgId = result.data.msgId;
                         if (result.status != 200)
