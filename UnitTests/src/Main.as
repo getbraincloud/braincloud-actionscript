@@ -40,9 +40,10 @@ package
 
             loadIds();
 
-            GroupTest.createTests(m_tests);
+            //GroupTest.createTests(m_tests);
             // CommsTest.createTests(m_tests);
             // ChatTest.createTests(m_tests);
+            DivisionTest.createTests(m_tests);
                 
             BrainCloudClient.instance.initialize(APP_ID, SECRET, APP_VERSION, SERVER_URL);
 
