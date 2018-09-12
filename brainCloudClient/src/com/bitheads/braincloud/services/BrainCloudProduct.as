@@ -12,9 +12,10 @@ package com.bitheads.braincloud.services
         {
             super(client);
         }
-        
-        
+		
         /**
+		 * @deprecated Will be removed September 2019, Please use BrainCloudAppStore.verifyPurchase
+		 * 
          * Confirm Facebook Purchase. On success, the player will be awarded the
          * associated currencies.
          *
@@ -37,6 +38,7 @@ package com.bitheads.braincloud.services
 		}
         
         /**
+		 * @deprecated Will be removed September 2019, Please use BrainCloudAppStore.verifyPurchase
          * Confirm GooglePlay Purchase. On success, the player will be awarded the
          * associated currencies.
          *
@@ -63,6 +65,7 @@ package com.bitheads.braincloud.services
 		}
         
         /**
+		 * @deprecated Will be removed September 2019, Please use BrainCloudAppStore.getEligiblePromotions
          * Returns the eligible promotions for the player.
          *
          * Service Name - Product
@@ -79,6 +82,7 @@ package com.bitheads.braincloud.services
 		}
         
         /**
+		 * @deprecated Will be removed September 2019, Please use BrainCloudAppStore.getSalesInventory
          * Method gets the active sales inventory for the passed-in
          * currency type.
          *
@@ -104,6 +108,7 @@ package com.bitheads.braincloud.services
 		}
         
         /**
+		 * @deprecated Will be removed September 2019, Please use BrainCloudAppStore.getSalesInventoryByCategory
          * Method gets the active sales inventory for the passed-in
          * currency type.
          *
@@ -172,6 +177,7 @@ package com.bitheads.braincloud.services
 		}
         
         /**
+		 * @deprecated Will be removed September 2019, Please use BrainCloudVirtualCurrency.getCurrency
          * Gets the player's currency for the given currency type
          * or all currency types if null passed in.
          *

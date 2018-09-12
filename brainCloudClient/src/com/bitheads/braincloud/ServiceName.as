@@ -2,6 +2,7 @@ package com.bitheads.braincloud
 {    
     public class ServiceName
     {
+		public static const AppStore:String = "appStore";
         public static const AsyncMatch:String = "asyncMatch";
         public static const Authenticate:String = "authenticationV2";
         public static const Chat:String = "chat";
@@ -35,5 +36,6 @@ package com.bitheads.braincloud
         public static const Twitter:String = "twitter";
         public static const Time:String = "time";
         public static const Tournament:String = "tournament";
+		public static const VirtualCurrency:String = "virtualCurrency";
     }
 }

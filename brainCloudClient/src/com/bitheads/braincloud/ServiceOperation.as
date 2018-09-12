@@ -126,6 +126,8 @@ package com.bitheads.braincloud
         public static const GetParentVC:String = "GET_PARENT_VC";
         public static const ResetParentVC:String = "RESET_PARENT_VC";
         
+        public static const GetPeerVC:String = "GET_PEER_VC";
+		
         public static const Send:String = "SEND";
         public static const UpdateEventData:String = "UPDATE_EVENT_DATA";
         public static const DeleteSent:String = "DELETE_SENT";
@@ -210,6 +212,10 @@ package com.bitheads.braincloud
         
         public static const GetUserInfo:String = "GET_USER_INFO";
         
+		public static const VerifyPurchase:String = "VERIFY_PURCHASE";
+		public static const StartPurchase:String = "START_PURCHASE";
+		public static const FinalizePurchase:String = "FINALIZE_PURCHASE";
+		
         public static const StartSteamTransaction:String = "START_STEAM_TRANSACTION";
         public static const FinalizeSteamTransaction:String = "FINALIZE_STEAM_TRANSACTION";
         public static const VerifyMicrosoftReceipt:String = "VERIFY_MICROSOFT_RECEIPT";

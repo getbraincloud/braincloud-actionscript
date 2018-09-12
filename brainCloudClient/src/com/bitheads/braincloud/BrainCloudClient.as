@@ -43,6 +43,8 @@ package com.bitheads.braincloud
         private var _playerStatisticsService:BrainCloudPlayerStatistics;
         private var _playerStatisticsEventService:BrainCloudPlayerStatisticsEvent;
         private var _productService:BrainCloudProduct;
+		private var _virtualCurrency:BrainCloudVirtualCurrency;
+		private var _appStore:BrainCloudAppStore;
         private var _profanityService:BrainCloudProfanity;
         private var _pushNotificationService:BrainCloudPushNotification;
         private var _redemptionCodeService:BrainCloudRedemptionCode;
@@ -82,6 +84,8 @@ package com.bitheads.braincloud
                 _playerStatisticsService = new BrainCloudPlayerStatistics(this);
                 _playerStatisticsEventService = new BrainCloudPlayerStatisticsEvent(this);
                 _productService = new BrainCloudProduct(this);
+				_virtualCurrency = new BrainCloudVirtualCurrency(this);
+				_appStore = new BrainCloudAppStore(this);
                 _profanityService = new BrainCloudProfanity(this);
                 _pushNotificationService = new BrainCloudPushNotification(this);
                 _redemptionCodeService = new BrainCloudRedemptionCode(this);
@@ -537,10 +541,23 @@ package com.bitheads.braincloud
         {
             return _playerStatisticsEventService;
         }
-        
+		
+        /**
+		 * @deprecated Will be removed September 2019, Please use the appropriate BrainCloudVirtualCurrency or BrainCloudAppStore endpoint
+		 */
         public function get productService():BrainCloudProduct
         {
             return _productService;
+        }
+		
+		public function get virtualCurrencyService():BrainCloudVirtualCurrency
+        {
+            return _virtualCurrency;
+        }
+		
+		public function get appStoreService():BrainCloudAppStore
+        {
+            return _appStore;
         }
         
         public function get profanityService():BrainCloudProfanity
