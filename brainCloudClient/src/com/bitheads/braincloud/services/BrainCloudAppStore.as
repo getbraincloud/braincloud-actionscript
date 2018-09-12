@@ -74,14 +74,14 @@ package com.bitheads.braincloud.services
          * - windows
          * - windowsPhone
          * - googlePlay
-         * @param priceInfoCriteria The currency type to retrieve the sales inventory for.
+         * @param userCurrency The currency type to retrieve the sales inventory for.
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getSalesInventory(storeId:String, priceInfoCriteria:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function getSalesInventory(storeId:String, userCurrency:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
-			getSalesInventoryByCategory(storeId, priceInfoCriteria, null, successCallback, errorCallback, cbObject);
+			getSalesInventoryByCategory(storeId, userCurrency, null, successCallback, errorCallback, cbObject);
 		}
         
         /**
@@ -99,19 +99,20 @@ package com.bitheads.braincloud.services
          * - windows
          * - windowsPhone
          * - googlePlay
-         * @param priceInfoCriteria The currency type to retrieve the sales inventory for.
+         * @param userCurrency The currency type to retrieve the sales inventory for.
          * @param category The product category
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getSalesInventoryByCategory(storeId:String, priceInfoCriteria:Object, category:String,
+        public function getSalesInventoryByCategory(storeId:String, userCurrency:String, category:String,
             successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
-                "storeId": storeId,
-                "priceInfoCriteria": priceInfoCriteria
+                "storeId": storeId
             };	
+			data.priceInfoCriteria = new Object();
+			data.priceInfoCriteria.user_currency = userCurrency;
             
             if (isOptionalParamValid(category)) {
                 data.category = category;
