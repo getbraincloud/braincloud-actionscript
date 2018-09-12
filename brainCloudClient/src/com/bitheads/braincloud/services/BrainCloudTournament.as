@@ -36,7 +36,46 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.Tournament, ServiceOperation.ClaimTournamentReward, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
-        
+                
+         /**
+         * Get a list of player's recently active divisions
+         * Organised by tournament state: ACTIVE, PENDING, CLAIMABLE, COMPLETE
+         *
+         * Service Name - tournament
+         * Service Operation - GET_DIVISION_INFO
+         *
+         * @param divSetId The id of the division
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function getDivisionInfo(divSetId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "divSetId": divSetId
+            }
+            var serverCall:ServerCall = new ServerCall(ServiceName.Tournament, ServiceOperation.GetDivisionInfo, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+
+         /**
+         * Get a list of player's recently active divisions
+         * Organised by tournament state: ACTIVE, PENDING, CLAIMABLE, COMPLETE
+         *
+         * Service Name - tournament
+         * Service Operation - GET_MY_DIVISIONS
+         *
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function getMyDivisions(successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var serverCall:ServerCall = new ServerCall(ServiceName.Tournament, ServiceOperation.GetMyDivisions, null, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+
+
         /**
          * Get tournament status associated with a leaderboard
          *
@@ -60,6 +99,31 @@ package com.bitheads.braincloud.services
 			Client.sendRequest(serverCall);
 		}
         
+         /**
+         * Join specified division
+         *
+         * Service Name - tournament
+         * Service Operation - JOIN_DIVISION
+         *
+         * @param divSetId The id of the division
+         * @param tournamentCode Tournament to join
+         * @param initialScore Initial score for the user
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function joinDivision(divSetId:String, tournamentCode:String, initialScore:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "divSetId": divSetId,
+                "tournamentCode": tournamentCode,
+                "initialScore": initialScore
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Tournament, ServiceOperation.JoinDivision, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+        }
+
         /**
          * Join the specified tournament.
          * Any entry fees will be automatically collected.
@@ -85,7 +149,29 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.Tournament, ServiceOperation.JoinTournament, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
-        
+
+         /**
+         * Remove player from division instance
+         * Also removes division instance from player's division list
+         *
+         * Service Name - tournament
+         * Service Operation - LEAVE_DIVISION_INSTANCE
+         *
+         * @param leaderboardId The leaderboard for the tournament
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function leaveDivisionInstance(leaderboardId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "leaderboardId": leaderboardId
+            };	
+
+            var serverCall:ServerCall = new ServerCall(ServiceName.Tournament, ServiceOperation.LeaveDivisionInstance, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+
         /**
          * Removes player's score from tournament leaderboard
          *

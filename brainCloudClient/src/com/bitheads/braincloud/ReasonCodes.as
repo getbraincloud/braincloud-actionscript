@@ -468,5 +468,8 @@ package com.bitheads.braincloud
         public static const LOBBY_FEATURE_NOT_CONFIGURED:int = 40622;
         public static const TOO_MANY_USERS_FOR_TEAM:int = 40623;
         public static const TOO_MANY_USERS_FOR_LOBBY_TYPE:int = 40624;
+        public static const DIVISION_SET_DOESNOT_EXIST:int = 40625;
+        public static const LEADERBOARD_NOT_DIVISION_SET_INSTANCE:int = 40632;
     }
+    
 }

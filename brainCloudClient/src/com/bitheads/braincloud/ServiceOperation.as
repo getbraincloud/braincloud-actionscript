@@ -306,14 +306,19 @@ package com.bitheads.braincloud
         public static const SendAdvancedEmailByAddress:String = "SEND_ADVANCED_EMAIL_BY_ADDRESS";
         
         //Tournament
-        public static const GetTournamentStatus:String = "GET_TOURNAMENT_STATUS";      
-        public static const JoinTournament:String = "JOIN_TOURNAMENT";      
+        public static const ClaimTournamentReward:String = "CLAIM_TOURNAMENT_REWARD";    
+        public static const GetDivisionInfo:String = "GET_DIVISION_INFO";
+        public static const GetMyDivisions:String = "GET_MY_DIVISIONS";  
+        public static const GetTournamentStatus:String = "GET_TOURNAMENT_STATUS";    
+        public static const JoinDivision:String = "JOIN_DIVISION";
+        public static const JoinTournament:String = "JOIN_TOURNAMENT";  
+        public static const LeaveDivisionInstance:String = "LEAVE_DIVISION_INSTANCE";    
         public static const LeaveTournament:String = "LEAVE_TOURNAMENT";      
         public static const PostTournamentScore:String = "POST_TOURNAMENT_SCORE";    
         public static const PostTournamentScoreWithResults:String = "POST_TOURNAMENT_SCORE_WITH_RESULTS";    
         public static const ViewCurrentReward:String = "VIEW_CURRENT_REWARD";      
         public static const ViewReward:String = "VIEW_REWARD";      
-        public static const ClaimTournamentReward:String = "CLAIM_TOURNAMENT_REWARD";          
+      
 
         //Chat
         public static const ChannelConnect:String = "CHANNEL_CONNECT";
