@@ -11,6 +11,7 @@ package
     import CommsTest;
     import GroupTest;
     import ChatTest;
+    import VirtualCurrencyTest;
     
     public class Main extends Sprite 
     {
@@ -39,11 +40,14 @@ package
             trace("--- Unit Tests ---");
 
             loadIds();
+            
+            // ChatTest.createTests(m_tests); // we don't officially support RTT features in AS3
 
-            //GroupTest.createTests(m_tests);
-            // CommsTest.createTests(m_tests);
-            // ChatTest.createTests(m_tests);
+            GroupTest.createTests(m_tests);
+            CommsTest.createTests(m_tests);
             DivisionTest.createTests(m_tests);
+            VirtualCurrencyTest.createTests(m_tests);
+            AppStoreTest.createTests(m_tests);
                 
             BrainCloudClient.instance.initialize(APP_ID, SECRET, APP_VERSION, SERVER_URL);
 
