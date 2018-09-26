@@ -305,6 +305,7 @@ package com.bitheads.braincloud
         public static const UpdateGroupEntity:String = "UPDATE_GROUP_ENTITY_DATA";
         public static const UpdateGroupMember:String = "UPDATE_GROUP_MEMBER";
         public static const UpdateGroupName:String = "UPDATE_GROUP_NAME";
+        public static const SetGroupOpen:String = "SET_GROUP_OPEN";
         
         //mail
         public static const SendBasicEmail:String = "SEND_BASIC_EMAIL";

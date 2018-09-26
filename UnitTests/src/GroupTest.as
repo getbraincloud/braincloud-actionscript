@@ -36,6 +36,18 @@ package
                         success();
                     }, fail);
             }));
+
+            tests.push(new Test("Group:setGroupOpen", Test.setUpWithAuthenticate, Test.tearDownLogout, function(success:Function, fail:Function):void
+            {
+                BrainCloudClient.instance.groupService.setGroupOpen(
+                    groupId,
+                    true,
+                    function(result:Object, cb:Object):void
+                    {
+                        if (result.status != 200) fail("json.status != 200");
+                        success();
+                    }, fail);
+            }));
         }
     }
 }
