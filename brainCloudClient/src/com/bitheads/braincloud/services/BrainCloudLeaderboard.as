@@ -198,6 +198,31 @@ package com.bitheads.braincloud.services
 		}
         
         /**
+         * Retrieve the social leaderboard for a group by version.
+         *
+         * Service Name - leaderboard
+         * Service Operation - GET_GROUP_SOCIAL_LEADERBOARD_BY_VERSION
+         *
+         * @param leaderboardId The leaderboard to retrieve
+         * @param groupId The ID of the group
+         * @param versionId the version 
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+        */
+        public function getGroupSocialLeaderboardByVersion(leaderboardId:String, groupId:String, versionId:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "leaderboardId": leaderboardId,
+                "groupId": groupId,
+                "versionId": versionId
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetGroupSocialLeaderboardByVersion, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+
+        /**
 		 * Retrieve the social leaderboard for a list of players.
 		 *
 		 * Service Name - leaderboard
@@ -217,6 +242,31 @@ package com.bitheads.braincloud.services
             };		
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetPlayersSocialLeaderboard, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+
+        /**
+		 * Retrieve the social leaderboard for a list of players by their version.
+		 *
+		 * Service Name - leaderboard
+		 * Service Operation - GET_PLAYERS_SOCIAL_LEADERBOARD_BY_VERSION
+		 *
+		 * @param leaderboardId The leaderboard to retrieve
+		 * @param profileIds The IDs of the players
+         * @param versionId the version
+		 * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+		*/
+        public function getPlayersSocialLeaderboardByVersion(leaderboardId:String, profileIds:Array, versionId:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "leaderboardId": leaderboardId,
+                "profileIds": profileIds,
+                "versionId": versionId
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetPlayersSocialLeaderboardByVersion, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
         
@@ -254,6 +304,42 @@ package com.bitheads.braincloud.services
 			Client.sendRequest(serverCall);
 		}
         
+        /**
+         * Method returns the social leaderboard by its version. A player's social leaderboard is
+         * comprised of players who are recognized as being your friend.
+         * For now, this applies solely to Facebook connected players who are
+         * friends with the logged in player (who also must be Facebook connected).
+         * In the future this will expand to other identification means (such as
+         * Game Center, Google circles etc).
+         *
+         * Leaderboards entries contain the player's score and optionally, some user-defined
+         * data associated with the score. The currently logged in player will also
+         * be returned in the social leaderboard.
+         *
+         * Note: If no friends have played the game, the bestScore, createdAt, updatedAt
+         * will contain NULL.
+         *
+         * @param leaderboardId The id of the leaderboard to retrieve
+         * @param replaceName If true, the currently logged in player's name will be replaced
+         * by the string "You".
+         * @param versionId The version
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         *
+         */
+        public function getSocialLeaderboardByVersion(leaderboardId:String, replaceName:Boolean, versionId:int successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var data:Object = {
+                "leaderboardId": leaderboardId,
+                "replaceName":replaceName,
+                "versionId": versionId
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetSocialLeaderboardByVersion, data, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+
         /**
          * Reads multiple social leaderboards.
          *
