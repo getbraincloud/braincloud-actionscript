@@ -328,7 +328,7 @@ package com.bitheads.braincloud.services
          * @param cbObject The user object sent to the callback
          *
          */
-        public function getSocialLeaderboardByVersion(leaderboardId:String, replaceName:Boolean, versionId:int successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function getSocialLeaderboardByVersion(leaderboardId:String, replaceName:Boolean, versionId:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{
 			var data:Object = {
                 "leaderboardId": leaderboardId,
