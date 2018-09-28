@@ -791,5 +791,28 @@ package com.bitheads.braincloud.services
             var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.UpdateGroupName, data, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
         }
+
+        /**
+         * make the group open true or false.
+         *
+         * Service Name - group
+         * Service Operation - SET_GROUP_OPEN
+         *
+         * @param groupId ID of the group.
+         * @param isOpenGroup whether or not the group is open.
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function setGroupOpen(groupId:String, isOpenGroup:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "groupId": groupId,
+                "isOpenGroup": isOpenGroup
+            };
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.SetGroupOpen, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
     }
 }

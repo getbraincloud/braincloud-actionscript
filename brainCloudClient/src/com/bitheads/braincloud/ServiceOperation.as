@@ -87,6 +87,7 @@ package com.bitheads.braincloud
         public static const RemoveFriends:String = "REMOVE_FRIENDS";
         public static const FindPlayerByUniversalId:String = "FIND_PLAYER_BY_UNIVERSAL_ID";
         public static const GetSocialLeaderboard:String = "GET_SOCIAL_LEADERBOARD";
+        public static const GetSocialLeaderboardByVersion:String = "GET_SOCIAL_LEADERBOARD_BY_VERSION";
         public static const GetMultiSocialLeaderboard:String = "GET_MULTI_SOCIAL_LEADERBOARD";
         public static const ListAllLeaderboards:String = "LIST_ALL_LEADERBOARDS";
         public static const GetGlobalLeaderboard:String = "GET_GLOBAL_LEADERBOARD";
@@ -98,8 +99,10 @@ package com.bitheads.braincloud
         public static const PostScore:String = "POST_SCORE";
         public static const PostScoreDynamic:String = "POST_SCORE_DYNAMIC";
         public static const GetGroupSocialLeaderboard:String = "GET_GROUP_SOCIAL_LEADERBOARD";
+        public static const GetGroupSocialLeaderboardByVersion:String = "GET_GROUP_SOCIAL_LEADERBOARD_BY_VERSION";
         public static const GetSummaryDataForProfileId:String = "GET_SUMMARY_DATA_FOR_PROFILE_ID";
         public static const GetPlayersSocialLeaderboard:String = "GET_PLAYERS_SOCIAL_LEADERBOARD";
+        public static const GetPlayersSocialLeaderboardByVersion:String = "GET_PLAYERS_SOCIAL_LEADERBOARD_BY_VERSION";
         public static const GetGlobalLeaderboardEntryCount:String = "GET_GLOBAL_LEADERBOARD_ENTRY_COUNT";
         public static const RemovePlayerScore:String = "REMOVE_PLAYER_SCORE";
         public static const GetPlayerScore:String = "GET_PLAYER_SCORE";
@@ -305,6 +308,7 @@ package com.bitheads.braincloud
         public static const UpdateGroupEntity:String = "UPDATE_GROUP_ENTITY_DATA";
         public static const UpdateGroupMember:String = "UPDATE_GROUP_MEMBER";
         public static const UpdateGroupName:String = "UPDATE_GROUP_NAME";
+        public static const SetGroupOpen:String = "SET_GROUP_OPEN";
         
         //mail
         public static const SendBasicEmail:String = "SEND_BASIC_EMAIL";

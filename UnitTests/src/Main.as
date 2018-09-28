@@ -12,6 +12,7 @@ package
     import GroupTest;
     import ChatTest;
     import VirtualCurrencyTest;
+    import LeaderboardTest;
     
     public class Main extends Sprite 
     {
@@ -48,6 +49,7 @@ package
             DivisionTest.createTests(m_tests);
             VirtualCurrencyTest.createTests(m_tests);
             AppStoreTest.createTests(m_tests);
+            LeaderboardTest.createTests(m_tests);
                 
             BrainCloudClient.instance.initialize(APP_ID, SECRET, APP_VERSION, SERVER_URL);
 
