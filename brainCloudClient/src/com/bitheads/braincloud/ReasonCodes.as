@@ -68,8 +68,8 @@ package com.bitheads.braincloud
         public static const ENTITY_VERSION_MISMATCH:int = 40344;
         public static const MISSING_RECORD:int = 40345;
         public static const INSUFFICIENT_PERMISSIONS:int = 40346;
-        public static const INVALID_DATABASE_FIELD_NAME:int = 40347;
         public static const MISSING_IN_QUERY:int = 40347;
+        public static const INVALID_DATABASE_FIELD_NAME:int = 40347;
         public static const RECORD_EXPIRED:int = 40348;
         public static const INVALID_WHERE:int = 40349;
         public static const S3_ERROR:int = 40350;
@@ -360,6 +360,10 @@ package com.bitheads.braincloud
         public static const DIVISION_SET_MAX_SIZE_REACHED:int = 40636;
         public static const DIVISION_SET_INFO_ERROR:int = 40637;
         public static const DIVISION_SET_API_MUST_BE_USED:int = 40638;
+        public static const API_CALL_REJECTED:int = 40639;
+        public static const LEADERBOARD_TOURNAMENT_TEMPLATE_ONLY:int = 40640;
+        public static const INVALID_TOURNAMENT_JOB_ID:int = 40641;
+        public static const LEADERBOARD_ROTATION_ERROR:int = 40642;
         public static const INVALID_STORE_ID:int = 40700;
         public static const METHOD_DEPRECATED:int = 40701;
         public static const NO_TWITTER_CONSUMER_KEY:int = 500001;
