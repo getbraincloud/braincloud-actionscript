@@ -1,104 +1,50 @@
-package com.bitheads.braincloud 
+package com.bitheads.braincloud
 {
     public class ReasonCodes
     {
         public static const NO_REASON_CODE:int = 0;
-
         public static const INVALID_NOTIFICATION:int = 20200;
-
         public static const INVALID_REQUEST:int = 40001;
-
         public static const SWITCHING_FACEBOOK_MEMORY:int = 40201;
         public static const MERGING_MEMORY:int = 40202;
         public static const RECREATING_ANONYMOUS_MEMORY:int = 40203;
         public static const MOVING_ANONYMOUS_MEMORY:int = 40204;
-        public static const LOGIN_SECURITY_ERROR:int = 40209;
-
-        /// <summary>This means that you have provided a profile id
-        /// but the identity lookup fails to find an identity entry.
-        /// </summary>
+        public static const LOGIN_SECURITY_ERROR:int = 40205;
         public static const MISSING_IDENTITY_ERROR:int = 40206;
-
-        /// <summary>This means that you have provided a profile id and an
-        /// identity that is matched to a different profile id.
-        /// This is where you blank out the profile to allow the switch.
-        /// </summary>
         public static const SWITCHING_PROFILES:int = 40207;
-
-        /// <summary>This means that you provide a blank profile id and the
-        /// identity doesn’t exist and forecCreate is false.
-        ///</summary>
         public static const MISSING_PROFILE_ERROR:int = 40208;
-
-        /// <summary>Raised when a security error occurs
-        /// </summary>
         public static const SECURITY_ERROR:int = 40209;
-
-        /// <summary>This happens when you try and detach the last non-anonymous
-        /// identity from an account with confirmAnonymous set to false.
-        /// </summary>
         public static const DOWNGRADING_TO_ANONYMOUS_ERROR:int = 40210;
-
-        /// <summary>This occurs when you try and attach an identity type that already exists for that profile.
-        /// You can have only one facebook identity for a particular profile
-        /// </summary>
         public static const DUPLICATE_IDENTITY_TYPE:int = 40211;
-
-
         public static const MERGE_PROFILES:int = 40212;
         public static const INVALID_PROPERTY_NAME:int = 40213;
         public static const EMAIL_NOT_VALIDATED:int = 40214;
-
+        public static const DATABASE_ERROR:int = 40215;
+        public static const PROPERTY_NOT_OVERRIDEABLE:int = 40216;
+        public static const UNKNOWN_AUTH_ERROR:int = 40217;
+        public static const DATABASE_INPUT_TOO_LARGE_ERROR:int = 40218;
+        public static const MISSING_APP_EMAIL_ACCOUNT:int = 40219;
         public static const UNABLE_TO_GET_FRIENDS_FROM_FACEBOOK:int = 40300;
         public static const BAD_SIGNATURE:int = 40301;
-
-        /// <summary>Cannot validate user
-        /// </summary>
         public static const UNABLE_TO_VALIDATE_PLAYER:int = 40302;
-        public static const UNABLE_TO_VALIDATE_USER:int = UNABLE_TO_VALIDATE_PLAYER;
-
-        /// <summary>Session expired</summary>
         public static const PLAYER_SESSION_EXPIRED:int = 40303;
-        public static const USER_SESSION_EXPIRED:int = PLAYER_SESSION_EXPIRED;
-        
-
-        /// <summary>SESSION NOT FOUND ERROR</summary>
         public static const NO_SESSION:int = 40304;
-
         public static const PLAYER_SESSION_MISMATCH:int = 40305;
-        public static const USER_SESSION_MISMATCH:int = PLAYER_SESSION_MISMATCH;
         public static const OPERATION_REQUIRES_A_SESSION:int = 40306;
-
-        /// <summary>User provided the wrong email and / or password</summary>
         public static const TOKEN_DOES_NOT_MATCH_USER:int = 40307;
-
         public static const EVENT_CAN_ONLY_SEND_TO_FRIEND_OR_SELF:int = 40309;
         public static const NOT_FRIENDS:int = 40310;
         public static const VC_BALANCE_CANNOT_BE_SPECIFIED:int = 40311;
         public static const VC_LIMIT_EXCEEDED:int = 40312;
         public static const UNABLE_TO_GET_MY_DATA_FROM_FACEBOOK:int = 40313;
-
-        /// <summary>This happens when you provide invalid auth type string in either service.</summary>
         public static const INVALID_AUTHENTICATION_TYPE:int = 40315;
-
-        /// <summary>You must have an active session in order to call this api</summary>
         public static const INVALID_GAME_ID:int = 40316;
-        public static const INVALID_APP_ID:int = INVALID_GAME_ID;
-
-        
-        /// <summary>This product and receipt have already been claimed</summary>
         public static const APPLE_TRANS_ID_ALREADY_CLAIMED:int = 40317;
-
         public static const CLIENT_VERSION_NOT_SUPPORTED:int = 40318;
         public static const BRAINCLOUD_VERSION_NOT_SUPPORTED:int = 40319;
         public static const PLATFORM_NOT_SUPPORTED:int = 40320;
         public static const INVALID_PLAYER_STATISTICS_EVENT_NAME:int = 40321;
-        public static const INVALID_USER_STATISTICS_EVENT_NAME:int = INVALID_PLAYER_STATISTICS_EVENT_NAME;
-        
-        /// <summary>App Version No Longer Supported</summary>
         public static const GAME_VERSION_NOT_SUPPORTED:int = 40322;
-        public static const APP_VERSION_NOT_SUPPORTED:int = GAME_VERSION_NOT_SUPPORTED;
-        
         public static const BAD_REFERENCE_DATA:int = 40324;
         public static const MISSING_OAUTH_TOKEN:int = 40325;
         public static const MISSING_OAUTH_VERIFIER:int = 40326;
@@ -106,25 +52,14 @@ package com.bitheads.braincloud
         public static const MISSING_TWEET:int = 40328;
         public static const FACEBOOK_PAYMENT_ID_ALREADY_PROCESSED:int = 40329;
         public static const DISABLED_GAME:int = 40330;
-        public static const DISABLED_APP:int = DISABLED_GAME;
         public static const MATCH_MAKING_DISABLED:int = 40331;
         public static const UPDATE_FAILED:int = 40332;
-        public static const INVALID_OPERATION:int = 40333;  // invalid operation for API call
-
-        /// <summary>Player is currently in a match</summary>
+        public static const INVALID_OPERATION:int = 40333;
         public static const MATCH_RANGE_ERROR:int = 40334;
-
-        /// <summary>Player is currently in a match</summary>
         public static const PLAYER_IN_MATCH:int = 40335;
-
-        /// <summary>Player is currently shielded</summary>
         public static const MATCH_PLAYER_SHIELDED:int = 40336;
-
         public static const MATCH_PLAYER_MISSING:int = 40337;
-
-        /// <summary>Player is currently logged in</summary>
         public static const MATCH_PLAYER_LOGGED_IN:int = 40338;
-
         public static const INVALID_ITEM_ID:int = 40339;
         public static const MISSING_PRICE:int = 40340;
         public static const MISSING_USER_INFO:int = 40341;
@@ -134,18 +69,15 @@ package com.bitheads.braincloud
         public static const MISSING_RECORD:int = 40345;
         public static const INSUFFICIENT_PERMISSIONS:int = 40346;
         public static const MISSING_IN_QUERY:int = 40347;
+        public static const INVALID_DATABASE_FIELD_NAME:int = 40347;
         public static const RECORD_EXPIRED:int = 40348;
         public static const INVALID_WHERE:int = 40349;
         public static const S3_ERROR:int = 40350;
         public static const INVALID_ATTRIBUTES:int = 40351;
         public static const IMPORT_MISSING_GAME_DATA:int = 40352;
-        public static const IMPORT_MISSING_GAME_APP:int = IMPORT_MISSING_GAME_DATA;
         public static const IMPORT_SCHEMA_VERSION_TOO_OLD:int = 40353;
         public static const IMPORT_SCHEMA_VERSION_INVALID:int = 40355;
-
-        /// <summary>Max Concurrent Player Count Reached</summary>
         public static const PLAYER_SESSION_LOGGED_OUT:int = 40356;
-
         public static const API_HOOK_SCRIPT_ERROR:int = 40357;
         public static const MISSING_REQUIRED_PARAMETER:int = 40358;
         public static const INVALID_PARAMETER_TYPE:int = 40359;
@@ -161,20 +93,13 @@ package com.bitheads.braincloud
         public static const INVALID_STATISTIC_NAME:int = 40369;
         public static const INVALID_HTTP_REQUEST:int = 40370;
         public static const GAME_LIMIT_REACHED:int = 40371;
-        public static const APP_LIMIT_REACHED:int = GAME_LIMIT_REACHED;
         public static const GAME_RUNSTATE_DISABLED:int = 40372;
-        public static const APP_RUNSTATE_DISABLED:int = GAME_RUNSTATE_DISABLED;
         public static const INVALID_COMPANY_ID:int = 40373;
         public static const INVALID_PLAYER_ID:int = 40374;
         public static const INVALID_TEMPLATE_ID:int = 40375;
         public static const MINIMUM_SEARCH_INPUT:int = 40376;
-
-        /// <summary>Game has to parent to switch profile to</summary>
         public static const MISSING_GAME_PARENT:int = 40377;
-        public static const MISSING_APP_PARENT:int = MISSING_GAME_PARENT;
-
         public static const GAME_PARENT_MISMATCH:int = 40378;
-        public static const APP_PARENT_MISMATCH:int = GAME_PARENT_MISMATCH;
         public static const CHILD_PLAYER_MISSING:int = 40379;
         public static const MISSING_PLAYER_PARENT:int = 40380;
         public static const PLAYER_PARENT_MISMATCH:int = 40381;
@@ -182,11 +107,10 @@ package com.bitheads.braincloud
         public static const DECODE_CONTEXT:int = 40383;
         public static const INVALID_QUERY_CONTEXT:int = 40384;
         public static const GROUP_MEMBER_NOT_FOUND:int = 40385;
+        public static const INVALID_AMOUNT:int = 40385;
         public static const INVALID_SORT:int = 40386;
         public static const GAME_NOT_FOUND:int = 40387;
-        public static const APP_NOT_FOUND:int = GAME_NOT_FOUND;
         public static const GAMES_NOT_IN_SAME_COMPANY:int = 40388;
-        public static const APPS_NOT_IN_SAME_COMPANY:int = GAMES_NOT_IN_SAME_COMPANY;
         public static const IMPORT_NO_PARENT_ASSIGNED:int = 40389;
         public static const IMPORT_PARENT_CURRENCIES_MISMATCH:int = 40390;
         public static const INVALID_SUBSTITUION_ENTRY:int = 40391;
@@ -292,7 +216,6 @@ package com.bitheads.braincloud
         public static const CURRENCY_SECURITY_ERROR:int = 40491;
         public static const INVALID_PEER_CODE:int = 40492;
         public static const PEER_NO_LONGER_EXISTS:int = 40493;
-        
         public static const CANNOT_MODIFY_TOURNAMENT_WITH_LEADERBOARD_SERVICE:int = 40494;
         public static const NO_TOURNAMENT_ASSOCIATED_WITH_LEADERBOARD:int = 40495;
         public static const TOURNAMENT_NOT_ASSOCIATED_WITH_LEADERBOARD:int = 40496;
@@ -329,34 +252,6 @@ package com.bitheads.braincloud
         public static const INVALID_RUN_STATE:int = 40527;
         public static const LEADERBOARD_SCORE_DOESNOT_EXIST:int = 40528;
         public static const INITIAL_SCORE_NULL:int = 40529;
-
-        public static const NO_TWITTER_CONSUMER_KEY:int = 500001;
-        public static const NO_TWITTER_CONSUMER_SECRET:int = 500002;
-        public static const INVALID_CONFIGURATION:int = 500003;
-        public static const ERROR_GETTING_REQUEST_TOKEN:int = 500004;
-        public static const ERROR_GETTING_ACCESS_TOKEN:int = 500005;
-
-        public static const FACEBOOK_ERROR:int = 500010;
-        public static const FACEBOOK_SECRET_MISMATCH:int = 500011;
-        public static const FACEBOOK_AUTHENTICATION_ERROR:int = 500012;
-        public static const FACEBOOK_APPLICATION_TOKEN_REQUEST_ERROR:int = 500013;
-        public static const FACEBOOK_BAD_APPLICATION_TOKEN_SIGNATURE:int = 500014;
-
-        /// <summary>
-        /// Client defined value for a timeout detected client-side.
-        /// </summary>
-        public static const CLIENT_NETWORK_ERROR_TIMEOUT:int = 90001;
-        public static const CLIENT_UPLOAD_FILE_CANCELLED:int = 90100;
-        public static const CLIENT_UPLOAD_FILE_TIMED_OUT:int = 90101;
-        public static const CLIENT_UPLOAD_FILE_UNKNOWN:int = 90102;
-        public static const CLIENT_DISABLED:int = 90200;
-        public static const DATABASE_ERROR:int = 40215;
-        public static const PROPERTY_NOT_OVERRIDEABLE:int = 40216;
-        public static const UNKNOWN_AUTH_ERROR:int = 40217;
-        public static const DATABASE_INPUT_TOO_LARGE_ERROR:int = 40218;
-        public static const MISSING_APP_EMAIL_ACCOUNT:int = 40219;
-        public static const INVALID_DATABASE_FIELD_NAME:int = 40347;
-        public static const INVALID_AMOUNT:int = 40385;
         public static const TOURNAMENT_NOTIFICATIONS_PROCESSING_FAILED:int = 40530;
         public static const ACL_NOT_READABLE:int = 40531;
         public static const INVALID_OWNER_ID:int = 40532;
@@ -439,23 +334,6 @@ package com.bitheads.braincloud
         public static const INVALID_HEADER_APP_ID:int = 40610;
         public static const LOBBY_TYPE_NOT_FOUND:int = 40611;
         public static const LOBBY_TEAM_FULL:int = 40612;
-        public static const TWITTER_AUTH_ERROR:int = 500006;
-        public static const TWITTER_ERROR:int = 500007;
-        public static const NOT_TEAM_ADMIN:int = 550000;
-        public static const NO_TEAM_ACCESS:int = 550001;
-        public static const MISSING_COMPANY_RECORD:int = 550002;
-        public static const TEAM_MEMBER_NOT_FOUND:int = 550003;
-        public static const TEAM_MEMBER_NOT_ENABLED:int = 550004;
-        public static const TEAM_MEMBER_NOT_ACTIVE:int = 550005;
-        public static const TEAM_MEMBER_LOCKED:int = 550006;
-        public static const INVALID_PASSWORD:int = 550007;
-        public static const TOKEN_INVALID:int = 550008;
-        public static const TOKEN_EXPIRED:int = 550009;
-        public static const TEMPLATE_GAME_NOT_FOUND:int = 550011;
-        public static const INVALID_TEMPLATE_GAME_TEAM:int = 550012;
-        public static const BASIC_AUTH_FAILURE:int = 550013;
-        public static const MONGO_DB_EXCEPTION:int = 600001;
-        public static const CONCURRENT_LOCK_ERROR:int = 600002;
         public static const LOBBY_NOT_FOUND:int = 40613;
         public static const MESSAGE_CONTENT_INVALID_JSON:int = 40614;
         public static const RTT_FEATURE_NOT_CONFIGURED:int = 40615;
@@ -468,5 +346,71 @@ package com.bitheads.braincloud
         public static const LOBBY_FEATURE_NOT_CONFIGURED:int = 40622;
         public static const TOO_MANY_USERS_FOR_TEAM:int = 40623;
         public static const TOO_MANY_USERS_FOR_LOBBY_TYPE:int = 40624;
+        public static const DIVISION_SET_DOESNOT_EXIST:int = 40625;
+        public static const LOBBY_CONFIG_NOT_FOUND:int = 40626;
+        public static const PRESENCE_NOT_INITIALIZED:int = 40627;
+        public static const PRESENCE_FEATURE_NOT_CONFIGURED:int = 40628;
+        public static const PLAYER_ALREADY_IN_ACTIVE_DIVISION_SET:int = 40629;
+        public static const TOURNAMENT_CODE_MISSING:int = 40630;
+        public static const ERROR_ASSIGNING_DIVISION_SET_INSTANCE:int = 40631;
+        public static const LEADERBOARD_NOT_DIVISION_SET_INSTANCE:int = 40632;
+        public static const DIVISION_SET_SCHEDULING_TYPE_DOES_NOT_EXIST:int = 40633;
+        public static const PRESENCE_ACTIVITY_NOT_ENABLED:int = 40634;
+        public static const PRESENCE_REALTIME_NOT_ENABLED:int = 40635;
+        public static const DIVISION_SET_MAX_SIZE_REACHED:int = 40636;
+        public static const DIVISION_SET_INFO_ERROR:int = 40637;
+        public static const DIVISION_SET_API_MUST_BE_USED:int = 40638;
+        public static const API_CALL_REJECTED:int = 40639;
+        public static const LEADERBOARD_TOURNAMENT_TEMPLATE_ONLY:int = 40640;
+        public static const INVALID_TOURNAMENT_JOB_ID:int = 40641;
+        public static const LEADERBOARD_ROTATION_ERROR:int = 40642;
+        public static const INVALID_STORE_ID:int = 40700;
+        public static const METHOD_DEPRECATED:int = 40701;
+        public static const NO_TWITTER_CONSUMER_KEY:int = 500001;
+        public static const NO_TWITTER_CONSUMER_SECRET:int = 500002;
+        public static const INVALID_CONFIGURATION:int = 500003;
+        public static const ERROR_GETTING_REQUEST_TOKEN:int = 500004;
+        public static const ERROR_GETTING_ACCESS_TOKEN:int = 500005;
+        public static const TWITTER_AUTH_ERROR:int = 500006;
+        public static const TWITTER_ERROR:int = 500007;
+        public static const FACEBOOK_ERROR:int = 500010;
+        public static const FACEBOOK_SECRET_MISMATCH:int = 500011;
+        public static const FACEBOOK_AUTHENTICATION_ERROR:int = 500012;
+        public static const FACEBOOK_APPLICATION_TOKEN_REQUEST_ERROR:int = 500013;
+        public static const FACEBOOK_BAD_APPLICATION_TOKEN_SIGNATURE:int = 500014;
+        public static const NOT_TEAM_ADMIN:int = 550000;
+        public static const NO_TEAM_ACCESS:int = 550001;
+        public static const MISSING_COMPANY_RECORD:int = 550002;
+        public static const TEAM_MEMBER_NOT_FOUND:int = 550003;
+        public static const TEAM_MEMBER_NOT_ENABLED:int = 550004;
+        public static const TEAM_MEMBER_NOT_ACTIVE:int = 550005;
+        public static const TEAM_MEMBER_LOCKED:int = 550006;
+        public static const INVALID_PASSWORD:int = 550007;
+        public static const TOKEN_INVALID:int = 550008;
+        public static const TOKEN_EXPIRED:int = 550009;
+        public static const APP_NOT_FOUND:int = 550010;
+        public static const TEMPLATE_GAME_NOT_FOUND:int = 550011;
+        public static const INVALID_TEMPLATE_GAME_TEAM:int = 550012;
+        public static const BASIC_AUTH_FAILURE:int = 550013;
+        public static const MONGO_DB_EXCEPTION:int = 600001;
+        public static const CONCURRENT_LOCK_ERROR:int = 600002;
+        public static const CLIENT_NETWORK_ERROR_TIMEOUT:int = 90001;
+        public static const CLIENT_UPLOAD_FILE_CANCELLED:int = 90100;
+        public static const CLIENT_UPLOAD_FILE_TIMED_OUT:int = 90101;
+        public static const CLIENT_UPLOAD_FILE_UNKNOWN:int = 90102;
+        public static const CLIENT_DISABLED:int = 90200;
+        public static const DISABLED_APP:int = DISABLED_GAME;
+        public static const APPS_NOT_IN_SAME_COMPANY:int = GAMES_NOT_IN_SAME_COMPANY;
+        public static const APP_LIMIT_REACHED:int = GAME_LIMIT_REACHED;
+        public static const APP_PARENT_MISMATCH:int = GAME_PARENT_MISMATCH;
+        public static const APP_RUNSTATE_DISABLED:int = GAME_RUNSTATE_DISABLED;
+        public static const APP_VERSION_NOT_SUPPORTED:int = GAME_VERSION_NOT_SUPPORTED;
+        public static const IMPORT_MISSING_GAME_APP:int = IMPORT_MISSING_GAME_DATA;
+        public static const INVALID_APP_ID:int = INVALID_GAME_ID;
+        public static const INVALID_USER_STATISTICS_EVENT_NAME:int = INVALID_PLAYER_STATISTICS_EVENT_NAME;
+        public static const MISSING_APP_PARENT:int = MISSING_GAME_PARENT;
+        public static const USER_SESSION_EXPIRED:int = PLAYER_SESSION_EXPIRED;
+        public static const USER_SESSION_MISMATCH:int = PLAYER_SESSION_MISMATCH;
+        public static const UNABLE_TO_VALIDATE_USER:int = UNABLE_TO_VALIDATE_PLAYER;
     }
 }

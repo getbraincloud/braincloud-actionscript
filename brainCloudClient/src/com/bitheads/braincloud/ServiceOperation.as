@@ -87,6 +87,7 @@ package com.bitheads.braincloud
         public static const RemoveFriends:String = "REMOVE_FRIENDS";
         public static const FindPlayerByUniversalId:String = "FIND_PLAYER_BY_UNIVERSAL_ID";
         public static const GetSocialLeaderboard:String = "GET_SOCIAL_LEADERBOARD";
+        public static const GetSocialLeaderboardByVersion:String = "GET_SOCIAL_LEADERBOARD_BY_VERSION";
         public static const GetMultiSocialLeaderboard:String = "GET_MULTI_SOCIAL_LEADERBOARD";
         public static const ListAllLeaderboards:String = "LIST_ALL_LEADERBOARDS";
         public static const GetGlobalLeaderboard:String = "GET_GLOBAL_LEADERBOARD";
@@ -98,8 +99,10 @@ package com.bitheads.braincloud
         public static const PostScore:String = "POST_SCORE";
         public static const PostScoreDynamic:String = "POST_SCORE_DYNAMIC";
         public static const GetGroupSocialLeaderboard:String = "GET_GROUP_SOCIAL_LEADERBOARD";
+        public static const GetGroupSocialLeaderboardByVersion:String = "GET_GROUP_SOCIAL_LEADERBOARD_BY_VERSION";
         public static const GetSummaryDataForProfileId:String = "GET_SUMMARY_DATA_FOR_PROFILE_ID";
         public static const GetPlayersSocialLeaderboard:String = "GET_PLAYERS_SOCIAL_LEADERBOARD";
+        public static const GetPlayersSocialLeaderboardByVersion:String = "GET_PLAYERS_SOCIAL_LEADERBOARD_BY_VERSION";
         public static const GetGlobalLeaderboardEntryCount:String = "GET_GLOBAL_LEADERBOARD_ENTRY_COUNT";
         public static const RemovePlayerScore:String = "REMOVE_PLAYER_SCORE";
         public static const GetPlayerScore:String = "GET_PLAYER_SCORE";
@@ -126,6 +129,8 @@ package com.bitheads.braincloud
         public static const GetParentVC:String = "GET_PARENT_VC";
         public static const ResetParentVC:String = "RESET_PARENT_VC";
         
+        public static const GetPeerVC:String = "GET_PEER_VC";
+		
         public static const Send:String = "SEND";
         public static const UpdateEventData:String = "UPDATE_EVENT_DATA";
         public static const DeleteSent:String = "DELETE_SENT";
@@ -210,6 +215,10 @@ package com.bitheads.braincloud
         
         public static const GetUserInfo:String = "GET_USER_INFO";
         
+		public static const VerifyPurchase:String = "VERIFY_PURCHASE";
+		public static const StartPurchase:String = "START_PURCHASE";
+		public static const FinalizePurchase:String = "FINALIZE_PURCHASE";
+		
         public static const StartSteamTransaction:String = "START_STEAM_TRANSACTION";
         public static const FinalizeSteamTransaction:String = "FINALIZE_STEAM_TRANSACTION";
         public static const VerifyMicrosoftReceipt:String = "VERIFY_MICROSOFT_RECEIPT";
@@ -299,6 +308,7 @@ package com.bitheads.braincloud
         public static const UpdateGroupEntity:String = "UPDATE_GROUP_ENTITY_DATA";
         public static const UpdateGroupMember:String = "UPDATE_GROUP_MEMBER";
         public static const UpdateGroupName:String = "UPDATE_GROUP_NAME";
+        public static const SetGroupOpen:String = "SET_GROUP_OPEN";
         
         //mail
         public static const SendBasicEmail:String = "SEND_BASIC_EMAIL";
@@ -306,14 +316,19 @@ package com.bitheads.braincloud
         public static const SendAdvancedEmailByAddress:String = "SEND_ADVANCED_EMAIL_BY_ADDRESS";
         
         //Tournament
-        public static const GetTournamentStatus:String = "GET_TOURNAMENT_STATUS";      
-        public static const JoinTournament:String = "JOIN_TOURNAMENT";      
+        public static const ClaimTournamentReward:String = "CLAIM_TOURNAMENT_REWARD";    
+        public static const GetDivisionInfo:String = "GET_DIVISION_INFO";
+        public static const GetMyDivisions:String = "GET_MY_DIVISIONS";  
+        public static const GetTournamentStatus:String = "GET_TOURNAMENT_STATUS";    
+        public static const JoinDivision:String = "JOIN_DIVISION";
+        public static const JoinTournament:String = "JOIN_TOURNAMENT";  
+        public static const LeaveDivisionInstance:String = "LEAVE_DIVISION_INSTANCE";    
         public static const LeaveTournament:String = "LEAVE_TOURNAMENT";      
         public static const PostTournamentScore:String = "POST_TOURNAMENT_SCORE";    
         public static const PostTournamentScoreWithResults:String = "POST_TOURNAMENT_SCORE_WITH_RESULTS";    
         public static const ViewCurrentReward:String = "VIEW_CURRENT_REWARD";      
         public static const ViewReward:String = "VIEW_REWARD";      
-        public static const ClaimTournamentReward:String = "CLAIM_TOURNAMENT_REWARD";          
+      
 
         //Chat
         public static const ChannelConnect:String = "CHANNEL_CONNECT";
