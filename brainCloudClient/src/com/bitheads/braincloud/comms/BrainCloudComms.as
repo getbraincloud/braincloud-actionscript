@@ -22,6 +22,7 @@ package com.bitheads.braincloud.comms
         
         private var _url:String;
         private var _secret:String;
+        private var _secretMap:Dictionary;
         private var _appId:String;
         
         private var _client:BrainCloudClient;
@@ -134,6 +135,13 @@ package com.bitheads.braincloud.comms
             _url = serverUrl;
         }
         
+        public function initializeWithApps(appId:String, secretMap:Dictionary, serverUrl:String):void
+        {
+            _appId = appId;
+            _secretMap = secretMap;
+            _url = serverUrl;
+        }
+
         public function getSessionId():String
         {
             return _sessionId;
@@ -404,6 +412,7 @@ package com.bitheads.braincloud.comms
                 var data:Object = jsonObject.data;
 
                 // A session id or a profile id could potentially come back in any messages
+                //we also want to see if switchToAppId comes back
                 if (data != null)
                 {
                     if (data.sessionId != null)
@@ -413,6 +422,20 @@ package com.bitheads.braincloud.comms
                     if (data.profileId != null)
                     {
                         _profileId = data.profileId;
+                    }
+                    if (data.switchToAppId != null)
+                    {
+                        _appId = data.get("switchToAppId", "").toString();
+
+                        _secret = "MISSING"
+                        for(var key:String in _secretMap)
+                        {
+                            if(key == _appId)
+                            {
+                                _secret = _secretMap[_appId];
+                                break;
+                            }
+                        }
                     }
                 }
 
