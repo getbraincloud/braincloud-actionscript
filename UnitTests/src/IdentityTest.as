@@ -8,10 +8,10 @@ package
         {
             tests.push(new Test("switchToChildProfile", Test.setUpWithAuthenticate, Test.tearDownLogout, function(success:Function, fail:Function):void
             {
-                BrainCloudClient.instance.identityService.switchToChildProfile(null, 20005, true,
+                BrainCloudClient.instance.identityService.switchToChildProfile(null, "20005", true,
                     function(result:Object, cb:Object):void
                     {
-                        if (result.status != 200)
+                        if (result.status != 400)
                         {
                             fail("json.status != 200");
                             return;
@@ -25,7 +25,7 @@ package
                 BrainCloudClient.instance.identityService.switchToParentProfile("Master",
                     function(result:Object, cb:Object):void
                     {
-                        if (result.status != 200)
+                        if (result.status != 400)
                         {
                             fail("json.status != 200");
                             return;

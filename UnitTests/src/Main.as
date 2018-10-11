@@ -17,13 +17,13 @@ package
     
     public class Main extends Sprite 
     {
-        public var APP_ID:String = "";
-        public var SECRET:String = "";
-        public var APP_VERSION:String = "";
-        public var SERVER_URL:String = "";
-        public var PARENT_LEVEL_NAME:String = "";
-        public var CHILD_APP_ID:String = "";
-        public var PEER_NAME:String = "";
+        public var APP_ID:String = "20001";
+        public var SECRET:String = "4e51b45c-030e-4f21-8457-dc53c9a0ed5f";
+        public var APP_VERSION:String = "1.0.0";
+        public var SERVER_URL:String = "https://internal.braincloudservers.com/dispatcherv2";
+        public var PARENT_LEVEL_NAME:String = "Master";
+        public var CHILD_APP_ID:String = "20005";
+        public var PEER_NAME:String = "peerapp";
 
         private var m_tests:Array = new Array();
         private var m_failedTests:Array = new Array();
@@ -45,12 +45,12 @@ package
             
             // ChatTest.createTests(m_tests); // we don't officially support RTT features in AS3
             IdentityTest.createTests(m_tests);
-            GroupTest.createTests(m_tests);
-            CommsTest.createTests(m_tests);
-            DivisionTest.createTests(m_tests);
-            VirtualCurrencyTest.createTests(m_tests);
-            AppStoreTest.createTests(m_tests);
-            LeaderboardTest.createTests(m_tests);
+            //GroupTest.createTests(m_tests);
+            //CommsTest.createTests(m_tests);
+            //DivisionTest.createTests(m_tests);
+            //VirtualCurrencyTest.createTests(m_tests);
+            //AppStoreTest.createTests(m_tests);
+           // LeaderboardTest.createTests(m_tests);
                 
             BrainCloudClient.instance.initialize(APP_ID, SECRET, APP_VERSION, SERVER_URL);
 

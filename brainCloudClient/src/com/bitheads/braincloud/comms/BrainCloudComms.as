@@ -137,9 +137,15 @@ package com.bitheads.braincloud.comms
         
         public function initializeWithApps(appId:String, secretMap:Dictionary, serverUrl:String):void
         {
-            _appId = appId;
+            //clear the dictionary
+            for (key:Object in _secretMap)
+            {
+                delete _secretMap[key];
+            }
+            //update the
             _secretMap = secretMap;
-            _url = serverUrl;
+
+            initialize(appId, _secretMap[appId], serverUrl);
         }
 
         public function getSessionId():String
@@ -425,7 +431,8 @@ package com.bitheads.braincloud.comms
                     }
                     if (data.switchToAppId != null)
                     {
-                        _appId = data.get("switchToAppId", "").toString();
+                        _appId = data.stringify("switchToAppId");
+                        //_appId = data.get("switchToAppId", "").stringify();
 
                         _secret = "MISSING"
                         for(var key:String in _secretMap)
