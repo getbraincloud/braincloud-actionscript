@@ -159,7 +159,7 @@ package com.bitheads.braincloud
             else if (isNullOrEmpty(appId))
                 error = "appId was null or empty";
             else if (isNullOrEmpty(secretMap[appId]))
-                error = "secretKey was null or empty";
+                error = "no matching secret for appId";
             else if (isNullOrEmpty(appVersion))
                 error = "appVersion was null or empty";
             

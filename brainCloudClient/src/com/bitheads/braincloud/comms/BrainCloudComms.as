@@ -133,6 +133,9 @@ package com.bitheads.braincloud.comms
             _appId = appId;
             _secret = secret;
             _url = serverUrl;
+
+            //update the secretMap
+            _secretMap[_appId] = _secret;
         }
         
         public function initializeWithApps(appId:String, secretMap:Dictionary, serverUrl:String):void
@@ -431,21 +434,14 @@ package com.bitheads.braincloud.comms
                     }
                     if (data.switchToAppId != null)
                     {
+                        _fnDebugOutput("Current secret: " + _secret);
                         _fnDebugOutput("Current appId: " + _appId);
                         _appId = data["switchToAppId"];
                         _fnDebugOutput("Changing to appId: " + _appId);
 
-                        _secret = "MISSING"
-                        for(var key:String in _secretMap)
-                        {
-                            if(key == _appId)
-                            {
-                                _secret = _secretMap[_appId];
-                                _fnDebugOutput("found: " + key);
-                                _fnDebugOutput("secret: " + _secret);
-                                break;
-                            }
-                        }
+                        _secret = _secretMap[_appId];
+                        _fnDebugOutput("found: " + _appId);
+                        _fnDebugOutput("secret: " + _secret);
                     }
                 }
 
