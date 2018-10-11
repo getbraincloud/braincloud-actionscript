@@ -31,8 +31,13 @@ public class Main extends Sprite
     {
 		trace("Main");
 		
+		SECRET_MAP = new Dictionary;
+		SECRET_MAP[APP_ID] = SECRET;
+
 		bc = new BrainCloudClient();
-		bc.initialize(APP_ID, SECRET, APP_VERSION);
+		
+		//bc.initialize(APP_ID, SECRET, APP_VERSION);
+		bc.initializeWithApps(APP_ID, SECRET_MAP, APP_VERSION);
 		
 		bc.authenticationService.anonymousId = bc.authenticationService.generateAnonymousId();
 		

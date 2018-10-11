@@ -142,7 +142,7 @@ package com.bitheads.braincloud.comms
             {
                 delete _secretMap[key];
             }
-            //update the
+            //update the secret
             _secretMap = secretMap;
 
             initialize(appId, _secretMap[appId], serverUrl);
@@ -429,25 +429,24 @@ package com.bitheads.braincloud.comms
                     {
                         _profileId = data.profileId;
                     }
-                    // if (data.switchToAppId != null)
-                    // {
-                    //     //_appId = data.parse("switchToAppId");
-                    //     //_appId = data.stringify("switchToAppId");
-                    //     //_appId = data.get("switchToAppId", "").stringify;
-                    //     //var decodedJson:Object = JSON.decode(data); 
-                    //     //_appId = data.switchToAppId.toString();
-                        
+                    if (data.switchToAppId != null)
+                    {
+                        _fnDebugOutput("Current appId: " + _appId);
+                        _appId = data["switchToAppId"];
+                        _fnDebugOutput("Changing to appId: " + _appId);
 
-                    //     // _secret = "MISSING"
-                    //     // for(var key:String in _secretMap)
-                    //     // {
-                    //     //     if(key == _appId)
-                    //     //     {
-                    //     //         _secret = _secretMap[_appId];
-                    //     //         break;
-                    //     //     }
-                    //     // }
-                    // }
+                        _secret = "MISSING"
+                        for(var key:String in _secretMap)
+                        {
+                            if(key == _appId)
+                            {
+                                _secret = _secretMap[_appId];
+                                _fnDebugOutput("found: " + key);
+                                _fnDebugOutput("secret: " + _secret);
+                                break;
+                            }
+                        }
+                    }
                 }
 
                 if (serverCall.getServiceName() == ServiceName.Authenticate)

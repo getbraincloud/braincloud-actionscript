@@ -20,7 +20,7 @@ package
     {
         public var APP_ID:String = "20001";
         public var SECRET:String = "4e51b45c-030e-4f21-8457-dc53c9a0ed5f";
-        public var CHILD_SECRET:String = "";
+        public var CHILD_SECRET:String = "f8cec1cf-2f95-4989-910c-8caf598f83db";
         public var APP_VERSION:String = "1.0.0";
         public var SERVER_URL:String = "https://internal.braincloudservers.com/dispatcherv2";
         public var PARENT_LEVEL_NAME:String = "Master";
