@@ -8,6 +8,7 @@ package
 
     import com.bitheads.braincloud.BrainCloudClient;
 
+    import IdentityTest;
     import CommsTest;
     import GroupTest;
     import ChatTest;
@@ -43,7 +44,7 @@ package
             loadIds();
             
             // ChatTest.createTests(m_tests); // we don't officially support RTT features in AS3
-
+            IdentityTest.createTests(m_tests);
             GroupTest.createTests(m_tests);
             CommsTest.createTests(m_tests);
             DivisionTest.createTests(m_tests);
