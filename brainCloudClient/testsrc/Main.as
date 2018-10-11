@@ -10,6 +10,7 @@ import flash.filesystem.File;
 import flash.filesystem.FileMode;
 import flash.filesystem.FileStream;
 import flash.utils.Timer;
+import flash.utils.Dictionary;
 
 /**
  * ...
@@ -21,6 +22,8 @@ public class Main extends Sprite
     public var APP_ID:String = "";	// Add your App Id
     public var SECRET:String = "";	// And your App Secret
     public var APP_VERSION:String = "1.0";
+
+	public var SECRET_MAP:Dictionary;
  
 	var bc:BrainCloudClient;
 	

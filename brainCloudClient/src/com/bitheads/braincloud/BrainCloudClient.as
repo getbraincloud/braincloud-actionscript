@@ -151,7 +151,7 @@ package com.bitheads.braincloud
          * @param secretMap a map of <appId, secretKey>
          * @param appVersion The app version
          */
-        public function initializeWithApps(appId:String, appVersion:String, secretMap:Dictionary, serverUrl:String = DEFAULT_SERVER_URL):void
+        public function initializeWithApps(appId:String, secretMap:Dictionary, appVersion:String, serverUrl:String = DEFAULT_SERVER_URL):void
         {
             var error:String = null;            
             if (isNullOrEmpty(serverUrl))

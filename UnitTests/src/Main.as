@@ -4,6 +4,7 @@ package
     import flash.events.Event;
     import flash.events.TimerEvent;
     import flash.utils.Timer;
+    import flash.utils.Dictionary;
     import flash.system.fscommand;
 
     import com.bitheads.braincloud.BrainCloudClient;
@@ -19,11 +20,13 @@ package
     {
         public var APP_ID:String = "20001";
         public var SECRET:String = "4e51b45c-030e-4f21-8457-dc53c9a0ed5f";
+        public var CHILD_SECRET:String = "";
         public var APP_VERSION:String = "1.0.0";
         public var SERVER_URL:String = "https://internal.braincloudservers.com/dispatcherv2";
         public var PARENT_LEVEL_NAME:String = "Master";
         public var CHILD_APP_ID:String = "20005";
         public var PEER_NAME:String = "peerapp";
+        public var SECRET_MAP:Dictionary;
 
         private var m_tests:Array = new Array();
         private var m_failedTests:Array = new Array();
@@ -50,9 +53,14 @@ package
             //DivisionTest.createTests(m_tests);
             //VirtualCurrencyTest.createTests(m_tests);
             //AppStoreTest.createTests(m_tests);
-           // LeaderboardTest.createTests(m_tests);
-                
-            BrainCloudClient.instance.initialize(APP_ID, SECRET, APP_VERSION, SERVER_URL);
+            //LeaderboardTest.createTests(m_tests);
+            
+            SECRET_MAP = new Dictionary();
+            SECRET_MAP[APP_ID] = SECRET;
+            SECRET_MAP[CHILD_APP_ID] = CHILD_SECRET;
+
+            //BrainCloudClient.instance.initialize(APP_ID, SECRET, APP_VERSION, SERVER_URL);
+            BrainCloudClient.instance.initializeWithApps(APP_ID, SECRET_MAP, APP_VERSION, SERVER_URL);
 
             var timer:Timer = new Timer(10, 0)
             timer.addEventListener(TimerEvent.TIMER, onTimer);
@@ -68,6 +76,7 @@ package
             trace("IDS:");
             trace("  APP_ID = " + APP_ID);
             trace("  SECRET = " + SECRET);
+            trace("  CHILD_SECRET = " + CHILD_SECRET);
             trace("  APP_VERSION = " + APP_VERSION);
             trace("  SERVER_URL = " + SERVER_URL);
             trace("  PARENT_LEVEL_NAME = " + PARENT_LEVEL_NAME);
