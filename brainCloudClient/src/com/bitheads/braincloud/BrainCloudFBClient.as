@@ -34,8 +34,9 @@ package com.bitheads.braincloud
         public static const INVENTORY_TYPE_FACEBOOK:String = "facebook";
         public static const INVENTORY_TYPE_ITUNES:String = "itunes";
         
+        public static const AUTH_TYPE_ANONYMOUS : String = "Anonymous";
         public static const AUTH_TYPE_FACEBOOK : String = "Facebook";
-        public static const AUTH_TYPE_STUBBED : String = "Universal";
+        public static const AUTH_TYPE_UNIVERSAL : String = "Universal";
         
         public var FACEBOOK_APP_ID : String;
         public var GAME_ID : String;
@@ -55,6 +56,11 @@ package com.bitheads.braincloud
         protected var m_loginOptions:Object;
         
         protected var m_authenticationType : String;
+		
+		public function getAuthType():String
+		{
+			return m_authenticationType;
+		}
         
         /**
          * 
@@ -73,7 +79,7 @@ package com.bitheads.braincloud
             
             // Braincloud authentication is stubbed by default unless we manage to successfully 
             // initialize facebook
-            m_authenticationType = BrainCloudFBClient.AUTH_TYPE_STUBBED;
+            m_authenticationType = BrainCloudFBClient.AUTH_TYPE_ANONYMOUS;
         }
         
         /**
@@ -327,7 +333,7 @@ package com.bitheads.braincloud
         
         public function retrieveListOfFriends( in_callBackFunction:Function):void
         {
-            if (m_authenticationType != BrainCloudFBClient.AUTH_TYPE_STUBBED) 
+            if (m_authenticationType == BrainCloudFBClient.AUTH_TYPE_FACEBOOK) 
 			{ 
 				var _query:String = "/me/friends?fields=id,name,installed,games,picture&limit=50&"; 
 				Facebook.api(_query, in_callBackFunction, {"access_token": _currentFBAuthResponse.accessToken}); 
@@ -336,7 +342,7 @@ package com.bitheads.braincloud
         
         public function retrieveListOfInvitableFriends( in_callBackFunction:Function):void
         {
-            if (m_authenticationType != BrainCloudFBClient.AUTH_TYPE_STUBBED) 
+            if (m_authenticationType == BrainCloudFBClient.AUTH_TYPE_FACEBOOK) 
 			{ 
 				var _queryInvitable:String = "/me/friends?fields=id,name,installed,games,picture&limit=50&"; 
 				Facebook.api(_queryInvitable, in_callBackFunction, {"access_token": _currentFBAuthResponse.accessToken}); 
