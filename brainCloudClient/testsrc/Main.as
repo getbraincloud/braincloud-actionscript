@@ -10,7 +10,6 @@ import flash.filesystem.File;
 import flash.filesystem.FileMode;
 import flash.filesystem.FileStream;
 import flash.utils.Timer;
-import flash.utils.Dictionary;
 
 /**
  * ...
