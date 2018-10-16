@@ -30,7 +30,6 @@ public class Main extends Sprite
 
 		bc = new BrainCloudClient();
 		
-		//bc.initialize(APP_ID, SECRET, APP_VERSION);
 		bc.initialize(APP_ID, SECRET, APP_VERSION);
 		
 		bc.authenticationService.anonymousId = bc.authenticationService.generateAnonymousId();

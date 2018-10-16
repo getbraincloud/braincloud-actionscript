@@ -46,20 +46,19 @@ package
 
             loadIds();
             
-            // ChatTest.createTests(m_tests); // we don't officially support RTT features in AS3
+            ChatTest.createTests(m_tests); // we don't officially support RTT features in AS3
             IdentityTest.createTests(m_tests);
-            //GroupTest.createTests(m_tests);
-            //CommsTest.createTests(m_tests);
-            //DivisionTest.createTests(m_tests);
-            //VirtualCurrencyTest.createTests(m_tests);
-            //AppStoreTest.createTests(m_tests);
-            //LeaderboardTest.createTests(m_tests);
+            GroupTest.createTests(m_tests);
+            CommsTest.createTests(m_tests);
+            DivisionTest.createTests(m_tests);
+            VirtualCurrencyTest.createTests(m_tests);
+            AppStoreTest.createTests(m_tests);
+            LeaderboardTest.createTests(m_tests);
             
             SECRET_MAP = new Dictionary();
             SECRET_MAP[APP_ID] = SECRET;
             SECRET_MAP[CHILD_APP_ID] = CHILD_SECRET;
 
-            //BrainCloudClient.instance.initialize(APP_ID, SECRET, APP_VERSION, SERVER_URL);
             BrainCloudClient.instance.initializeWithApps(APP_ID, SECRET_MAP, APP_VERSION, SERVER_URL);
 
             var timer:Timer = new Timer(10, 0)
