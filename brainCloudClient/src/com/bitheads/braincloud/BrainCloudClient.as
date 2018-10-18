@@ -4,8 +4,8 @@ package com.bitheads.braincloud
     import com.bitheads.braincloud.comms.*;
     import com.bitheads.braincloud.services.*;
     import com.bitheads.braincloud.types.Platform;
-    import flash.system.*;
-    
+    import flash.system.*;    
+    import flash.utils.Dictionary;
     
     public class BrainCloudClient
     {
@@ -17,6 +17,7 @@ package com.bitheads.braincloud
         private var _releasePlatform:Platform = Platform.Facebook;
         private var _appVersion:String = "1.0.0";
         private var _appId:String;
+        private var _secretMap:Dictionary;
         private var _countryCode:String;
         private var _languageCode:String;
         private var _timeZoneOffset:Number;        
@@ -62,7 +63,7 @@ package com.bitheads.braincloud
             else
             {
                 _comms = new BrainCloudComms(this);
-                
+
                 _asyncMatchService = new BrainCloudAsyncMatch(this);
                 _authenticationService = new BrainCloudAuthentication(this);
                 _chatService = new BrainCloudChat(this);
@@ -134,12 +135,46 @@ package com.bitheads.braincloud
                 trace(error);
                 return;
             }
-            
+
             _appId = appId;
             _appVersion = appVersion;
             _comms.initialize(appId, secretKey, serverUrl);
         }
         
+        /**
+         * Method initializes the BrainCloudClient with multiple app/secret.
+         * Used when needed to switch between child and parent apps.
+         *
+         * @param serverURL The url to the brainCloud server
+         *     Currently this should be:  https://sharedprod.braincloudservers.com/dispatcherv2
+         * @param appId The app id
+         * @param secretMap a map of <appId, secretKey>
+         * @param appVersion The app version
+         */
+        public function initializeWithApps(appId:String, secretMap:Dictionary, appVersion:String, serverUrl:String = DEFAULT_SERVER_URL):void
+        {
+            var error:String = null;            
+            if (isNullOrEmpty(serverUrl))
+                error = "serverUrl was null or empty";
+            else if (isNullOrEmpty(appId))
+                error = "appId was null or empty";
+            else if (isNullOrEmpty(secretMap[appId]))
+                error = "no matching secret for appId";
+            else if (isNullOrEmpty(appVersion))
+                error = "appVersion was null or empty";
+            
+            if (error != null) {
+                trace(error);
+                return;
+            }
+
+            _appId = appId;
+            _appVersion = appVersion;
+            _secretMap = secretMap;
+
+            _comms.initializeWithApps(appId, secretMap, serverUrl);
+        }
+
         private function isNullOrEmpty(str:String):Boolean
         {
             return str == null || str == "";
