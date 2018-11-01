@@ -27,8 +27,9 @@ public class Main extends Sprite
     public function Main()
     {
 		trace("Main");
-		
+
 		bc = new BrainCloudClient();
+		
 		bc.initialize(APP_ID, SECRET, APP_VERSION);
 		
 		bc.authenticationService.anonymousId = bc.authenticationService.generateAnonymousId();
