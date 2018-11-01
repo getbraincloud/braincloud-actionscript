@@ -21,6 +21,7 @@ package com.bitheads.braincloud
         public static const Leaderboard:String = "leaderboard";
         public static const Mail:String = "mail";
         public static const MatchMaking:String = "matchMaking";
+        public static const Messaging:String = "messaging";
         public static const OneWayMatch:String = "onewayMatch";
         public static const PlaybackStream:String = "playbackStream";
         public static const PlayerState:String = "playerState";

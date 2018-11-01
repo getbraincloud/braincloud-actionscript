@@ -15,6 +15,7 @@ package
     import ChatTest;
     import VirtualCurrencyTest;
     import LeaderboardTest;
+    import MessagingTest;
     
     public class Main extends Sprite 
     {
@@ -47,6 +48,7 @@ package
             loadIds();
             
             //ChatTest.createTests(m_tests); // we don't officially support RTT features in AS3
+            MessagingTest.createTests(m_tests);
             IdentityTest.createTests(m_tests);
             GroupTest.createTests(m_tests);
             CommsTest.createTests(m_tests);
@@ -54,6 +56,7 @@ package
             VirtualCurrencyTest.createTests(m_tests);
             AppStoreTest.createTests(m_tests);
             LeaderboardTest.createTests(m_tests);
+            
             
             SECRET_MAP = new Dictionary();
             SECRET_MAP[APP_ID] = SECRET;

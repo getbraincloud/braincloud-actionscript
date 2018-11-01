@@ -37,6 +37,7 @@ package com.bitheads.braincloud
         private var _identityService:BrainCloudIdentity;
         private var _leaderboardService:BrainCloudLeaderboard;
         private var _mailService:BrainCloudMail;
+        private var _messagingService:BrainCloudMessaging;
         private var _matchMakingService:BrainCloudMatchMaking;
         private var _oneWayMatchService:BrainCloudOneWayMatch;
         private var _playbackStreamService:BrainCloudPlaybackStream;
@@ -78,6 +79,7 @@ package com.bitheads.braincloud
                 _identityService = new BrainCloudIdentity(this);
                 _leaderboardService = new BrainCloudLeaderboard(this);
                 _mailService = new BrainCloudMail(this);
+                _messagingService = new BrainCloudMessaging(this);
                 _matchMakingService = new BrainCloudMatchMaking(this);
                 _oneWayMatchService = new BrainCloudOneWayMatch(this);
                 _playbackStreamService = new BrainCloudPlaybackStream(this);
@@ -545,6 +547,11 @@ package com.bitheads.braincloud
         public function get mailService():BrainCloudMail
         {
             return _mailService;
+        }
+
+        public function get messagingService():BrainCloudMessaging
+        {
+            return _messagingService;
         }
         
         public function get matchMakingService():BrainCloudMatchMaking
