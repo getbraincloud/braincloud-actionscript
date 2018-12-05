@@ -11,6 +11,7 @@ package com.bitheads.braincloud.types
         public static const Google:AuthenticationType = new AuthenticationType("Google");
         public static const Twitter:AuthenticationType = new AuthenticationType("Twitter");
         public static const Parse:AuthenticationType = new AuthenticationType("Parse");
+        public static const Handoff:AuthenticationType = new AuthenticationType("Handoff");
         public static const External:AuthenticationType = new AuthenticationType("External");
         public static const Unknown:AuthenticationType = new AuthenticationType("Unknown");
         
