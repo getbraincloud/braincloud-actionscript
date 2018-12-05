@@ -341,5 +341,16 @@ package com.bitheads.braincloud
         public static const GetSubscribedChannels:String = "GET_SUBSCRIBED_CHANNELS";
         public static const PostChatMessage:String = "POST_CHAT_MESSAGE";
         public static const UpdateChatMessage:String = "UPDATE_CHAT_MESSAGE";
+
+        //Messaging 
+        public static const DeleteMessages:String = "DELETE_MESSAGES";
+        public static const GetMessageBoxes:String = "GET_MESSAGE_BOXES";
+        public static const GetMessageCounts:String = "GET_MESSAGE_COUNTS";
+        public static const GetMessages:String = "GET_MESSAGES";
+        public static const GetMessagesPage:String = "GET_MESSAGES_PAGE";
+        public static const GetMessagesPageOffset:String = "GET_MESSAGES_PAGE_OFFSET";
+        public static const SendMessage:String = "SEND_MESSAGE";
+        public static const SendMessageSimple:String = "SEND_MESSAGE_SIMPLE";
+        public static const MarkMessagesRead:String = "MARK_MESSAGES_READ";
     }
 }
