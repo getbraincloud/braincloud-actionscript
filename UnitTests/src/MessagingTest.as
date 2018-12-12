@@ -150,7 +150,7 @@ package
                 var id:String = "id";
                 var msgId:Array = new Array(id);
 
-                BrainCloudClient.instance.messagingService.markMessagesRead("inbox", msgId,
+                BrainCloudClient.instance.messagingService.markMessagesRead("inbox", msgId, true,
                     function(result:Object, cb:Object):void
                     {
                         if (result.status != 200)

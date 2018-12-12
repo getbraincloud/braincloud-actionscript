@@ -199,11 +199,12 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function markMessagesRead(msgBox:String, msgIds:Array, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function markMessagesRead(msgBox:String, msgIds:Array, markAsRead:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
                 "msgbox": msgBox,
-                "msgIds": msgIds
+                "msgIds": msgIds,
+                "markAsRead": markAsRead
             };
             
             var serverCall:ServerCall = new ServerCall(ServiceName.Messaging, ServiceOperation.MarkMessagesRead, data, successCallback, errorCallback, cbObject);

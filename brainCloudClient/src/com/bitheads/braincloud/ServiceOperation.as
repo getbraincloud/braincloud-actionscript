@@ -9,6 +9,7 @@ package com.bitheads.braincloud
         public static const Merge:String = "MERGE";
         public static const Detach:String = "DETACH";
         public static const ResetEmailPassword:String = "RESET_EMAIL_PASSWORD";
+        public static const ResetEmailPasswordAdvanced:String = "RESET_EMAIL_PASSWORD_ADVANCED";
         public static const SwitchToChildProfile:String = "SWITCH_TO_CHILD_PROFILE";
         public static const SwitchToParentProfile:String = "SWITCH_TO_PARENT_PROFILE";
         public static const GetChildProfiles:String = "GET_CHILD_PROFILES";
