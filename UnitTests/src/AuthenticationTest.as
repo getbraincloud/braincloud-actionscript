@@ -31,23 +31,9 @@ package
 
             tests.push(new Test("ResetEmailPasswordAdvanced", Test.setUpWithAuthenticate, Test.tearDownLogout, function(success:Function, fail:Function):void
             {
-                var testMap:Object = new Object(); 
-                testMap["fromAddress"] = "fromAddress";
-                testMap["fromName"] = "fromName";
-                testMap["replyName"] = "replyName"; 
-                testMap["templateId"] = "8f14c77d-61f4-4966-ab6d-0bee8b13d090";
-                testMap["subject"] = "subject"; 
-                testMap["body"] = "body here"; 
-                var substitutions:Object = new Object(); 
-                substitutions[":name"] = "John Doe"; 
-                substitutions[":resetLink"] = "www.dummyLink.io"; 
-                testMap["substitutions"] = substitutions; 
-                var categories:Object = new Object(); 
-                categories[0] = "category1"; 
-                categories[1] = "category2"; 
-                testMap["categories"] = categories; 
-                
-                BrainCloudClient.instance.authenticationService.resetEmailPasswordAdvanced("braincloudunittest@gmail.com", testMap,
+                var content:String = "{\"fromAddress\": \"fromAddress\",\"fromName\": \"fromName\",\"replyToAddress\": \"replyToAddress\",\"replyToName\": \"replyToName\", \"templateId\": \"8f14c77d-61f4-4966-ab6d-0bee8b13d090\",\"subject\": \"subject\",\"body\": \"Body goes here\", \"substitutions\": { \":name\": \"John Doe\",\":resetLink\": \"www.dummuyLink.io\"}, \"categories\": [\"category1\",\"category2\" ]}";
+
+                BrainCloudClient.instance.authenticationService.resetEmailPasswordAdvanced("braincloudunittest@gmail.com", content,
                     function(result:Object, cb:Object):void
                     {
                         fail("Expected faillure");

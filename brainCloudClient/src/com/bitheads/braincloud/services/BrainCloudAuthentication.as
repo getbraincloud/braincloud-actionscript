@@ -320,12 +320,13 @@ package com.bitheads.braincloud.services
          *
          * SECURITY_ERROR (40209) - If the email address cannot be found.
          */
-        public function resetEmailPasswordAdvanced(emailAddress:String, serviceParams:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function resetEmailPasswordAdvanced(emailAddress:String, serviceParams:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
+            var content: Object = JSON.parse(serviceParams);
             var data:Object = {
                 "gameId": Client.appId,  
                 "emailAddress": emailAddress,
-                "serviceParams": serviceParams               
+                "serviceParams": content               
             };        
             
             var serverCall:ServerCall = new ServerCall(ServiceName.Authenticate, ServiceOperation.ResetEmailPasswordAdvanced, data, successCallback, errorCallback, cbObject);
