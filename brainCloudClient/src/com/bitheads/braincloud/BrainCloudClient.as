@@ -35,6 +35,7 @@ package com.bitheads.braincloud
         private var _globalStats:BrainCloudGlobalStatistics;      
         private var _groupService:BrainCloudGroup;
         private var _identityService:BrainCloudIdentity;
+        private var _friendService:BrainCloudFriend;
         private var _leaderboardService:BrainCloudLeaderboard;
         private var _mailService:BrainCloudMail;
         private var _messagingService:BrainCloudMessaging;
@@ -77,6 +78,7 @@ package com.bitheads.braincloud
                 _globalStats = new BrainCloudGlobalStatistics(this);
                 _groupService = new BrainCloudGroup(this);
                 _identityService = new BrainCloudIdentity(this);
+                _friendService = new BrainCloudFriend(this);
                 _leaderboardService = new BrainCloudLeaderboard(this);
                 _mailService = new BrainCloudMail(this);
                 _messagingService = new BrainCloudMessaging(this);
@@ -537,6 +539,11 @@ package com.bitheads.braincloud
         public function get identityService():BrainCloudIdentity
         {
             return _identityService;
+        }
+
+        public function get friendService():BrainCloudFriend
+        {
+            return _friendService;
         }
         
         public function get leaderboardService():BrainCloudLeaderboard

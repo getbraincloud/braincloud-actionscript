@@ -80,6 +80,9 @@ package com.bitheads.braincloud
         public static const ReadFriendsPlayerState:String = "READ_FRIEND_PLAYER_STATE";
         public static const FindPlayerByName:String = "FIND_PLAYER_BY_NAME";
         public static const FindUsersByExactName:String = "FIND_USERS_BY_EXACT_NAME";
+        public static const FindUserByExactUniversalId:String = "FIND_USER_BY_EXACT_UNIVERSAL_ID";
+        public static const FindUsersByUniversalIdStartingWith:String = "FIND_USERS_BY_UNIVERSAL_ID_STARTING_WITH";
+        public static const FindUsersByNameStartingWith:String = "FIND_USERS_BY_NAME_STARTING_WITH";
         public static const FindUsersBySubstrName:String = "FIND_USERS_BY_SUBSTR_NAME";
         public static const FindUsersByUserSummary:String = "FIND_USERS_BY_USER_SUMMARY";
         public static const ListFriends:String = "LIST_FRIENDS";
