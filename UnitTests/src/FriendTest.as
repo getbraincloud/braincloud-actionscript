@@ -6,9 +6,9 @@ package
     {
         public static function createTests(tests:Array):void
         {
-            tests.push(new Test("getCurrency", Test.setUpWithAuthenticate, Test.tearDownLogout, function(success:Function, fail:Function):void
+            tests.push(new Test("findUserByExactUniversalId", Test.setUpWithAuthenticate, Test.tearDownLogout, function(success:Function, fail:Function):void
             {
-                BrainCloudClient.instance.virtualCurrencyService.getCurrency("_invalid_id_",
+                BrainCloudClient.instance.friendService.findUserByExactUniversalId("randomUniversalId",
                     function(result:Object, cb:Object):void
                     {
                         if (result.status != 200)
@@ -20,48 +20,32 @@ package
                     }, fail);
             }));
 
-            tests.push(new Test("getParentCurrency", Test.setUpWithAuthenticate, Test.tearDownLogout, function(success:Function, fail:Function):void
+            tests.push(new Test("findUsersByUniversalIdStartingWith", Test.setUpWithAuthenticate, Test.tearDownLogout, function(success:Function, fail:Function):void
             {
-                BrainCloudClient.instance.virtualCurrencyService.getParentCurrency("_invalid_id_", "_invalid_level_",
+                BrainCloudClient.instance.friendService.findUsersByUniversalIdStartingWith("randomUniversalId", 30,
                     function(result:Object, cb:Object):void
                     {
-                        fail("Expected failure");
-                    }, function(statusCode:int, reasonCode:int, result:Object, cb:Object):void
-                    {
-                        if (statusCode != StatusCodes.BAD_REQUEST)
+                        if (result.status != 200)
                         {
-                            fail("statusCode != BAD_REQUEST");
-                            return;
-                        }
-                        if (reasonCode != ReasonCodes.MISSING_PLAYER_PARENT)
-                        {
-                            fail("reasonCode != MISSING_PLAYER_PARENT");
+                            fail("json.status != 200");
                             return;
                         }
                         success();
-                    });
+                    }, fail);
             }));
 
-            tests.push(new Test("getPeerCurrency", Test.setUpWithAuthenticate, Test.tearDownLogout, function(success:Function, fail:Function):void
+            tests.push(new Test("findUsersByNameStartingWith", Test.setUpWithAuthenticate, Test.tearDownLogout, function(success:Function, fail:Function):void
             {
-                BrainCloudClient.instance.virtualCurrencyService.getPeerCurrency("_invalid_id_", "_invalid_peer_code_",
+                BrainCloudClient.instance.friendService.findUsersByNameStartingWith("randomName", 30,
                     function(result:Object, cb:Object):void
                     {
-                        fail("Expected failure");
-                    }, function(statusCode:int, reasonCode:int, result:Object, cb:Object):void
-                    {
-                        if (statusCode != StatusCodes.BAD_REQUEST)
+                        if (result.status != 200)
                         {
-                            fail("statusCode != BAD_REQUEST");
-                            return;
-                        }
-                        if (reasonCode != ReasonCodes.PROFILE_PEER_NOT_FOUND)
-                        {
-                            fail("reasonCode != PROFILE_PEER_NOT_FOUND");
+                            fail("json.status != 200");
                             return;
                         }
                         success();
-                    });
+                    }, fail);
             }));
         }
     }
