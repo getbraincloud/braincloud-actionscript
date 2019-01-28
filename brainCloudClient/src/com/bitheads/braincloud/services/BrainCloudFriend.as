@@ -36,8 +36,9 @@ package com.bitheads.braincloud.services
             var serverCall:ServerCall = new ServerCall(ServiceName.Friend, ServiceOperation.AddFriends, data, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
         }
-        
+
         /**
+         * @deprecated : use findUserByExactUniversalId
          * Retrieves profile information for the partial matches of the specified text.
          *
          * @param searchText Universal ID text on which to search.
@@ -54,6 +55,64 @@ package com.bitheads.braincloud.services
             };        
             
             var serverCall:ServerCall = new ServerCall(ServiceName.Friend, ServiceOperation.FindPlayerByUniversalId, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+
+        /**
+         * Retrieves profile information for the Universal Id based on the search text.
+         *
+         * @param searchText Universal ID text on which to search.
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function findUserByExactUniversalId(searchText:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "searchText": searchText
+            };        
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Friend, ServiceOperation.FindUserByExactUniversalId, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+
+        /**
+         * Retrieves profile information for the partial matches of the specified text based on UniversalId.
+         *
+         * @param searchText Universal ID text on which to search.
+         * @param maxResults Maximum number of results to return.
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function findUsersByUniversalIdStartingWith(searchText:String, maxResults:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "searchText": searchText,
+                "maxResults": maxResults
+            };        
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Friend, ServiceOperation.FindUsersByUniversalIdStartingWith, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+
+        /**
+         * Retrieves profile information for the partial matches of the specified text based on UniversalId.
+         *
+         * @param searchText Universal ID text on which to search.
+         * @param maxResults Maximum number of results to return.
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function findUsersByNameStartingWith(searchText:String, maxResults:uint, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "searchText": searchText,
+                "maxResults": maxResults
+            };        
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Friend, ServiceOperation.FindUsersByNameStartingWith, data, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
         }
         

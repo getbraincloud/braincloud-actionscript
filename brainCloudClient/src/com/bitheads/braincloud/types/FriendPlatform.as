@@ -3,10 +3,10 @@ package com.bitheads.braincloud.types
     import com.bitheads.braincloud.types.Platform;
     public class FriendPlatform 
     {    
-        public static const All:FriendPlatform = new Platform("All");
-        public static const BrainCloud:FriendPlatform = new Platform("brainCloud");
-        public static const Facebook:FriendPlatform = new Platform("Facebook");
-        public static const Unknown:FriendPlatform = new Platform("UNKNOWN");
+        public static const All:FriendPlatform = new FriendPlatform("All");
+        public static const BrainCloud:FriendPlatform = new FriendPlatform("brainCloud");
+        public static const Facebook:FriendPlatform = new FriendPlatform("Facebook");
+        public static const Unknown:FriendPlatform = new FriendPlatform("UNKNOWN");
                 
         private var _name:String;
         
