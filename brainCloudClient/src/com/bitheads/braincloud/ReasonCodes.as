@@ -106,8 +106,8 @@ package com.bitheads.braincloud
         public static const MISSING_PLAYER_ID:int = 40382;
         public static const DECODE_CONTEXT:int = 40383;
         public static const INVALID_QUERY_CONTEXT:int = 40384;
-        public static const GROUP_MEMBER_NOT_FOUND:int = 40385;
         public static const INVALID_AMOUNT:int = 40385;
+        public static const GROUP_MEMBER_NOT_FOUND:int = 40385;
         public static const INVALID_SORT:int = 40386;
         public static const GAME_NOT_FOUND:int = 40387;
         public static const GAMES_NOT_IN_SAME_COMPANY:int = 40388;
@@ -395,6 +395,15 @@ package com.bitheads.braincloud
         public static const BASIC_AUTH_FAILURE:int = 550013;
         public static const MONGO_DB_EXCEPTION:int = 600001;
         public static const CONCURRENT_LOCK_ERROR:int = 600002;
+        public static const RTT_LEFT_BY_CHOICE:int = 80000;
+        public static const RTT_EVICTED:int = 80001;
+        public static const RTT_LOST_CONNECTION:int = 80002;
+        public static const RTT_TIMEOUT:int = 80100;
+        public static const RTT_ROOM_READY:int = 80101;
+        public static const RTT_ROOM_CANCELLED:int = 80102;
+        public static const RTT_ERROR_ASSIGNING_ROOM:int = 80103;
+        public static const RTT_ERROR_LAUNCHING_ROOM:int = 80104;
+        public static const RTT_NO_LOBBIES_FOUND:int = 80200;
         public static const CLIENT_NETWORK_ERROR_TIMEOUT:int = 90001;
         public static const CLIENT_UPLOAD_FILE_CANCELLED:int = 90100;
         public static const CLIENT_UPLOAD_FILE_TIMED_OUT:int = 90101;
