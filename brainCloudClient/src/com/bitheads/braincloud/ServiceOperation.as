@@ -9,6 +9,7 @@ package com.bitheads.braincloud
         public static const Merge:String = "MERGE";
         public static const Detach:String = "DETACH";
         public static const ResetEmailPassword:String = "RESET_EMAIL_PASSWORD";
+        public static const ResetEmailPasswordAdvanced:String = "RESET_EMAIL_PASSWORD_ADVANCED";
         public static const SwitchToChildProfile:String = "SWITCH_TO_CHILD_PROFILE";
         public static const SwitchToParentProfile:String = "SWITCH_TO_PARENT_PROFILE";
         public static const GetChildProfiles:String = "GET_CHILD_PROFILES";
@@ -79,6 +80,9 @@ package com.bitheads.braincloud
         public static const ReadFriendsPlayerState:String = "READ_FRIEND_PLAYER_STATE";
         public static const FindPlayerByName:String = "FIND_PLAYER_BY_NAME";
         public static const FindUsersByExactName:String = "FIND_USERS_BY_EXACT_NAME";
+        public static const FindUserByExactUniversalId:String = "FIND_USER_BY_EXACT_UNIVERSAL_ID";
+        public static const FindUsersByUniversalIdStartingWith:String = "FIND_USERS_BY_UNIVERSAL_ID_STARTING_WITH";
+        public static const FindUsersByNameStartingWith:String = "FIND_USERS_BY_NAME_STARTING_WITH";
         public static const FindUsersBySubstrName:String = "FIND_USERS_BY_SUBSTR_NAME";
         public static const FindUsersByUserSummary:String = "FIND_USERS_BY_USER_SUMMARY";
         public static const ListFriends:String = "LIST_FRIENDS";

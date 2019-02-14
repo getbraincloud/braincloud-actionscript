@@ -309,7 +309,7 @@ package com.bitheads.braincloud.comms
                     _serviceCallsInProgress.push(call);
                     _serviceCallsWaiting.splice(i, 1);
                     
-                    if (call.getOperation() === ServiceOperation.Authenticate || call.getOperation() === ServiceOperation.ResetEmailPassword)
+                    if (call.getOperation() === ServiceOperation.Authenticate || call.getOperation() === ServiceOperation.ResetEmailPassword ||call.getOperation() === ServiceOperation.ResetEmailPasswordAdvanced)
                         _isAuthenticating = true;
                     
                     jsonMessageList.push(call.getJsonData());

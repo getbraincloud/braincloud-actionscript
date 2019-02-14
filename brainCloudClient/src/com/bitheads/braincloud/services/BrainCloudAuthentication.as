@@ -4,6 +4,7 @@ package com.bitheads.braincloud.services
     import com.bitheads.braincloud.ServiceOperation;
     import com.bitheads.braincloud.ServerCall;
     import com.bitheads.braincloud.types.AuthenticationType;
+    import flash.utils.Dictionary;
     
     import com.bitheads.braincloud.BrainCloudClient;
     
@@ -298,6 +299,37 @@ package com.bitheads.braincloud.services
             };        
             
             var serverCall:ServerCall = new ServerCall(ServiceName.Authenticate, ServiceOperation.ResetEmailPassword, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+
+        /**
+         * Reset Email password with service parameters - Sends a password reset email to the specified address
+         *
+         * Service Name - Authenticate
+         * Operation - ResetEmailPasswordAdvanced
+         *
+         * @param appId the app id
+         * @param emailAddress The email address to send the reset email to.
+         * @param serviceParams the parameters to send the email service. See doc for full list 
+         * http://getbraincloud.com/apidocs/apiref/#capi-mail
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         *
+         * Note the follow error reason codes:
+         *
+         * SECURITY_ERROR (40209) - If the email address cannot be found.
+         */
+        public function resetEmailPasswordAdvanced(emailAddress:String, serviceParams:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var content: Object = JSON.parse(serviceParams);
+            var data:Object = {
+                "gameId": Client.appId,  
+                "emailAddress": emailAddress,
+                "serviceParams": content               
+            };        
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Authenticate, ServiceOperation.ResetEmailPasswordAdvanced, data, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
         }
         

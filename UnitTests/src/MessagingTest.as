@@ -52,7 +52,7 @@ package
             tests.push(new Test("getMessages", Test.setUpWithAuthenticate, Test.tearDownLogout, function(success:Function, fail:Function):void
             {
                 var arr:Array = new Array("");
-                BrainCloudClient.instance.messagingService.getMessages("inbox", arr,
+                BrainCloudClient.instance.messagingService.getMessages("inbox", arr, true,
                     function(result:Object, cb:Object):void
                     {
                         fail("Expected failure");
