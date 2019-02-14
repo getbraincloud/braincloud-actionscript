@@ -68,8 +68,8 @@ package com.bitheads.braincloud
         public static const ENTITY_VERSION_MISMATCH:int = 40344;
         public static const MISSING_RECORD:int = 40345;
         public static const INSUFFICIENT_PERMISSIONS:int = 40346;
-        public static const MISSING_IN_QUERY:int = 40347;
         public static const INVALID_DATABASE_FIELD_NAME:int = 40347;
+        public static const MISSING_IN_QUERY:int = 40347;
         public static const RECORD_EXPIRED:int = 40348;
         public static const INVALID_WHERE:int = 40349;
         public static const S3_ERROR:int = 40350;
