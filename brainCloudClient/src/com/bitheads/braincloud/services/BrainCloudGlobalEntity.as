@@ -378,6 +378,29 @@ package com.bitheads.braincloud.services
             var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.GetRandomEntitiesMatching, dataObj, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
         }
+
+        /**
+         * Method updates an existing entity's Indexed Id
+         *
+         * Service Name - globalEntity
+         * Service Operation - UPDATE_INDEXED_ID
+         *
+         * @param entityId The entity ID
+         * @param version The version of the entity to update
+         * @param entityIndexedId The id index of the entity
+         * @param cbObject The user object sent to the callback
+         */
+        public function updateEntityIndexedId(entityId:String, version:int, entityIndexedId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "entityId": entityId,
+                "version": version,
+                "entityIndexedId": entityIndexedId
+            };
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.GlobalEntity, ServiceOperation.UpdateEntityIndexedId, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Method updates an existing entity's Owner and ACL on the server.

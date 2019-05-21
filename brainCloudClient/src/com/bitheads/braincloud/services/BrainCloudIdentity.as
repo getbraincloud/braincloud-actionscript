@@ -13,6 +13,48 @@ package com.bitheads.braincloud.services
         {
             super(client);
         }
+
+        /**
+         * Attaches a univeral id to the current profile with no login capability.
+         *
+         * Service Name - identity
+         * Service Operation - ATTACH_NONLOGIN_UNIVERSAL
+         *
+         * @param externalId The users id for the new credentials
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function attachNonLoginUniversalId(externalId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "externalId": externalId        
+            };
+
+            var serverCall:ServerCall = new ServerCall(ServiceName.Identity, ServiceOperation.AttachNonLoginUniversalId, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+
+        /**
+         * Updates univeral id of the current profile.
+         *
+         * Service Name - identity
+         * Service Operation - UPDATE_UNIVERSAL_LOGIN
+         *
+         * @param externalId The users id for the new credentials
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function updateUniversalIdLogin(externalId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "externalId": externalId        
+            };
+
+            var serverCall:ServerCall = new ServerCall(ServiceName.Identity, ServiceOperation.UpdateUniversalIdLogin, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Attach a new identity to the user
