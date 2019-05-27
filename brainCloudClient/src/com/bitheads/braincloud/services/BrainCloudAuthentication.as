@@ -332,6 +332,63 @@ package com.bitheads.braincloud.services
             var serverCall:ServerCall = new ServerCall(ServiceName.Authenticate, ServiceOperation.ResetEmailPasswordAdvanced, data, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
         }
+
+        /**
+         * Reset Universal Id password
+         *
+         * Service Name - Authenticate
+         * Operation - ResetUniversalIdPassword
+         *
+         * @param universalId The email address to send the reset email to.
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         *
+         * Note the follow error reason codes:
+         *
+         * SECURITY_ERROR (40209) - If the email address cannot be found.
+         */
+        public function resetUniversalIdPassword(universalId:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "universalId": universalId,
+                "gameId": Client.appId                 
+            };        
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Authenticate, ServiceOperation.ResetUniversalIdPassword, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+
+        /**
+         * Reset UniversalId password with template options
+         *
+         * Service Name - Authenticate
+         * Operation - ResetUniversalIdPasswordAdvanced
+         *
+         * @param appId the app id
+         * @param universalId The universlaid who's password you want to change
+         * @param serviceParams the parameters to send the email service. See doc for full list 
+         * http://getbraincloud.com/apidocs/apiref/#capi-mail
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         *
+         * Note the follow error reason codes:
+         *
+         * SECURITY_ERROR (40209) - If the email address cannot be found.
+         */
+        public function resetUniversalIdPasswordAdvanced(universalId:String, serviceParams:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var content: Object = JSON.parse(serviceParams);
+            var data:Object = {
+                "gameId": Client.appId,  
+                "universalId": universalId,
+                "serviceParams": content               
+            };        
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Authenticate, ServiceOperation.ResetUniversalIdPasswordAdvanced, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         private function authenticate(
             externalId:String, 
