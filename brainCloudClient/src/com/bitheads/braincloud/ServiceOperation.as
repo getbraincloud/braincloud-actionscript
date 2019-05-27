@@ -10,6 +10,8 @@ package com.bitheads.braincloud
         public static const Detach:String = "DETACH";
         public static const ResetEmailPassword:String = "RESET_EMAIL_PASSWORD";
         public static const ResetEmailPasswordAdvanced:String = "RESET_EMAIL_PASSWORD_ADVANCED";
+        public static const ResetUniversalIdPassword:String = "RESET_UNIVERSAL_ID_PASSWORD";
+        public static const ResetUniversalIdPasswordAdvanced:String = "RESET_UNIVERSAL_ID_PASSWORD_ADVANCED";
         public static const SwitchToChildProfile:String = "SWITCH_TO_CHILD_PROFILE";
         public static const SwitchToParentProfile:String = "SWITCH_TO_PARENT_PROFILE";
         public static const GetChildProfiles:String = "GET_CHILD_PROFILES";
@@ -19,6 +21,8 @@ package com.bitheads.braincloud
         public static const ChangeEmailIdentity:String = "CHANGE_EMAIL_IDENTITY";
         public static const AttachParentWithIdentity:String = "ATTACH_PARENT_WITH_IDENTITY";
         public static const AttachPeerProfile:String = "ATTACH_PEER_PROFILE";
+        public static const AttachNonLoginUniversalId:String = "ATTACH_NONLOGIN_UNIVERSAL";
+        public static const UpdateUniversalIdLogin:String = "UPDATE_UNIVERSAL_LOGIN";
         public static const DetachPeer:String = "DETACH_PEER";
         public static const GetPeerProfiles:String = "GET_PEER_PROFILES";
         public static const DetachParent:String = "DETACH_PARENT";
@@ -241,6 +245,7 @@ package com.bitheads.braincloud
         public static const IncrementGlobalEntityData:String = "INCREMENT_GLOBAL_ENTITY_DATA";
         public static const GetRandomEntitiesMatching:String = "GET_RANDOM_ENTITIES_MATCHING";
         
+        public static const UpdateEntityIndexedId:String = "UPDATE_IDEXED_ID";
         public static const UpdateEntityOwnerAndAcl:String = "UPDATE_ENTITY_OWNER_AND_ACL";
         public static const MakeSystemEntity:String = "MAKE_SYSTEM_ENTITY";
         

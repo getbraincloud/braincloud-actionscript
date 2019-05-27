@@ -422,7 +422,8 @@ package com.bitheads.braincloud.comms
 
                 // A session id or a profile id could potentially come back in any messages
                 //we also want to see if switchToAppId comes back
-                if (data != null)
+                //this should only ever be updated on authentication calls and identity calls. 
+                if (data != null && (serverCall.getServiceName() == ServiceName.Authenticate || serverCall.getServiceName() == ServiceName.Identity))
                 {
                     if (data.sessionId != null)
                     {
