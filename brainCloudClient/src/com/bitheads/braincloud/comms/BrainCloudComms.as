@@ -135,7 +135,8 @@ package com.bitheads.braincloud.comms
             _url = serverUrl;
 
             //update the secretMap
-            _secretMap[_appId] = _secret;
+            _secretMap = new Dictionary();
+            _secretMap[appId] = secret;
         }
         
         public function initializeWithApps(appId:String, secretMap:Dictionary, serverUrl:String):void

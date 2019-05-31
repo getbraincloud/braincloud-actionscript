@@ -142,6 +142,7 @@ package com.bitheads.braincloud
 
             _appId = appId;
             _appVersion = appVersion;
+            
             _comms.initialize(appId, secretKey, serverUrl);
         }
         
