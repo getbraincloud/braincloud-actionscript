@@ -17,6 +17,7 @@ package
     import VirtualCurrencyTest;
     import LeaderboardTest;
     import MessagingTest;
+    import FriendTest;
     
     public class Main extends Sprite 
     {
@@ -58,6 +59,7 @@ package
             VirtualCurrencyTest.createTests(m_tests);
             AppStoreTest.createTests(m_tests);
             LeaderboardTest.createTests(m_tests);
+            FriendTest.createTests(m_tests);
             
             
             SECRET_MAP = new Dictionary();

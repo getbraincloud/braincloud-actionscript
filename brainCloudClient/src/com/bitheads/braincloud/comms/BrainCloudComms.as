@@ -310,7 +310,7 @@ package com.bitheads.braincloud.comms
                     _serviceCallsInProgress.push(call);
                     _serviceCallsWaiting.splice(i, 1);
                     
-                    if (call.getOperation() === ServiceOperation.Authenticate || call.getOperation() === ServiceOperation.ResetEmailPassword)
+                    if (call.getOperation() === ServiceOperation.Authenticate || call.getOperation() === ServiceOperation.ResetEmailPassword ||call.getOperation() === ServiceOperation.ResetEmailPasswordAdvanced)
                         _isAuthenticating = true;
                     
                     jsonMessageList.push(call.getJsonData());
@@ -423,7 +423,8 @@ package com.bitheads.braincloud.comms
 
                 // A session id or a profile id could potentially come back in any messages
                 //we also want to see if switchToAppId comes back
-                if (data != null)
+                //this should only ever be updated on authentication calls and identity calls. 
+                if (data != null && (serverCall.getServiceName() == ServiceName.Authenticate || serverCall.getServiceName() == ServiceName.Identity))
                 {
                     if (data.sessionId != null)
                     {

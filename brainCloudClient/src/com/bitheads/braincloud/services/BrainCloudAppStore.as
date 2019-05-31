@@ -112,7 +112,7 @@ package com.bitheads.braincloud.services
                 "storeId": storeId
             };	
 			data.priceInfoCriteria = new Object();
-			data.priceInfoCriteria.user_currency = userCurrency;
+			data.priceInfoCriteria.userCurrency = userCurrency;
             
             if (isOptionalParamValid(category)) {
                 data.category = category;

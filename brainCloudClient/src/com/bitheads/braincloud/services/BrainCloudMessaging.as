@@ -73,6 +73,7 @@ package com.bitheads.braincloud.services
         }
 
         /**
+         * DEPRECATED - USE GETMESSAGES WITH MARKASREAD
          * Retrieves list of specified messages
          *
          * Service Name - messaging
@@ -84,11 +85,29 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getMessages(msgBox:String, msgIds:Array, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        //public function getMessages(msgBox:String, msgIds:Array, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        //{
+        //    getMessages(msgBox, msgIds, successCallback, errorCallback, cbObject);
+        //}
+
+                /**
+         * Retrieves list of specified messages
+         *
+         * Service Name - messaging
+         * Service Operation - GET_MESSAGES
+         *
+         * @param msgBox 
+         * @param msgIds 
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function getMessages(msgBox:String, msgIds:Array, markAsRead:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
                 "msgbox": msgBox,
-                "msgIds": msgIds
+                "msgIds": msgIds,
+                "markAsRead": markAsRead
             };
             
             var serverCall:ServerCall = new ServerCall(ServiceName.Messaging, ServiceOperation.GetMessages, data, successCallback, errorCallback, cbObject);
