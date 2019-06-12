@@ -396,6 +396,11 @@ package com.bitheads.braincloud.comms
             else
             {
                 _fnErrorOutput("Unexpected packet received! Expected " + _expectedIncomingPacketId + " but got " + jsonData.packetId);
+                if (jsonData.packetId != NO_PACKET_EXPECTED && (_expectedIncomingPacketId == NO_PACKET_EXPECTED || _expectedIncomingPacketId != jsonData.packetId))
+                {
+                    _fnErrorOutput("Dropping duplicate packet");
+                    return;
+                }
             }
             
             _expectedIncomingPacketId = NO_PACKET_EXPECTED;
