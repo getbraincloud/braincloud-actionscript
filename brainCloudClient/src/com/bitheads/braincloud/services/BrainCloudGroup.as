@@ -194,6 +194,59 @@ package com.bitheads.braincloud.services
             var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.CreateGroup, dataObj, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
         }
+
+        /**
+         * Create a group with summaryData.
+         *
+         * Service Name - group
+         * Service Operation - CREATE_GROUP
+         *
+         * @param name Name of the group.
+         * @param groupType Name of the type of group.
+         * @param isOpenGroup true if group is open; false if closed.
+         * @param acl The group's access control list. A null ACL implies default.
+         * @param ownerAttributes Attributes for the group owner (current player).
+         * @param defaultMemberAttributes Default attributes for group members.
+         * @param data Custom application data.
+         * @param jsonSummaryData summary
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function createGroupWithSummaryData(name:String, groupType:String, isOpenGroup:Boolean, acl:GroupACL, ownerAttributes:Object, defaultMemberAttributes:Object, data:Object, jsonSummaryData:Object, 
+            successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var dataObj:Object = {
+                "groupType": groupType
+            };
+            
+            if (isOptionalParamValid(name)) {
+                dataObj.name = name;
+            }
+            
+            if (isOptionalParamValid(isOpenGroup)) {
+                dataObj.isOpenGroup = isOpenGroup;
+            }
+            
+            if (isOptionalParamValid(acl)) {
+                dataObj.acl = acl.toObject();
+            }
+            
+            if (isOptionalParamValid(ownerAttributes)) {
+                dataObj.ownerAttributes = ownerAttributes;
+            }
+            
+            if (isOptionalParamValid(defaultMemberAttributes)) {
+                dataObj.defaultMemberAttributes = defaultMemberAttributes;
+            }
+
+            if (isOptionalParamValid(jsonSummaryData)) {
+                dataObj.summaryData = jsonSummaryData;
+            }
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.CreateGroup, dataObj, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Create a group entity.
@@ -812,6 +865,59 @@ package com.bitheads.braincloud.services
             };
             
             var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.SetGroupOpen, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+
+        /**
+         * Update group's summary data
+         *
+         * Service Name - group
+         * Service Operation - UPDATE_GROUP_SUMMARY_DATA
+         *
+         * @param groupId ID of the group.
+         * @param version the version
+         * @param jsonSummaryData the summary
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function updateGroupSummaryData(groupId:String, version:int, jsonSummaryData:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "groupId": groupId,
+                "version": version
+            };
+            if (isOptionalParamValid(jsonSummaryData)) {
+                data.summaryData = jsonSummaryData;
+            }
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.UpdateGroupSummaryData, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+
+        /**
+         * Gets a list up to maxReturn randomly selected groups from the server based on the where param
+         *
+         * Service Name - group
+         * Service Operation - GET_RANDOM_GROUPS_MATCHING
+         *
+         * @param groupId ID of the group.
+         * @param version the version
+         * @param jsonSummaryData the summary
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function getRandomGroupsMatching(jsonWhere:Object, maxReturn:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "maxReturn": maxReturn
+            };
+            if (isOptionalParamValid(jsonWhere)) {
+                data.where = jsonWhere;
+            }
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.GetRandomGroupsMatching, data, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
         }
     }

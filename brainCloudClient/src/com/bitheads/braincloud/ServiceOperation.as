@@ -118,6 +118,8 @@ package com.bitheads.braincloud
         public static const GetGroupLeaderboardView:String = "GET_GROUP_LEADERBOARD_VIEW";
         public static const PostScoreToGroupLeaderboard:String = "POST_GROUP_SCORE";
         public static const RemoveGroupScore:String = "REMOVE_GROUP_SCORE";
+        public static const UpdateGroupSummaryData:String = "UPDATE_GROUP_SUMMARY_DATA";
+        public static const GetRandomGroupsMatching:String = "GET_RANDOM_GROUPS_MATCHING";
         
         public static const InitThirdParty:String = "initThirdParty";
         public static const PostThirdPartyLeaderboardScore:String = "postThirdPartyLeaderboardScore";
