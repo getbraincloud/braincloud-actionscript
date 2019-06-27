@@ -559,5 +559,111 @@ package com.bitheads.braincloud.services
 			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetPlayerScoresFromLeaderboards, data, successCallback, errorCallback, cbObject);
 			Client.sendRequest(serverCall);
 		}
+	/**
+	 * Posts score to Group's leaderboard - Note the user must be a member of the group
+	 *
+	 * Service Name - leaderboard
+	 * Service Operation - POST_SCORE_TO_GROUP_LEADERBOARD
+	 *
+	 * @param leaderboardId the id of the leaderboard
+	 * @param groupId the group's id
+	 * @param score the score you wish to post
+	 * @param otherData extra json data
+	 * @param callback The method to be invoked when the server response is received
+	 */
+        public function postScoreToGroupLeaderboard(leaderboardId:String, groupId:String, score:int, otherData:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var callData:Object = {
+                "leaderboardId": leaderboardId,
+                "groupId": groupId,
+                "score": score
+            };		
+
+            if (isOptionalParamValid(otherData)) {
+                callData.data = otherData;
+            }
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.PostScoreToGroupLeaderboard, callData, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+
+	/**
+	 * Removes score from group leaderboard
+	 *
+	 * Service Name - leaderboard
+	 * Service Operation - REMOVE_GROUP_SCORE
+	 *
+	 * @param leaderboardId the id of the leaderboard
+	 * @param groupId the group's id
+	 * @param versionId the version
+	 * @param callback The method to be invoked when the server response is received
+	 */
+        public function removeGroupScore(leaderboardId:String, groupId:String, versionId:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var callData:Object = {
+                "leaderboardId": leaderboardId,
+                "groupId": groupId,
+                "versionId": versionId
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.RemoveGroupScore, callData, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+
+	/**
+	 * Retrieve a view of the group leaderboard surrounding the current group.
+	 *
+	 * Service Name - leaderboard
+	 * Service Operation - GET_GROUP_LEADERBOARD_VIEW
+	 *
+	 * @param leaderboardId the id of the leaderboard
+	 * @param groupId the group's id
+	 * @param sort the sort order
+	 * @param beforeCount count of players before current player to include
+	 * @param afterCount count of players after current player to include
+	 * @param callback The method to be invoked when the server response is received
+	 */
+        public function getGroupLeaderboardView(leaderboardId:String, groupId:String, sort:SortOrder, beforeCount:int, afterCount:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var callData:Object = {
+                "leaderboardId": leaderboardId,
+                "groupId": groupId,
+                "sort": sort,
+                "beforeCount" : beforeCount,
+                "afterCount" : afterCount
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetGroupLeaderboardView, callData, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
+
+	/**
+	 * Retrieve a view of the group leaderboard surrounding the current group by the version
+	 *
+	 * Service Name - leaderboard
+	 * Service Operation - GET_GROUP_LEADERBOARD_VIEW
+	 *
+	 * @param leaderboardId the id of the leaderboard
+	 * @param groupId the group's id
+	 * @param sort the sort order
+	 * @param beforeCount count of players before current player to include
+	 * @param afterCount count of players after current player to include
+	 * @param versionId the version
+	 * @param callback The method to be invoked when the server response is received
+	 */
+        public function getGroupLeaderboardViewByVersion(leaderboardId:String, groupId:String, versionId:int, sort:SortOrder, beforeCount:int, afterCount:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{
+			var callData:Object = {
+                "leaderboardId": leaderboardId,
+                "groupId": groupId,
+                "versionId": versionId,
+                "sort": sort,
+                "beforeCount" : beforeCount,
+                "afterCount" : afterCount
+            };		
+			
+			var serverCall:ServerCall = new ServerCall(ServiceName.Leaderboard, ServiceOperation.GetGroupLeaderboardView, callData, successCallback, errorCallback, cbObject);
+			Client.sendRequest(serverCall);
+		}
 	}
 }
