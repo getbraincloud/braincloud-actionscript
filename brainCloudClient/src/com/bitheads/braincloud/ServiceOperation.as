@@ -277,6 +277,7 @@ package com.bitheads.braincloud
         public static const CustomPageEvent:String = "CUSTOM_PAGE_EVENT";
         public static const CustomScreenEvent:String = "CUSTOM_SCREEN_EVENT";
         public static const CustomTrackEvent:String = "CUSTOM_TRACK_EVENT";
+        public static const SubmitCrashReport:String = "SEND_CRASH_REPORT";
         
         // profanity
         public static const ProfanityCheck:String = "PROFANITY_CHECK";
