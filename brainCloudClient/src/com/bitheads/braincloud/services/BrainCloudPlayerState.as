@@ -273,6 +273,88 @@ package com.bitheads.braincloud.services
 			
 			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.UpdateContactEmail, data, successCallback, errorCallback, cbObject);
 			_client.sendRequest(serverCall);
-		}    
+		}  
+
+                /**
+         * Clears that status of the user
+         *
+         * @param statusName Name of the status
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function clearUserStatus(statusName:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{		
+            var data:Object = {
+                "statusName": statusName
+            };	
+            
+			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.ClearUserStatus, data, successCallback, errorCallback, cbObject);
+			_client.sendRequest(serverCall);
+		}  
+
+                /**
+         * Extends the status of the user
+         *
+         * @param statusName.
+         * @param additionalSecs
+         * @param details
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function extendUserStatus(statusName:String, additionalSecs:int, details:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{		
+            var data:Object = {
+                "statusName": statusName,
+                "additionalSecs":additionalSecs
+            };	
+
+            data.details  = details;
+            
+			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.ExtendUserStatus, data, successCallback, errorCallback, cbObject);
+			_client.sendRequest(serverCall);
+		}
+
+                /**
+         * get the stats of the user
+         *
+         * @param statusName
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function getUserStats(statusName:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{		
+            var data:Object = {
+                "statusName": statusName
+            };	
+            
+			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.GetUserStats, data, successCallback, errorCallback, cbObject);
+			_client.sendRequest(serverCall);
+		}
+
+                /**
+         * set status of user
+         *
+         * @param statusName
+         * @param durationSecs
+         * @param details
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function setUserStatus(statusName:String, durationSecs:int, details:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+		{		
+            var data:Object = {
+                "statusName": statusName,
+                "durationSecs":durationSecs
+            };	
+
+            data.details  = details;
+            
+			var serverCall:ServerCall = new ServerCall(ServiceName.PlayerState, ServiceOperation.SetUserStatus, data, successCallback, errorCallback, cbObject);
+			_client.sendRequest(serverCall);
+		}
 	}
 }
