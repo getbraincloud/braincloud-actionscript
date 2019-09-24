@@ -328,5 +328,63 @@ package com.bitheads.braincloud.services
             var serverCall:ServerCall = new ServerCall(ServiceName.AsyncMatch, ServiceOperation.Delete, data, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
         }
+
+                /**
+         * Removes the match and match history from the server. DEBUG ONLY, in production it is recommended
+         *   the user leave it as completed.
+         *
+         * Service Name - AsyncMatch
+         * Service Operation - Complete with summary
+         *
+         * @param ownerId Match owner identifier
+         * @param matchId Match identifier
+         * @param pushContent
+         * @param summary
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function completeMatchWithSummaryData(ownerId:String, matchId:String, pushContent:String, summary:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "ownerId": ownerId,
+                "matchId": matchId,
+                "pushContent":pushContent
+            };         
+            
+            data.summary  = summary;
+
+            var serverCall:ServerCall = new ServerCall(ServiceName.AsyncMatch, ServiceOperation.CompleteMatchWithSummaryData, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
+
+                /**
+         * Removes the match and match history from the server. DEBUG ONLY, in production it is recommended
+         *   the user leave it as completed.
+         *
+         * Service Name - AsyncMatch
+         * Service Operation - abandon with summary
+         *
+         * @param ownerId Match owner identifier
+         * @param matchId Match identifier
+         * @param pushContent
+         * @param summary
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function abandonMatchWithSummaryData(ownerId:String, matchId:String, pushContent:String, summary:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "ownerId": ownerId,
+                "matchId": matchId,
+                "pushContent":pushContent
+            };         
+            
+            data.summary  = summary;
+
+            var serverCall:ServerCall = new ServerCall(ServiceName.AsyncMatch, ServiceOperation.AbandonMatchWithSummaryData, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
     }
 }
