@@ -185,6 +185,8 @@ package com.bitheads.braincloud
         public static const FindMatches:String = "FIND_MATCHES";
         public static const FindMatchesCompleted:String = "FIND_MATCHES_COMPLETED";
         public static const DeleteMatch:String = "DELETE_MATCH";
+        public static const CompleteMatchWithSummaryData:String = "COMPLETE_MATCH_WITH_SUMMARY_DATA";
+        public static const AbandonMatchWithSummaryData:String = "ABANDON_MATCH_WITH_SUMMARY_DATA";
         
         public static const LastUploadStatus:String = "LAST_UPLOAD_STATUS";
         
@@ -259,6 +261,26 @@ package com.bitheads.braincloud
         public static const RemoveAttributes:String = "REMOVE_ATTRIBUTES";
         public static const UpdatePlayerPicture:String = "UPDATE_PICTURE_URL";
         public static const UpdateContactEmail:String = "UPDATE_CONTACT_EMAIL";
+        public static const ClearUserStatus:String = "CLEAR_USER_STATUS";
+        public static const ExtendUserStatus:String = "EXTEND_USER_STATUS";
+        public static const SetUserStatus:String = "SET_USER_STATUS";
+        public static const GetUserStats:String = "GET_USER_STATUS";
+
+        public static const AwardUserItem:String = "AWARD_USER_ITEM";
+        public static const DropUserItem:String = "DROP_USER_ITEM";
+        public static const GetUserItem:String = "GET_USER_ITEM";
+        public static const GetUserItemsPage:String = "GET_USER_ITEMS_PAGE";
+        public static const GetUserItemsPageOffset:String = "GET_USER_ITEMS_PAGE_BY_OFFSET";
+        public static const GiveUserItemTo:String = "GIVE_USER_ITEM_TO";
+        public static const PurchaseUserItem:String = "PURCHASE_USER_ITEM";
+        public static const ReceiveUserItemFrom:String = "RECEIVE_USER_ITEM_FROM";
+        public static const SellUSerItem:String = "SELL_USER_ITEM";
+        public static const UpdateUserItemData:String = "UPDATE_USER_ITEM_DATA";
+        public static const UseUserItem:String = "USE_USER_ITEM";
+
+        public static const GetCatalogItemDefinition:String = "GET_CATALOG_ITEM_DEFINITION";
+        public static const GetCatalogItemsPage:String = "GET_CATALOG_ITEMS_PAGE";
+        public static const GetCatalogItemsPageOffset:String = "GET_CATALOG_ITEMS_PAGE_BY_OFFSET";
         
         public static const ReadProperties:String = "READ_PROPERTIES";
         
@@ -277,6 +299,8 @@ package com.bitheads.braincloud
         public static const CustomPageEvent:String = "CUSTOM_PAGE_EVENT";
         public static const CustomScreenEvent:String = "CUSTOM_SCREEN_EVENT";
         public static const CustomTrackEvent:String = "CUSTOM_TRACK_EVENT";
+        public static const SubmitCrashReport:String = "SEND_CRASH_REPORT";
+
         
         // profanity
         public static const ProfanityCheck:String = "PROFANITY_CHECK";

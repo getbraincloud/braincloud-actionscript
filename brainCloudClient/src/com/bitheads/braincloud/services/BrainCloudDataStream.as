@@ -90,5 +90,44 @@ package com.bitheads.braincloud.services
             var serverCall:ServerCall = new ServerCall(ServiceName.DataStream, ServiceOperation.CustomTrackEvent, data, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
         }
+
+        /**
+         * Creates custom data stream track event
+         *
+         * Service Name - dataStream
+         * Service Operation - SUBMIT_CRASH_REPORT
+         *
+         * @param crashType Type of crash
+         * @param errorMsg Message of error
+         * @param crashJson
+         * @param crashLog log
+         * @param userName name of user
+         * @param userEmail email of user
+         * @param userNotes notes
+         * @param userSubmitted
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function submitCrashReport(crashType:String, errorMsg:String, crashJson:Object, crashLog:String, userName:String, userEmail:String, userNotes:String, userSubmitted:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "crashType": crashType,
+                "errorMsg":errorMsg,
+                "crashLog": crashLog,
+                "userName":userName,
+                "userEmail":userEmail,
+                "userNotes":userNotes,
+                "userSubmitted":userSubmitted
+            };
+
+            if (isOptionalParamValid(crashJson)) 
+            {
+                data.crashJson  = crashJson;
+            }   
+
+            var serverCall:ServerCall = new ServerCall(ServiceName.DataStream, ServiceOperation.SubmitCrashReport, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
     }
 }
