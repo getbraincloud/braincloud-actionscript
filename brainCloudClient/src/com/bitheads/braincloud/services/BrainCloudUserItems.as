@@ -78,7 +78,7 @@ package com.bitheads.braincloud.services
 		}
 
         		        /**
-         * 
+         * Retrieves the page of user's inventory from the server based on the context. If includeDef is true, response includes associated itemDef with each user item, with language fields limited to the current or default language.
          *
          * @param context
          * @param searchCriteria
@@ -104,7 +104,7 @@ package com.bitheads.braincloud.services
 		}
 
         		        /**
-         *
+         *Retrieves the page of user's inventory from the server based on the encoded context. If includeDef is true, response includes associated itemDef with each user item, with language fields limited to the current or default language.
          *
          * @param context
          * @param pageOffset
