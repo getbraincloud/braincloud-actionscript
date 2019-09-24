@@ -56,7 +56,7 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function deleteEntity(entityType:String, entityId:String, version:Int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function deleteEntity(entityType:String, entityId:String, version:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
                 "entityType": entityType,
@@ -120,7 +120,7 @@ package com.bitheads.braincloud.services
                 data.sortJson  = sortJson;
             
 
-            var serverCall:ServerCall = new ServerCall(ServiceName.customEntity, ServiceOperation.getPage, data, successCallback, errorCallback, cbObject);
+            var serverCall:ServerCall = new ServerCall(ServiceName.customEntity, ServiceOperation.GetPage, data, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
         }
 
@@ -137,7 +137,7 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getPageOffset(entityType:String, context:String, pageOffset:Int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function getPageOffset(entityType:String, context:String, pageOffset:int, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
                 "entityType": entityType,
@@ -189,7 +189,7 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function updateEntity(entityType:String, entityId:String, version:Int, dataJson:Object, acl:Object, timeToLive:Number, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function updateEntity(entityType:String, entityId:String, version:int, dataJson:Object, acl:Object, timeToLive:Number, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
                 "entityType": entityType,
@@ -221,7 +221,7 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function updateEntityFields(entityType:String, entityId:String, version:Int, fieldsJson:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function updateEntityFields(entityType:String, entityId:String, version:int, fieldsJson:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
                 "entityType": entityType,

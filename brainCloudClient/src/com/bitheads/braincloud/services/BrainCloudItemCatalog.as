@@ -17,7 +17,7 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         *
+         *Reads an existing item definition from the server, with language fields limited to the current or default language.
          *
          * @param defId
          * @param successCallback The success callback
@@ -37,28 +37,24 @@ package com.bitheads.braincloud.services
 		}
         
         /**
-         * 
+         * Retrieves page of catalog items from the server, with language fields limited to the text for the current or default language.
          *
          * @param context
-         * @param sortObject
-         * @param sortCriteria
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getCatalogItemsPage(context:Object, searchCriteria:Object, sortCriteria:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function getCatalogItemsPage(context:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{			
 
             data.context  = context;
-            data.searchCriteria = searchCriteria;
-            data.sortCriteria  = sortCriteria;
 
 			var serverCall:ServerCall = new ServerCall(ServiceName.ItemCatalog, ServiceOperation.GetCatalogItemsPage, data, successCallback, errorCallback, cbObject);
 			_client.sendRequest(serverCall);
 		}
         
         /**
-         * 
+         * Gets the page of catalog items from the server based on the encoded context and specified page offset, with language fields limited to the text for the current or default language.
          *
          * @param context
          * @param pageOffset

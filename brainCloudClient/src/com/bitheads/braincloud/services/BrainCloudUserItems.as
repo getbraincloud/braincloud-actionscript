@@ -58,7 +58,7 @@ package com.bitheads.braincloud.services
                 "quantity":quantity,
                 "includeDef":includeDef
             };		
-			var serverCall:ServerCall = new ServerCall(ServiceName.UserItems, ServiceOperation.DropUserItems, data, successCallback, errorCallback, cbObject);
+			var serverCall:ServerCall = new ServerCall(ServiceName.UserItems, ServiceOperation.DropUserItem, data, successCallback, errorCallback, cbObject);
 			_client.sendRequest(serverCall);
 		}
         
@@ -88,7 +88,7 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getUserItemPage(context:Object, searchCriteria:Object, sortCriteria:Object, includeDef:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function getUserItemsPage(context:Object, searchCriteria:Object, sortCriteria:Object, includeDef:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{			
 
             var data:Object = {
@@ -99,7 +99,7 @@ package com.bitheads.braincloud.services
             data.searchCriteria = searchCriteria;
             data.sortCriteria  = sortCriteria;
 
-			var serverCall:ServerCall = new ServerCall(ServiceName.UserItem, ServiceOperation.GetUserItemPage, data, successCallback, errorCallback, cbObject);
+			var serverCall:ServerCall = new ServerCall(ServiceName.UserItem, ServiceOperation.GetUserItemsPage, data, successCallback, errorCallback, cbObject);
 			_client.sendRequest(serverCall);
 		}
 
