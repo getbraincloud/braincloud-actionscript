@@ -270,7 +270,7 @@ package com.bitheads.braincloud
         public static const DropUserItem:String = "DROP_USER_ITEM";
         public static const GetUserItem:String = "GET_USER_ITEM";
         public static const GetUserItemPage:String = "GET_USER_ITEM_PAGE";
-        public static const GetUserItemPageOffset:String = "GET_USER_ITEM_PAGE_BY_OFFSET";
+        public static const GetUserItemsPageOffset:String = "GET_USER_ITEM_PAGE_BY_OFFSET";
         public static const GiveUserItemTo:String = "GIVE_USER_ITEM_TO";
         public static const PurchaseUserItem:String = "PURCHASE_USER_ITEM";
         public static const ReceiveUserItemFrom:String = "RECEIVE_USER_ITEM_FROM";

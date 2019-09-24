@@ -24,11 +24,12 @@ package com.bitheads.braincloud.services
          * @param timeToLive
          * @param isOwned
          * @param dataJson
+         * @param acl
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function createEntity(entityType:String, dataJson:Object, acl:Object, timeToLive:Object, isOwned:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function createEntity(entityType:String, dataJson:Object, acl:Object, timeToLive:Number, isOwned:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
                 "entityType": eventName,
@@ -36,6 +37,7 @@ package com.bitheads.braincloud.services
                 "isOwned":isOwned
             };
                 data.dataJson  = dataJson;
+                data.acl  = acl;
             
             var serverCall:ServerCall = new ServerCall(ServiceName.CustomEntity, ServiceOperation.CreateEntity, data, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
@@ -67,7 +69,7 @@ package com.bitheads.braincloud.services
         }
         
         /**
-         * 
+         * Counts the number of custom entities meeting the specified where clause, enforcing ownership/ACL permissions.
          *
          * Service Name - customEntity
          * Service Operation - GET_COUNT
@@ -91,13 +93,15 @@ package com.bitheads.braincloud.services
         }
 
         /**
-         * 
+         * Retrieves first page of custom entities from the server based on the custom entity type and specified query context, enforcing ownership/ACL permissions.
          *
          * Service Name - customEntity
          * Service Operation - GET_PAGE
          *
          * @param entityType
          * @param rowsPerPage
+         * @param searchJson
+         * @param sortJson
          * @param doCount
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
@@ -121,7 +125,7 @@ package com.bitheads.braincloud.services
         }
 
                 /**
-         * 
+         * Gets the page of custom entities from the server based on the encoded context and specified page offset, enforcing ownership/ACL permissions.
          *
          * Service Name - customEntity
          * Service Operation - GET_PAGE_BY_OFFSET
@@ -185,18 +189,18 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function updateEntity(entityType:String, entityId:String, version:Int, dataJson:Object, acl:Object, timeToLive:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function updateEntity(entityType:String, entityId:String, version:Int, dataJson:Object, acl:Object, timeToLive:Number, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
             var data:Object = {
                 "entityType": entityType,
                 "entityId":entityId,
-                "version": version
+                "version": version,
+                "timeToLive"=timeToLive
             };
 
             
                 data.dataJson  = dataJson;
                 data.acl  = acl;
-                data.timeToLive =timeToLive;
             
 
             var serverCall:ServerCall = new ServerCall(ServiceName.CustomEntity, ServiceOperation.UpdateEntity, data, successCallback, errorCallback, cbObject);

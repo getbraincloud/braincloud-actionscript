@@ -113,7 +113,7 @@ package com.bitheads.braincloud.services
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function getUserItemPageOffset(context:String, pageOffset:int, includeDef:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function getUserItemsPageOffset(context:String, pageOffset:int, includeDef:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
 		{			
 
             var data:Object = {
@@ -122,7 +122,7 @@ package com.bitheads.braincloud.services
                 "includeDef":includeDef
             };
 
-			var serverCall:ServerCall = new ServerCall(ServiceName.UserItem, ServiceOperation.GetUserItemPageOffset, data, successCallback, errorCallback, cbObject);
+			var serverCall:ServerCall = new ServerCall(ServiceName.UserItem, ServiceOperation.GetUserItemsPageOffset, data, successCallback, errorCallback, cbObject);
 			_client.sendRequest(serverCall);
 		}
 
@@ -169,9 +169,11 @@ package com.bitheads.braincloud.services
             var data:Object = {
                 "defId":defId,
                 "quantity":quantity,
-                "shopId":shopId,
                 "includeDef":includeDef
             };		
+
+            data.shopId=shopId;
+
 			var serverCall:ServerCall = new ServerCall(ServiceName.UserItem, ServiceOperation.PurchaseUserItem, data, successCallback, errorCallback, cbObject);
 			_client.sendRequest(serverCall);
 		}
@@ -215,9 +217,11 @@ package com.bitheads.braincloud.services
                 "itemId":itemId,
                 "version":version,
                 "quantity":quantity,
-                "shopId":shopId,
                 "includeDef":includeDef
             }			
+
+            data.shopId=shopId;
+            
 			var serverCall:ServerCall = new ServerCall(ServiceName.UserItem, ServiceOperation.SellUserItem, data, successCallback, errorCallback, cbObject);
 			_client.sendRequest(serverCall);
 		}
