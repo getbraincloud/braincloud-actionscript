@@ -336,6 +336,10 @@ package com.bitheads.braincloud.services
         }
         
         /**
+        * Deprecated
+        */
+
+        /**
          * Resets the specified milestones' statuses to LOCKED.
          *
          * Service Name - Gamification
@@ -348,6 +352,7 @@ package com.bitheads.braincloud.services
          */
         public function resetMilestones(milestoneIds:Array, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
+            [Deprecated]
             var data:Object = {
                 "milestones": milestoneIds  
             };        
