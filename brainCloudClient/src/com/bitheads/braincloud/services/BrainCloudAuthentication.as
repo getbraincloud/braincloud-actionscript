@@ -256,6 +256,23 @@ package com.bitheads.braincloud.services
             authenticate(handoffId, securityToken, AuthenticationType.Handoff, null, false, successCallback, errorCallback, cbObject);
         }
 
+        /*
+         * Authenticate the user using a handoffId and authentication token
+         *
+         * Service Name - Authenticate
+         * Service Operation - Authenticate
+         *
+         * @param handoffCode braincloud handoff Code generated from cloud script
+         * @param securityToken The authentication token
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function authenticateSettopHandoff(handoffCode:String, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            authenticate(handoffCode,"", AuthenticationType.SettopHandoff, null, false, successCallback, errorCallback, cbObject);
+        }
+
         /**
          * Authenticate the user via cloud code (which in turn validates the supplied credentials against an external system).
          * This allows the developer to extend brainCloud authentication to support other backend authentication systems.

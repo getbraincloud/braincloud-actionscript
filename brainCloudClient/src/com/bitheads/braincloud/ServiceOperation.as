@@ -318,6 +318,7 @@ package com.bitheads.braincloud
         public static const AddGroupMember:String = "ADD_GROUP_MEMBER";
         public static const ApproveGroupJoinRequest:String = "APPROVE_GROUP_JOIN_REQUEST";
         public static const AutoJoinGroup:String = "AUTO_JOIN_GROUP";
+        public static const AutoJoinGroupMulti:String = "AUTO_JOIN_GROUP_MULTI";
         public static const CancelGroupInvitation:String = "CANCEL_GROUP_INVITATION";
         public static const CreateGroup:String = "CREATE_GROUP";
         public static const CreateGroupEntity:String = "CREATE_GROUP_ENTITY";
