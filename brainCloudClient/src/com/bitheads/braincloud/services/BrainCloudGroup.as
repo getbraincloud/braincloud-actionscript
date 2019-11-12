@@ -123,6 +123,34 @@ package com.bitheads.braincloud.services
             var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.AutoJoinGroup, data, successCallback, errorCallback, cbObject);
             Client.sendRequest(serverCall);
         }
+
+        /**
+         * Find and join an open group in the pool of groups in multiple group types provided as input arguments.
+         *
+         * Service Name - group
+         * Service Operation - AUTO_JOIN_GROUP_MULTI
+         *
+         * @param groupType Name of the associated group type.
+         * @param autoJoinStrategy Selection strategy to employ when there are multiple matches
+         * @param dataQuery Query parameters (optional)
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function autoJoinGroupMulti(groupType:String, autoJoinStrategy:AutoJoinStrategy, dataQuery:Object, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            var data:Object = {
+                "groupType": groupType,
+                "autoJoinStrategy": autoJoinStrategy.value
+            };
+            
+            if (isOptionalParamValid(dataQuery)) {
+                data.where = dataQuery;
+            }
+            
+            var serverCall:ServerCall = new ServerCall(ServiceName.Group, ServiceOperation.AutoJoinGroupMulti, data, successCallback, errorCallback, cbObject);
+            Client.sendRequest(serverCall);
+        }
         
         /**
          * Cancel an outstanding invitation to the group.
