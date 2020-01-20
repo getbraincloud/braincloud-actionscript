@@ -190,16 +190,34 @@ package com.bitheads.braincloud.services
          * Service Name - Authenticate
          * Service Operation - Authenticate
          *
-         * @param userId  String representation of google+ userid (email)
-         * @param token  The authentication token derived via the google apis.
+         * @param googleUserId  String representation of google+ userId. Gotten with calls like RequestUserId
+         * @param serverAuthCode  The server authentication token derived via the google apis. Gotten with calls like RequestServerAuthCode
          * @param forceCreate Should a new profile be created for this user if the account does not exist?
          * @param successCallback The success callback
          * @param errorCallback The failure callback.
          * @param cbObject The user object sent to the callback
          */
-        public function authenticateGoogle(userId:String, token:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        public function authenticateGoogle(googleUserId:String, serverAuthCode:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
         {
-            authenticate(userId, token, AuthenticationType.Google, null, forceCreate, successCallback, errorCallback, cbObject);
+            authenticate(googleUserId, serverAuthCode, AuthenticationType.Google, null, forceCreate, successCallback, errorCallback, cbObject);
+        }
+
+        /*
+         * Authenticate the user using a google openId
+         *
+         * Service Name - Authenticate
+         * Service Operation - Authenticate
+         *
+         * @param googleUserAccountEmail  The email associated with the google user
+         * @param idToken  The id token of the google account. Can get with calls like requestIdToken
+         * @param forceCreate Should a new profile be created for this user if the account does not exist?
+         * @param successCallback The success callback
+         * @param errorCallback The failure callback.
+         * @param cbObject The user object sent to the callback
+         */
+        public function authenticateGoogleOpenId(googleUserAccountEmail:String, idToken:String, forceCreate:Boolean, successCallback:Function = null, errorCallback:Function = null, cbObject:Object = null):void
+        {
+            authenticate(googleUserAccountEmail, idToken, AuthenticationType.GoogleOpenId, null, forceCreate, successCallback, errorCallback, cbObject);
         }
         
         /*

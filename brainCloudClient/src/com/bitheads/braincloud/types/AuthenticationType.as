@@ -9,6 +9,7 @@ package com.bitheads.braincloud.types
         public static const GameCenter:AuthenticationType = new AuthenticationType("GameCenter");
         public static const Steam:AuthenticationType = new AuthenticationType("Steam");
         public static const Google:AuthenticationType = new AuthenticationType("Google");
+        public static const GoogleOpenId:AuthenticationType = new AuthenticationType("GoogleOpenId");
         public static const Twitter:AuthenticationType = new AuthenticationType("Twitter");
         public static const Parse:AuthenticationType = new AuthenticationType("Parse");
         public static const Handoff:AuthenticationType = new AuthenticationType("Handoff");
