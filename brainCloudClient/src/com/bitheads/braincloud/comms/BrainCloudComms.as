@@ -36,7 +36,7 @@ package com.bitheads.braincloud.comms
         private var _eventResponses:Array;
         
         //timeout/retry
-        private var _packetTimeouts:Array = [10, 10, 10];
+        private var _packetTimeouts:Array = [15, 20, 35, 50]; 
         private var _authPacketTimeoutSecs:uint = 15;
         
         private var _isAuthenticating:Boolean;
