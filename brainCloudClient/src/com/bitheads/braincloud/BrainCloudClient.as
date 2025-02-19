@@ -11,7 +11,7 @@ package com.bitheads.braincloud
     {
         private static const BRAINCLOUD_VERSION:String = "4.4.0";
 
-        private static const DEFAULT_SERVER_URL:String = "https://sharedprod.braincloudservers.com/dispatcherv2";
+        private static const DEFAULT_SERVER_URL:String = "https://api.braincloudservers.com/dispatcherv2";
         
         private static var _instance:BrainCloudClient;
         
@@ -119,7 +119,7 @@ package com.bitheads.braincloud
          * Method initializes the BrainCloudClient.
          *
          * @param serverURL The url to the brainCloud server
-         *     Currently this should be:  https://sharedprod.braincloudservers.com/dispatcherv2
+         *     Currently this should be:  https://api.braincloudservers.com/dispatcherv2
          * @param secretKey The secret key for your app
          * @param appId The app id
          * @param appVersion The app version
@@ -151,7 +151,7 @@ package com.bitheads.braincloud
          * Used when needed to switch between child and parent apps.
          *
          * @param serverURL The url to the brainCloud server
-         *     Currently this should be:  https://sharedprod.braincloudservers.com/dispatcherv2
+         *     Currently this should be:  https://api.braincloudservers.com/dispatcherv2
          * @param appId The app id
          * @param secretMap a map of <appId, secretKey>
          * @param appVersion The app version
